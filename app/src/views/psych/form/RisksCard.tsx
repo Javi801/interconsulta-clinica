@@ -1,7 +1,7 @@
 import Field from '../../../components/Field'
 import RepeatableItem from '../../../components/RepeatableItem'
 import RepeatableSection from '../../../components/RepeatableSection'
-import { RISK_LEVEL_OPTIONS, RISK_PRESENCE_OPTIONS } from '../../../data/seed'
+import { RISK_LEVEL_OPTIONS, RISK_OPTIONS, RISK_PRESENCE_OPTIONS } from '../../../data/seed'
 import { patchAt, removeAt } from '../../../utils/list'
 import type { ClinicalRisk, RiskLevel, RiskPresence } from '../../../types'
 
@@ -11,12 +11,10 @@ interface RisksCardProps {
 }
 
 function RisksCard({ value, onChange }: RisksCardProps) {
-  const addRisk = () => {
+  const addRisk = (name?: string) => {
+    if (!name) return
     const nextId = value.reduce((max, risk) => Math.max(max, risk.id), 0) + 1
-    onChange([
-      ...value,
-      { id: nextId, risk: 'Nuevo riesgo clínico', presence: 'Presente', level: 'Bajo' },
-    ])
+    onChange([...value, { id: nextId, risk: name, presence: 'Presente', level: 'Bajo' }])
   }
 
   return (
@@ -24,6 +22,7 @@ function RisksCard({ value, onChange }: RisksCardProps) {
       span={6}
       title="Riesgos clínicos"
       addLabel="Añadir riesgo clínico"
+      pickFrom={{ label: 'Riesgo', options: RISK_OPTIONS, otherOption: 'Otro' }}
       onAdd={addRisk}
       isEmpty={value.length === 0}
     >

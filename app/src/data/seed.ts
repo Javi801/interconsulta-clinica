@@ -120,6 +120,24 @@ export const LIFE_EVENT_CATEGORY_OPTIONS = [
   'Otro',
 ]
 
+export const RISK_OPTIONS = [
+  'Ideas de muerte',
+  'Ideación suicida',
+  'Plan suicida',
+  'Intención suicida',
+  'Intentos suicidas previos',
+  'Autolesiones',
+  'Riesgo de violencia hacia otras personas',
+  'Impulsividad de alto riesgo',
+  'Síntomas psicóticos con riesgo',
+  'Agitación o desorganización',
+  'Consumo de sustancias con riesgo',
+  'Abandono del autocuidado',
+  'Vulnerabilidad social',
+  'Acceso a medios potencialmente letales',
+  'Otro',
+]
+
 export const RISK_PRESENCE_OPTIONS: RiskPresence[] = ['Presente', 'Antecedente']
 
 export const RISK_LEVEL_OPTIONS: RiskLevel[] = ['Bajo', 'Moderado', 'Alto', 'Inminente']
