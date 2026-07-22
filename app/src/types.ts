@@ -31,10 +31,8 @@ export interface GeneralData {
 
 export interface MotiveExpectations {
   mainReason: string
-  currentConcern: string
   since: string
   expectations: string
-  selfHypothesis: string
   psychiatryFears: string
   additionalInfo: string
 }

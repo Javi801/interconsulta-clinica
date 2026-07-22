@@ -1,4 +1,13 @@
-import type { FormStatus, Patient, PatientForm, PsychForm } from '../types'
+import type {
+  Adherence,
+  DatePrecision,
+  FamilyHistoryType,
+  FormStatus,
+  Patient,
+  PatientForm,
+  PsychForm,
+  SymptomCourse,
+} from '../types'
 
 export const STATUS_LABELS: Record<FormStatus, string> = {
   draft: 'Borrador',
@@ -25,6 +34,55 @@ export const OCCUPATION_OPTIONS = [
 
 export const GENDER_OPTIONS = ['Mujer', 'Hombre', 'No binario', 'Otro']
 
+export const COURSE_OPTIONS: SymptomCourse[] = ['Constante', 'Episódico', 'Fluctuante']
+
+export const SYMPTOM_OPTIONS = [
+  'Preocupación excesiva',
+  'Dificultad para dormir',
+  'Fatiga',
+  'Ánimo bajo',
+  'Irritabilidad',
+  'Dificultad de concentración',
+  'Otro',
+]
+
+export const SUBSTANCE_OPTIONS = [
+  'Alcohol',
+  'Tabaco',
+  'Cannabis',
+  'Cocaína',
+  'Estimulantes',
+  'Benzodiacepinas sin indicación o fuera de la dosis indicada',
+  'Opioides',
+  'Alucinógenos',
+  'Otra sustancia',
+]
+
+export const SUBSTANCE_STATUS_OPTIONS = ['Consumo actual', 'Consumo anterior', 'Uso ocasional']
+
+export const ADHERENCE_OPTIONS: Adherence[] = ['Alta', 'Media', 'Baja']
+
+export const DATE_PRECISION_OPTIONS: DatePrecision[] = ['Año', 'Mes y año', 'Fecha exacta']
+
+export const FAMILY_CONDITION_OPTIONS = [
+  'Depresión',
+  'Trastorno bipolar',
+  'Esquizofrenia u otros trastornos psicóticos',
+  'Trastornos de ansiedad',
+  'Suicidio o intentos suicidas',
+  'Consumo problemático de sustancias',
+  'TDAH',
+  'Autismo',
+  'Trastornos alimentarios',
+  'Enfermedades neurocognitivas',
+  'Otro',
+]
+
+export const FAMILY_HISTORY_TYPE_OPTIONS: FamilyHistoryType[] = [
+  'Diagnóstico confirmado',
+  'Inferido o sospechado',
+]
+
 export const HYPOTHESIS_OPTIONS = ['Place holder 1', 'Place holder 2', 'Place holder 3']
 
 export const REFERRAL_REASON_OPTIONS = [
@@ -38,7 +96,7 @@ export const EDIT_PIN = '4827'
 
 export const SEED_PATIENTS: Patient[] = [
   {
-    rut: '12.345.678-9',
+    rut: '12.345.678-5',
     name: 'Daniela Pérez Soto',
     patientFormStatus: 'sent',
     psychFormStatus: 'draft',
@@ -55,7 +113,7 @@ export const SEED_PATIENTS: Patient[] = [
 
 export const SEED_PATIENT_FORM: PatientForm = {
   general: {
-    rut: '12.345.678-9',
+    rut: '12.345.678-5',
     firstName: 'Daniela',
     lastName: 'Pérez Soto',
     birthDate: '1991-05-18',
@@ -69,10 +127,8 @@ export const SEED_PATIENT_FORM: PatientForm = {
   },
   motive: {
     mainReason: 'Ansiedad persistente, dificultades para dormir y problemas de concentración.',
-    currentConcern: 'Siento que mi rendimiento laboral ha disminuido y estoy más irritable en casa.',
     since: 'Desde aproximadamente marzo de 2025.',
     expectations: 'Entender mejor lo que me ocurre y recuperar mi funcionamiento habitual.',
-    selfHypothesis: 'Pienso que puede ser ansiedad relacionada con el trabajo.',
     psychiatryFears: 'Me preocupa depender de medicamentos.',
     additionalInfo: 'Mi madre tuvo depresión y actualmente estoy pasando por un cambio de jefatura.',
   },
