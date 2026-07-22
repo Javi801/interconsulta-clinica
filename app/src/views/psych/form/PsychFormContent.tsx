@@ -1,9 +1,10 @@
 import Card from '../../../components/Card'
 import ChipGroup from '../../../components/ChipGroup'
-import { HYPOTHESIS_OPTIONS, REFERRAL_REASON_OPTIONS } from '../../../data/seed'
+import { REFERRAL_REASON_OPTIONS } from '../../../data/seed'
 import { referralSuggestion } from '../../../utils/summary'
 import type { FormStatus, PsychForm } from '../../../types'
 import EvaluationCard from './EvaluationCard'
+import HypothesesCard from './HypothesesCard'
 import RisksCard from './RisksCard'
 import SuggestionCard from './SuggestionCard'
 
@@ -22,14 +23,7 @@ function PsychFormContent({ form, onChange, status }: PsychFormContentProps) {
   return (
     <div className="grid">
       <EvaluationCard value={form.evaluation} onChange={update('evaluation')} status={status} />
-      <Card span={4}>
-        <h2>Hipótesis clínicas</h2>
-        <ChipGroup
-          options={HYPOTHESIS_OPTIONS}
-          selected={form.hypotheses}
-          onChange={update('hypotheses')}
-        />
-      </Card>
+      <HypothesesCard value={form.hypotheses} onChange={update('hypotheses')} />
       <RisksCard value={form.risks} onChange={update('risks')} />
       <Card span={6}>
         <h2>Motivos de derivación</h2>

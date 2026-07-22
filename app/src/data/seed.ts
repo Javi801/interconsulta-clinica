@@ -1,5 +1,6 @@
 import type {
   Adherence,
+  ClinicalPriority,
   DatePrecision,
   FamilyHistoryType,
   FormStatus,
@@ -124,6 +125,8 @@ export const RISK_PRESENCE_OPTIONS: RiskPresence[] = ['Presente', 'Antecedente']
 export const RISK_LEVEL_OPTIONS: RiskLevel[] = ['Bajo', 'Moderado', 'Alto', 'Inminente']
 
 export const HYPOTHESIS_OPTIONS = ['Place holder 1', 'Place holder 2', 'Place holder 3']
+
+export const HYPOTHESIS_PRIORITY_OPTIONS: ClinicalPriority[] = ['Alta', 'Media', 'Baja']
 
 export const REFERRAL_REASON_OPTIONS = [
   'Inicio de esquema farmacológico',
@@ -261,7 +264,7 @@ export const SEED_PSYCH_FORM: PsychForm = {
     insight: 'Buena conciencia de su situación actual.',
     additionalObservations: 'Sin hallazgos clínicos adicionales relevantes.',
   },
-  hypotheses: ['Place holder 1'],
+  hypotheses: [{ hypothesis: 'Place holder 1', priority: 'Media', comment: '' }],
   risks: [{ id: 1, risk: 'Ideas de muerte', presence: 'Antecedente', level: 'Bajo' }],
   referralReasons: [
     'Inicio de esquema farmacológico',
