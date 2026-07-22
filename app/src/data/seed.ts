@@ -7,6 +7,8 @@ import type {
   Patient,
   PatientForm,
   PsychForm,
+  RiskLevel,
+  RiskPresence,
   SymptomCourse,
 } from '../types'
 
@@ -116,6 +118,10 @@ export const LIFE_EVENT_CATEGORY_OPTIONS = [
   'Evento traumático',
   'Otro',
 ]
+
+export const RISK_PRESENCE_OPTIONS: RiskPresence[] = ['Presente', 'Antecedente']
+
+export const RISK_LEVEL_OPTIONS: RiskLevel[] = ['Bajo', 'Moderado', 'Alto', 'Inminente']
 
 export const HYPOTHESIS_OPTIONS = ['Place holder 1', 'Place holder 2', 'Place holder 3']
 

@@ -1,5 +1,5 @@
 import { calculateAge, formatMonth } from './date'
-import type { Medication, PatientForm } from '../types'
+import type { Medication, PatientForm, PsychForm } from '../types'
 
 const EMPTY_SECTION = 'Sin registros.'
 
@@ -56,6 +56,22 @@ export function medicationsSummary(form: PatientForm): string {
       ].join('\n')
     })
     .join('\n\n')
+}
+
+export function referralSuggestion(psychForm: PsychForm): string {
+  return psychForm.score >= psychForm.threshold ? 'Derivar' : 'No derivar'
+}
+
+export function simpleSummary(patientForm: PatientForm, psychForm: PsychForm): string {
+  const symptoms =
+    patientForm.symptoms.length === 0
+      ? EMPTY_SECTION
+      : patientForm.symptoms.map((symptom) => `- ${symptom.name}: ${symptom.intensity}/10`).join('\n')
+  return [
+    `DATOS GENERALES\n${generalSummary(patientForm)}`,
+    `SÍNTOMAS ACTUALES\n${symptoms}`,
+    `SUGERENCIA\n- ${referralSuggestion(psychForm)}\n- Puntaje: ${psychForm.score}`,
+  ].join('\n\n')
 }
 
 export function familyAndSubstancesSummary(form: PatientForm): string {
