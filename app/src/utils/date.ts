@@ -1,3 +1,9 @@
+/** Formats a month input value: 2025-03 -> 03/2025 */
+export const formatMonth = (month: string): string => {
+  const [year, monthPart] = month.split('-')
+  return year && monthPart ? `${monthPart}/${year}` : month
+}
+
 export const calculateAge = (birthDate: string): number | null => {
   if (!birthDate) return null
   const birth = new Date(`${birthDate}T00:00:00`)
