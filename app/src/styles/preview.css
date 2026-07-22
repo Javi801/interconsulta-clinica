@@ -104,6 +104,11 @@ h3{font-size:16px}
 .btn.ghost{
   background:transparent;
 }
+label.btn{
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+}
 .grid{
   display:grid;
   grid-template-columns:repeat(12,1fr);
