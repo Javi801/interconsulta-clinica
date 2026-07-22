@@ -2,6 +2,16 @@ import { useState } from 'react'
 import Modal from '../components/Modal'
 import { SEED_PATIENT_FORM } from '../data/seed'
 import { isValidRut } from '../utils/rut'
+import {
+  isFamilyHistoryValid,
+  isGeneralValid,
+  isLifeEventValid,
+  isMedicationValid,
+  isMotiveValid,
+  isSubstanceValid,
+  isSymptomValid,
+  isValidEmail,
+} from '../utils/validation'
 import type { FormStatus, PatientForm } from '../types'
 import FamilyHistoryCard from './patient/FamilyHistoryCard'
 import GeneralDataCard from './patient/GeneralDataCard'
@@ -12,37 +22,22 @@ import SatisfactionCard from './patient/SatisfactionCard'
 import SubstancesCard from './patient/SubstancesCard'
 import SymptomsCard from './patient/SymptomsCard'
 
-const EMAIL_PATTERN = /^\S+@\S+\.\S+$/
-
 function validateForSubmit(form: PatientForm): string | null {
-  const general = form.general
-  const generalFilled =
-    [
-      general.firstName,
-      general.lastName,
-      general.birthDate,
-      general.gender,
-      general.nationality,
-      general.livesWith,
-      general.relationshipStatus,
-      general.email,
-      general.occupationDetail,
-    ].every((field) => field.trim() !== '') && general.occupations.length > 0
-  if (!generalFilled) return 'Completa todos los campos de Datos generales.'
-  if (!isValidRut(general.rut)) return 'El RUT ingresado no es válido.'
-  if (!EMAIL_PATTERN.test(general.email)) return 'El correo ingresado no es válido.'
-
-  const motive = form.motive
-  const motiveFilled = [
-    motive.mainReason,
-    motive.since,
-    motive.expectations,
-    motive.psychiatryFears,
-    motive.additionalInfo,
-  ].every((field) => field.trim() !== '')
-  if (!motiveFilled) return 'Completa todos los campos de Motivo y expectativas.'
-
+  if (!isGeneralValid(form.general)) return 'Completa todos los campos de Datos generales.'
+  if (!isValidRut(form.general.rut)) return 'El RUT ingresado no es válido.'
+  if (!isValidEmail(form.general.email)) return 'El correo ingresado no es válido.'
+  if (!isMotiveValid(form.motive)) return 'Completa todos los campos de Motivo y expectativas.'
   if (form.symptoms.length === 0) return 'Debes registrar al menos un síntoma.'
+  if (!form.symptoms.every(isSymptomValid))
+    return 'Completa los campos obligatorios de Síntomas actuales.'
+  if (!form.medications.every(isMedicationValid))
+    return 'Completa los campos obligatorios de Medicamentos actuales.'
+  if (!form.substances.every(isSubstanceValid))
+    return 'Completa los campos obligatorios de Consumo de sustancias.'
+  if (!form.familyHistory.every(isFamilyHistoryValid))
+    return 'Completa los campos obligatorios de Antecedentes familiares.'
+  if (!form.lifeEvents.every(isLifeEventValid))
+    return 'Completa los campos obligatorios de Eventos importantes.'
   return null
 }
 
@@ -50,6 +45,7 @@ function PatientView() {
   const [form, setForm] = useState<PatientForm>(SEED_PATIENT_FORM)
   const [status, setStatus] = useState<FormStatus>('draft')
   const [confirming, setConfirming] = useState(false)
+  const [showErrors, setShowErrors] = useState(false)
 
   const update =
     <K extends keyof PatientForm>(key: K) =>
@@ -61,9 +57,11 @@ function PatientView() {
   const handleSubmit = () => {
     const error = validateForSubmit(form)
     if (error) {
+      setShowErrors(true)
       alert(error)
       return
     }
+    setShowErrors(false)
     setConfirming(true)
   }
 
@@ -90,14 +88,35 @@ function PatientView() {
       </div>
       <div className="notice">Demo: los datos ingresados no se envían ni almacenan.</div>
       <div className="grid">
-        <GeneralDataCard value={form.general} onChange={update('general')} status={status} />
-        <MotiveCard value={form.motive} onChange={update('motive')} />
+        <GeneralDataCard
+          value={form.general}
+          onChange={update('general')}
+          status={status}
+          showErrors={showErrors}
+        />
+        <MotiveCard value={form.motive} onChange={update('motive')} showErrors={showErrors} />
         <SatisfactionCard value={form.satisfaction} onChange={update('satisfaction')} />
-        <SymptomsCard value={form.symptoms} onChange={update('symptoms')} />
-        <MedicationsCard value={form.medications} onChange={update('medications')} />
-        <SubstancesCard value={form.substances} onChange={update('substances')} />
-        <FamilyHistoryCard value={form.familyHistory} onChange={update('familyHistory')} />
-        <LifeEventsCard value={form.lifeEvents} onChange={update('lifeEvents')} />
+        <SymptomsCard value={form.symptoms} onChange={update('symptoms')} showErrors={showErrors} />
+        <MedicationsCard
+          value={form.medications}
+          onChange={update('medications')}
+          showErrors={showErrors}
+        />
+        <SubstancesCard
+          value={form.substances}
+          onChange={update('substances')}
+          showErrors={showErrors}
+        />
+        <FamilyHistoryCard
+          value={form.familyHistory}
+          onChange={update('familyHistory')}
+          showErrors={showErrors}
+        />
+        <LifeEventsCard
+          value={form.lifeEvents}
+          onChange={update('lifeEvents')}
+          showErrors={showErrors}
+        />
       </div>
       <p className="footer-note">
         El mockup muestra solo una parte de los campos definidos para mantener la demo legible.
