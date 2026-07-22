@@ -149,8 +149,21 @@ export const HYPOTHESIS_PRIORITY_OPTIONS: ClinicalPriority[] = ['Alta', 'Media',
 export const REFERRAL_REASON_OPTIONS = [
   'Inicio de esquema farmacológico',
   'Continuidad de esquema farmacológico',
+  'Evaluación diagnóstica',
+  'Diagnóstico diferencial',
+  'Evaluación de respuesta a medicamentos',
+  'Evaluación de efectos adversos',
+  'Ajuste o revisión de tratamiento',
   'Persistencia de síntomas',
+  'Agravamiento de síntomas',
   'Deterioro funcional',
+  'Evaluación de riesgo',
+  'Sospecha de bipolaridad',
+  'Sospecha de psicosis',
+  'Sospecha de TDAH',
+  'Dificultades relacionadas con consumo',
+  'Alteraciones graves del sueño',
+  'Otra',
 ]
 
 export const EDIT_PIN = '4827'
