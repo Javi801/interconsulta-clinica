@@ -3,6 +3,7 @@ import type {
   DatePrecision,
   FamilyHistoryType,
   FormStatus,
+  MedicationFrequency,
   Patient,
   PatientForm,
   PsychForm,
@@ -34,16 +35,22 @@ export const OCCUPATION_OPTIONS = [
 
 export const GENDER_OPTIONS = ['Mujer', 'Hombre', 'No binario', 'Otro']
 
-export const COURSE_OPTIONS: SymptomCourse[] = ['Constante', 'Episódico', 'Fluctuante']
+export const COURSE_OPTIONS: SymptomCourse[] = [
+  'Constante',
+  'Episódico',
+  'Fluctuante',
+  'No sabe',
+]
 
 export const SYMPTOM_OPTIONS = [
-  'Preocupación excesiva',
-  'Dificultad para dormir',
-  'Fatiga',
-  'Ánimo bajo',
-  'Irritabilidad',
-  'Dificultad de concentración',
-  'Otro',
+  'Estado de ánimo',
+  'Ansiedad',
+  'Sueño',
+  'Energía y activación',
+  'Cognición',
+  'Conducta e impulsividad',
+  'Alimentación',
+  'Otros síntomas',
 ]
 
 export const SUBSTANCE_OPTIONS = [
@@ -61,6 +68,17 @@ export const SUBSTANCE_OPTIONS = [
 export const SUBSTANCE_STATUS_OPTIONS = ['Consumo actual', 'Consumo anterior', 'Uso ocasional']
 
 export const ADHERENCE_OPTIONS: Adherence[] = ['Alta', 'Media', 'Baja']
+
+export const MEDICATION_FREQUENCY_OPTIONS: MedicationFrequency[] = [
+  'Una vez al día',
+  'Dos veces al día',
+  'Tres o más veces al día',
+  'Cada X horas',
+  'Semanal',
+  'Días específicos',
+  'Según necesidad (SOS)',
+  'Otro',
+]
 
 export const DATE_PRECISION_OPTIONS: DatePrecision[] = ['Año', 'Mes y año', 'Fecha exacta']
 
@@ -80,7 +98,23 @@ export const FAMILY_CONDITION_OPTIONS = [
 
 export const FAMILY_HISTORY_TYPE_OPTIONS: FamilyHistoryType[] = [
   'Diagnóstico confirmado',
+  'Referido por la familia',
   'Inferido o sospechado',
+  'No sabe',
+]
+
+export const LIFE_EVENT_CATEGORY_OPTIONS = [
+  'Duelo',
+  'Separación',
+  'Violencia',
+  'Accidente',
+  'Enfermedad',
+  'Cambio laboral',
+  'Cambio de residencia',
+  'Migración',
+  'Problema familiar',
+  'Evento traumático',
+  'Otro',
 ]
 
 export const HYPOTHESIS_OPTIONS = ['Place holder 1', 'Place holder 2', 'Place holder 3']
@@ -121,6 +155,7 @@ export const SEED_PATIENT_FORM: PatientForm = {
     nationality: 'Chilena',
     livesWith: 'Pareja e hija',
     relationshipStatus: 'En pareja',
+    phone: '+569 1234 5678',
     email: 'daniela@ejemplo.cl',
     occupations: ['Trabaja'],
     occupationDetail: 'Profesora de educación básica, jornada completa',
@@ -140,16 +175,35 @@ export const SEED_PATIENT_FORM: PatientForm = {
     general: 5,
   },
   symptoms: [
-    { name: 'Preocupación excesiva', intensity: 8, onset: '2025-03', course: 'Constante' },
-    { name: 'Dificultad para dormir', intensity: 8, onset: '2025-04', course: 'Fluctuante' },
-    { name: 'Fatiga', intensity: 6, onset: '2025-05', course: 'Constante' },
+    {
+      name: 'Ansiedad',
+      intensity: 8,
+      onset: '2025-03',
+      course: 'Constante',
+      observation: 'Preocupación excesiva',
+    },
+    {
+      name: 'Sueño',
+      intensity: 8,
+      onset: '2025-04',
+      course: 'Fluctuante',
+      observation: 'Dificultad para dormir',
+    },
+    {
+      name: 'Energía y activación',
+      intensity: 6,
+      onset: '2025-05',
+      course: 'Constante',
+      observation: 'Fatiga',
+    },
   ],
   medications: [
     {
       name: 'Sertralina',
       dose: '50 mg',
       frequency: 'Una vez al día',
-      time: '08:00',
+      frequencyDetail: '',
+      times: ['08:00'],
       prescribedBy: 'Médico general',
       adherence: 'Alta',
     },
@@ -174,6 +228,7 @@ export const SEED_PATIENT_FORM: PatientForm = {
   ],
   lifeEvents: [
     {
+      category: 'Cambio laboral',
       startPrecision: 'Año',
       startDate: '2025',
       endPrecision: 'Año',

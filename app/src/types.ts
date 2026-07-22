@@ -1,11 +1,24 @@
 export type FormStatus = 'draft' | 'pending' | 'sent' | 'not-sent'
 
-export type SymptomCourse = 'Constante' | 'Episódico' | 'Fluctuante'
+export type SymptomCourse = 'Constante' | 'Episódico' | 'Fluctuante' | 'No sabe'
 export type Adherence = 'Alta' | 'Media' | 'Baja'
 export type RiskPresence = 'Presente' | 'Antecedente'
 export type RiskLevel = 'Bajo' | 'Moderado' | 'Alto' | 'Inminente'
 export type DatePrecision = 'Año' | 'Mes y año' | 'Fecha exacta'
-export type FamilyHistoryType = 'Diagnóstico confirmado' | 'Inferido o sospechado'
+export type MedicationFrequency =
+  | 'Una vez al día'
+  | 'Dos veces al día'
+  | 'Tres o más veces al día'
+  | 'Cada X horas'
+  | 'Semanal'
+  | 'Días específicos'
+  | 'Según necesidad (SOS)'
+  | 'Otro'
+export type FamilyHistoryType =
+  | 'Diagnóstico confirmado'
+  | 'Referido por la familia'
+  | 'Inferido o sospechado'
+  | 'No sabe'
 
 export interface Patient {
   rut: string
@@ -24,6 +37,7 @@ export interface GeneralData {
   nationality: string
   livesWith: string
   relationshipStatus: string
+  phone: string
   email: string
   occupations: string[]
   occupationDetail: string
@@ -50,13 +64,16 @@ export interface Symptom {
   intensity: number
   onset: string
   course: SymptomCourse
+  observation: string
 }
 
 export interface Medication {
   name: string
   dose: string
-  frequency: string
-  time: string
+  frequency: MedicationFrequency
+  /** Free-text description, only used when frequency is 'Otro'. */
+  frequencyDetail: string
+  times: string[]
   prescribedBy: string
   adherence: Adherence
 }
@@ -78,6 +95,7 @@ export interface FamilyHistory {
 }
 
 export interface LifeEvent {
+  category: string
   startPrecision: DatePrecision
   startDate: string
   endPrecision: DatePrecision
