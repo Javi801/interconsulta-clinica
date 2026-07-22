@@ -117,10 +117,18 @@ export interface PatientForm {
 export interface ClinicalEvaluation {
   appearance: string
   behavior: string
+  attitude: string
   language: string
   mood: string
+  affect: string
   thought: string
+  perception: string
+  orientation: string
+  attention: string
+  memory: string
   judgment: string
+  insight: string
+  additionalObservations: string
 }
 
 export interface ClinicalRisk {

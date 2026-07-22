@@ -12,10 +12,18 @@ interface EvaluationCardProps {
 const FIELDS: { key: keyof ClinicalEvaluation; label: string }[] = [
   { key: 'appearance', label: 'Apariencia y presentación' },
   { key: 'behavior', label: 'Conducta observada' },
+  { key: 'attitude', label: 'Actitud durante la entrevista' },
   { key: 'language', label: 'Lenguaje' },
   { key: 'mood', label: 'Estado de ánimo observado' },
+  { key: 'affect', label: 'Afecto' },
   { key: 'thought', label: 'Curso y contenido del pensamiento' },
+  { key: 'perception', label: 'Percepción' },
+  { key: 'orientation', label: 'Orientación' },
+  { key: 'attention', label: 'Atención y concentración' },
+  { key: 'memory', label: 'Memoria' },
   { key: 'judgment', label: 'Juicio' },
+  { key: 'insight', label: 'Conciencia de situación o insight' },
+  { key: 'additionalObservations', label: 'Observaciones clínicas adicionales' },
 ]
 
 function EvaluationCard({ value, onChange, status }: EvaluationCardProps) {
