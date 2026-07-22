@@ -1,0 +1,58 @@
+import type {
+  FamilyHistory,
+  GeneralData,
+  LifeEvent,
+  Medication,
+  MotiveExpectations,
+  SubstanceUse,
+  Symptom,
+} from '../types'
+
+/** Required free-text fields need at least 5 characters. */
+export const isValidText = (value: string): boolean => value.trim().length >= 5
+
+export const isFilled = (value: string): boolean => value.trim() !== ''
+
+export const isValidEmail = (value: string): boolean => /^\S+@\S+\.\S+$/.test(value)
+
+/** Class for fields highlighted as invalid only after a submit attempt. */
+export const invalidClass = (showErrors: boolean, valid: boolean): string | undefined =>
+  showErrors && !valid ? 'invalid' : undefined
+
+export const isGeneralValid = (general: GeneralData): boolean =>
+  [
+    general.firstName,
+    general.lastName,
+    general.nationality,
+    general.livesWith,
+    general.relationshipStatus,
+    general.occupationDetail,
+  ].every(isValidText) &&
+  [general.birthDate, general.phone].every(isFilled) &&
+  general.occupations.length > 0
+
+export const isMotiveValid = (motive: MotiveExpectations): boolean =>
+  [
+    motive.mainReason,
+    motive.since,
+    motive.expectations,
+    motive.psychiatryFears,
+    motive.additionalInfo,
+  ].every(isValidText)
+
+export const isSymptomValid = (symptom: Symptom): boolean => isFilled(symptom.onset)
+
+export const isMedicationValid = (medication: Medication): boolean =>
+  [medication.name, medication.dose, medication.prescribedBy].every(isValidText) &&
+  (medication.frequency !== 'Otro' || isValidText(medication.frequencyDetail)) &&
+  medication.times.every(isFilled)
+
+export const isSubstanceValid = (substance: SubstanceUse): boolean =>
+  [substance.frequency, substance.usualAmount].every(isValidText) &&
+  [substance.onset, substance.lastUse].every(isFilled)
+
+export const isFamilyHistoryValid = (entry: FamilyHistory): boolean =>
+  isValidText(entry.relationship)
+
+export const isLifeEventValid = (event: LifeEvent): boolean =>
+  [event.startDate, event.endDate].every(isFilled)
