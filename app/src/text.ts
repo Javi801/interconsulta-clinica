@@ -49,6 +49,26 @@ export const TEXT = {
   },
 
   patient: {
+    access: {
+      title: 'Acceso al formulario',
+      subtitle: 'Ingresa con el código que te entregó tu psicólogo y tu RUT.',
+      fields: {
+        code: 'Código de acceso',
+        rut: 'RUT',
+      },
+      codePlaceholder: (code: string) => `Ej: ${code}`,
+      enter: 'Ingresar',
+      or: 'o',
+      useLink: 'Ingresar con enlace de invitación',
+      linkHelp:
+        'Si recibiste un enlace, el código se completa automáticamente y solo debes ingresar tu RUT.',
+      demoNote: (code: string) =>
+        `Demo: usa el código ${code} y cualquier RUT válido para continuar.`,
+      errors: {
+        code: 'El código de acceso no es válido.',
+        rut: 'El RUT ingresado no es válido.',
+      },
+    },
     view: {
       title: 'Formulario del paciente',
       subtitle: 'Completa tus antecedentes y síntomas actuales.',
