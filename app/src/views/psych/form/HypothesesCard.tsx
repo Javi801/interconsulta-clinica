@@ -1,7 +1,7 @@
 import Field from '../../../components/Field'
 import RepeatableItem from '../../../components/RepeatableItem'
 import RepeatableSection from '../../../components/RepeatableSection'
-import { HYPOTHESIS_OPTIONS, HYPOTHESIS_PRIORITY_OPTIONS } from '../../../data/seed'
+import { HYPOTHESIS_OPTIONS, HYPOTHESIS_PRIORITY_OPTIONS, TEXT } from '../../../text'
 import { patchAt, removeAt } from '../../../utils/list'
 import type { ClinicalHypothesis, ClinicalPriority } from '../../../types'
 
@@ -19,9 +19,13 @@ function HypothesesCard({ value, onChange }: HypothesesCardProps) {
   return (
     <RepeatableSection
       span={4}
-      title="Hipótesis clínicas"
-      addLabel="Agregar hipótesis"
-      pickFrom={{ label: 'Hipótesis', options: HYPOTHESIS_OPTIONS, otherOption: '' }}
+      title={TEXT.psych.hypotheses.title}
+      addLabel={TEXT.psych.hypotheses.addLabel}
+      pickFrom={{
+        label: TEXT.psych.hypotheses.pickLabel,
+        options: HYPOTHESIS_OPTIONS,
+        otherOption: TEXT.psych.hypotheses.otherOption,
+      }}
       onAdd={addHypothesis}
       isEmpty={value.length === 0}
     >
@@ -30,13 +34,13 @@ function HypothesesCard({ value, onChange }: HypothesesCardProps) {
           key={index}
           header={
             <>
-              Hipótesis: <strong>{entry.hypothesis}</strong>
+              {TEXT.psych.hypotheses.itemLabel}: <strong>{entry.hypothesis}</strong>
             </>
           }
           onRemove={() => onChange(removeAt(value, index))}
         >
           <div className="field-grid">
-            <Field label="Prioridad clínica">
+            <Field label={TEXT.psych.hypotheses.fields.priority}>
               <select
                 value={entry.priority}
                 onChange={(e) =>
@@ -48,7 +52,7 @@ function HypothesesCard({ value, onChange }: HypothesesCardProps) {
                 ))}
               </select>
             </Field>
-            <Field label="Comentario (opcional)">
+            <Field label={TEXT.psych.hypotheses.fields.comment}>
               <input
                 value={entry.comment}
                 onChange={(e) => onChange(patchAt(value, index, { comment: e.target.value }))}

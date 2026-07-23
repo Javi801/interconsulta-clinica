@@ -1,7 +1,7 @@
 import Field from '../../components/Field'
 import RepeatableItem from '../../components/RepeatableItem'
 import RepeatableSection from '../../components/RepeatableSection'
-import { DATE_PRECISION_OPTIONS, LIFE_EVENT_CATEGORY_OPTIONS } from '../../data/seed'
+import { DATE_PRECISION_OPTIONS, LIFE_EVENT_CATEGORY_OPTIONS, TEXT } from '../../text'
 import { patchAt, removeAt } from '../../utils/list'
 import { invalidClass, isFilled } from '../../utils/validation'
 import type { DatePrecision, LifeEvent } from '../../types'
@@ -31,10 +31,14 @@ function LifeEventsCard({ value, onChange, showErrors }: LifeEventsCardProps) {
   return (
     <RepeatableSection
       span={6}
-      title="Eventos importantes"
-      subtitle="Todos los campos son obligatorios."
-      addLabel="Agregar evento"
-      pickFrom={{ label: 'Categoría', options: LIFE_EVENT_CATEGORY_OPTIONS, otherOption: 'Otro' }}
+      title={TEXT.patient.lifeEvents.title}
+      subtitle={TEXT.patient.lifeEvents.subtitle}
+      addLabel={TEXT.patient.lifeEvents.addLabel}
+      pickFrom={{
+        label: TEXT.patient.lifeEvents.pickLabel,
+        options: LIFE_EVENT_CATEGORY_OPTIONS,
+        otherOption: TEXT.patient.lifeEvents.otherOption,
+      }}
       onAdd={addEvent}
       isEmpty={value.length === 0}
     >
@@ -43,13 +47,13 @@ function LifeEventsCard({ value, onChange, showErrors }: LifeEventsCardProps) {
           key={index}
           header={
             <>
-              Evento: <strong>{event.category}</strong>
+              {TEXT.patient.lifeEvents.itemLabel}: <strong>{event.category}</strong>
             </>
           }
           onRemove={() => onChange(removeAt(value, index))}
         >
           <div className="field-grid">
-            <Field label="Precisión inicio">
+            <Field label={TEXT.patient.lifeEvents.fields.startPrecision}>
               <select
                 value={event.startPrecision}
                 onChange={(e) =>
@@ -61,14 +65,14 @@ function LifeEventsCard({ value, onChange, showErrors }: LifeEventsCardProps) {
                 ))}
               </select>
             </Field>
-            <Field label="Fecha inicial">
+            <Field label={TEXT.patient.lifeEvents.fields.startDate}>
               <input
                 className={invalidClass(showErrors, isFilled(event.startDate))}
                 value={event.startDate}
                 onChange={(e) => onChange(patchAt(value, index, { startDate: e.target.value }))}
               />
             </Field>
-            <Field label="Precisión término">
+            <Field label={TEXT.patient.lifeEvents.fields.endPrecision}>
               <select
                 value={event.endPrecision}
                 onChange={(e) =>
@@ -80,14 +84,14 @@ function LifeEventsCard({ value, onChange, showErrors }: LifeEventsCardProps) {
                 ))}
               </select>
             </Field>
-            <Field label="Fecha final">
+            <Field label={TEXT.patient.lifeEvents.fields.endDate}>
               <input
                 className={invalidClass(showErrors, isFilled(event.endDate))}
                 value={event.endDate}
                 onChange={(e) => onChange(patchAt(value, index, { endDate: e.target.value }))}
               />
             </Field>
-            <Field label="Descripción breve (opcional)" fullWidth>
+            <Field label={TEXT.patient.lifeEvents.fields.description} fullWidth>
               <input
                 maxLength={50}
                 value={event.description}

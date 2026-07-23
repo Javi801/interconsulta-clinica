@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { SEED_PATIENT_FORM, SEED_PSYCH_FORM } from '../../data/seed'
+import { SEED_PATIENT_FORM, SEED_PSYCH_FORM, TEXT } from '../../text'
 import type { FormStatus, Patient, PsychForm, ReferralReport } from '../../types'
 import PsychResults from './PsychResults'
 import PsychFormContent from './form/PsychFormContent'
@@ -18,7 +18,7 @@ function PsychFormView({ patient, onBack }: PsychFormViewProps) {
 
   const handleSend = () => {
     setStatus('sent')
-    alert('Formulario del psicólogo marcado como enviado.')
+    alert(TEXT.psych.formView.sentAlert)
   }
 
   const handleEdit = () => {
@@ -33,29 +33,29 @@ function PsychFormView({ patient, onBack }: PsychFormViewProps) {
       <div className="topbar">
         <div>
           <button type="button" className="btn ghost" onClick={onBack}>
-            ← Volver
+            {TEXT.common.back}
           </button>
-          <h1 style={{ marginTop: 12 }}>Formulario del psicólogo</h1>
-          <p className="subtitle">{patient.name} · evaluación clínica</p>
+          <h1 style={{ marginTop: 12 }}>{TEXT.psych.formView.title}</h1>
+          <p className="subtitle">{TEXT.psych.formView.subtitle(patient.name)}</p>
         </div>
         <div className="actions">
           {status === 'sent' && (
             <button type="button" className="btn" onClick={handleEdit}>
-              Editar
+              {TEXT.psych.formView.edit}
             </button>
           )}
           <button
             type="button"
             className="btn"
-            onClick={() => alert('Demo: exportación de resultados.')}
+            onClick={() => alert(TEXT.psych.formView.exportAlert)}
           >
-            Exportar resultados
+            {TEXT.psych.formView.exportResults}
           </button>
           <button type="button" className="btn primary" onClick={handleGenerate}>
-            Generar resultados
+            {TEXT.psych.formView.generateResults}
           </button>
           <button type="button" className="btn success" onClick={handleSend}>
-            Enviar formulario
+            {TEXT.psych.formView.submit}
           </button>
         </div>
       </div>

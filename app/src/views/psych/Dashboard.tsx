@@ -2,6 +2,7 @@ import { useState, type ChangeEvent } from 'react'
 import Card, { SectionHead } from '../../components/Card'
 import Modal from '../../components/Modal'
 import StatusBadge from '../../components/StatusBadge'
+import { TEXT } from '../../text'
 import type { Patient } from '../../types'
 
 interface DashboardProps {
@@ -26,7 +27,7 @@ function Dashboard({ patients, onCreate, onImportExcel, onOpenRecord, onOpenForm
   const handleCreate = () => {
     const rut = newRut.trim()
     if (!rut) {
-      alert('Debes ingresar al menos el RUT.')
+      alert(TEXT.psych.dashboard.rutRequiredAlert)
       return
     }
     onCreate(rut, newName.trim())
@@ -42,16 +43,13 @@ function Dashboard({ patients, onCreate, onImportExcel, onOpenRecord, onOpenForm
 
   return (
     <Card span="full">
-      <SectionHead
-        title="Pacientes"
-        subtitle="Haz clic sobre el estado del formulario que quieras revisar."
-      >
+      <SectionHead title={TEXT.psych.dashboard.title} subtitle={TEXT.psych.dashboard.subtitle}>
         <div className="actions">
           <button type="button" className="btn" onClick={() => setCreating(true)}>
-            Nuevo paciente
+            {TEXT.psych.dashboard.newPatient}
           </button>
           <label className="btn" style={{ display: 'inline-flex', alignItems: 'center' }}>
-            Cargar Excel
+            {TEXT.psych.dashboard.loadExcel}
             <input
               type="file"
               accept=".xlsx,.xls"
@@ -64,11 +62,11 @@ function Dashboard({ patients, onCreate, onImportExcel, onOpenRecord, onOpenForm
       <table>
         <thead>
           <tr>
-            <th>RUT</th>
-            <th>Paciente</th>
-            <th>Form. paciente</th>
-            <th>Form. psicólogo</th>
-            <th>Actualización</th>
+            <th>{TEXT.psych.dashboard.columns.rut}</th>
+            <th>{TEXT.psych.dashboard.columns.patient}</th>
+            <th>{TEXT.psych.dashboard.columns.patientForm}</th>
+            <th>{TEXT.psych.dashboard.columns.psychForm}</th>
+            <th>{TEXT.psych.dashboard.columns.updatedAt}</th>
           </tr>
         </thead>
         <tbody>
@@ -92,32 +90,30 @@ function Dashboard({ patients, onCreate, onImportExcel, onOpenRecord, onOpenForm
       </table>
       {creating && (
         <Modal open>
-          <h2>Nueva instancia de paciente</h2>
-          <p className="subtitle">
-            Ingresa al menos el RUT para crear el registro y habilitar el formulario del paciente.
-          </p>
+          <h2>{TEXT.psych.dashboard.createModal.title}</h2>
+          <p className="subtitle">{TEXT.psych.dashboard.createModal.subtitle}</p>
           <div className="field" style={{ marginTop: 16 }}>
-            <label>RUT</label>
+            <label>{TEXT.psych.dashboard.createModal.rutLabel}</label>
             <input
-              placeholder="12.345.678-9"
+              placeholder={TEXT.psych.dashboard.createModal.rutPlaceholder}
               value={newRut}
               onChange={(e) => setNewRut(e.target.value)}
             />
           </div>
           <div className="field" style={{ marginTop: 12 }}>
-            <label>Nombre, opcional</label>
+            <label>{TEXT.psych.dashboard.createModal.nameLabel}</label>
             <input
-              placeholder="Nombre del paciente"
+              placeholder={TEXT.psych.dashboard.createModal.namePlaceholder}
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
             />
           </div>
           <div className="modal-actions">
             <button type="button" className="btn" onClick={closeModal}>
-              Cancelar
+              {TEXT.common.cancel}
             </button>
             <button type="button" className="btn primary" onClick={handleCreate}>
-              Crear paciente
+              {TEXT.psych.dashboard.createModal.create}
             </button>
           </div>
         </Modal>

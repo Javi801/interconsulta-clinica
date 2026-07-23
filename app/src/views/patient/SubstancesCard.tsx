@@ -1,7 +1,7 @@
 import Field from '../../components/Field'
 import RepeatableItem from '../../components/RepeatableItem'
 import RepeatableSection from '../../components/RepeatableSection'
-import { SUBSTANCE_OPTIONS, SUBSTANCE_STATUS_OPTIONS } from '../../data/seed'
+import { SUBSTANCE_OPTIONS, SUBSTANCE_STATUS_OPTIONS, TEXT } from '../../text'
 import { patchAt, removeAt } from '../../utils/list'
 import { invalidClass, isFilled, isValidText } from '../../utils/validation'
 import type { SubstanceUse } from '../../types'
@@ -31,10 +31,14 @@ function SubstancesCard({ value, onChange, showErrors }: SubstancesCardProps) {
   return (
     <RepeatableSection
       span={6}
-      title="Consumo de sustancias"
-      subtitle="Todos los campos son obligatorios."
-      addLabel="Agregar sustancia"
-      pickFrom={{ label: 'Sustancia', options: SUBSTANCE_OPTIONS, otherOption: 'Otra sustancia' }}
+      title={TEXT.patient.substances.title}
+      subtitle={TEXT.patient.substances.subtitle}
+      addLabel={TEXT.patient.substances.addLabel}
+      pickFrom={{
+        label: TEXT.patient.substances.pickLabel,
+        options: SUBSTANCE_OPTIONS,
+        otherOption: TEXT.patient.substances.otherOption,
+      }}
       onAdd={addSubstance}
       isEmpty={value.length === 0}
     >
@@ -43,13 +47,13 @@ function SubstancesCard({ value, onChange, showErrors }: SubstancesCardProps) {
           key={index}
           header={
             <>
-              Sustancia: <strong>{substance.substance}</strong>
+              {TEXT.patient.substances.itemLabel}: <strong>{substance.substance}</strong>
             </>
           }
           onRemove={() => onChange(removeAt(value, index))}
         >
           <div className="field-grid">
-            <Field label="Estado">
+            <Field label={TEXT.patient.substances.fields.status}>
               <select
                 value={substance.status}
                 onChange={(e) => onChange(patchAt(value, index, { status: e.target.value }))}
@@ -59,21 +63,21 @@ function SubstancesCard({ value, onChange, showErrors }: SubstancesCardProps) {
                 ))}
               </select>
             </Field>
-            <Field label="Frecuencia">
+            <Field label={TEXT.patient.substances.fields.frequency}>
               <input
                 className={invalidClass(showErrors, isValidText(substance.frequency))}
                 value={substance.frequency}
                 onChange={(e) => onChange(patchAt(value, index, { frequency: e.target.value }))}
               />
             </Field>
-            <Field label="Cantidad habitual">
+            <Field label={TEXT.patient.substances.fields.usualAmount}>
               <input
                 className={invalidClass(showErrors, isValidText(substance.usualAmount))}
                 value={substance.usualAmount}
                 onChange={(e) => onChange(patchAt(value, index, { usualAmount: e.target.value }))}
               />
             </Field>
-            <Field label="Inicio aproximado">
+            <Field label={TEXT.patient.substances.fields.onset}>
               <input
                 className={invalidClass(showErrors, isFilled(substance.onset))}
                 type="month"
@@ -81,7 +85,7 @@ function SubstancesCard({ value, onChange, showErrors }: SubstancesCardProps) {
                 onChange={(e) => onChange(patchAt(value, index, { onset: e.target.value }))}
               />
             </Field>
-            <Field label="Último consumo">
+            <Field label={TEXT.patient.substances.fields.lastUse}>
               <input
                 className={invalidClass(showErrors, isFilled(substance.lastUse))}
                 type="date"

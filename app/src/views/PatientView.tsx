@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Modal from '../components/Modal'
-import { SEED_PATIENT_FORM } from '../data/seed'
+import { SEED_PATIENT_FORM, TEXT } from '../text'
 import { isValidRut } from '../utils/rut'
 import {
   isFamilyHistoryValid,
@@ -23,21 +23,16 @@ import SubstancesCard from './patient/SubstancesCard'
 import SymptomsCard from './patient/SymptomsCard'
 
 function validateForSubmit(form: PatientForm): string | null {
-  if (!isGeneralValid(form.general)) return 'Completa todos los campos de Datos generales.'
-  if (!isValidRut(form.general.rut)) return 'El RUT ingresado no es válido.'
-  if (!isValidEmail(form.general.email)) return 'El correo ingresado no es válido.'
-  if (!isMotiveValid(form.motive)) return 'Completa todos los campos de Motivo y expectativas.'
-  if (form.symptoms.length === 0) return 'Debes registrar al menos un síntoma.'
-  if (!form.symptoms.every(isSymptomValid))
-    return 'Completa los campos obligatorios de Síntomas actuales.'
-  if (!form.medications.every(isMedicationValid))
-    return 'Completa los campos obligatorios de Medicamentos actuales.'
-  if (!form.substances.every(isSubstanceValid))
-    return 'Completa los campos obligatorios de Consumo de sustancias.'
-  if (!form.familyHistory.every(isFamilyHistoryValid))
-    return 'Completa los campos obligatorios de Antecedentes familiares.'
-  if (!form.lifeEvents.every(isLifeEventValid))
-    return 'Completa los campos obligatorios de Eventos importantes.'
+  if (!isGeneralValid(form.general)) return TEXT.validation.general
+  if (!isValidRut(form.general.rut)) return TEXT.validation.rut
+  if (!isValidEmail(form.general.email)) return TEXT.validation.email
+  if (!isMotiveValid(form.motive)) return TEXT.validation.motive
+  if (form.symptoms.length === 0) return TEXT.validation.symptomsRequired
+  if (!form.symptoms.every(isSymptomValid)) return TEXT.validation.symptoms
+  if (!form.medications.every(isMedicationValid)) return TEXT.validation.medications
+  if (!form.substances.every(isSubstanceValid)) return TEXT.validation.substances
+  if (!form.familyHistory.every(isFamilyHistoryValid)) return TEXT.validation.familyHistory
+  if (!form.lifeEvents.every(isLifeEventValid)) return TEXT.validation.lifeEvents
   return null
 }
 
@@ -52,7 +47,7 @@ function PatientView() {
     (value: PatientForm[K]) =>
       setForm((current) => ({ ...current, [key]: value }))
 
-  const handleSave = () => alert('Datos guardados en esta demostración.')
+  const handleSave = () => alert(TEXT.patient.view.savedAlert)
 
   const handleSubmit = () => {
     const error = validateForSubmit(form)
@@ -74,19 +69,19 @@ function PatientView() {
     <section className="view active">
       <div className="topbar">
         <div>
-          <h1>Formulario del paciente</h1>
-          <p className="subtitle">Completa tus antecedentes y síntomas actuales.</p>
+          <h1>{TEXT.patient.view.title}</h1>
+          <p className="subtitle">{TEXT.patient.view.subtitle}</p>
         </div>
         <div className="actions">
           <button type="button" className="btn" onClick={handleSave}>
-            Guardar
+            {TEXT.patient.view.save}
           </button>
           <button type="button" className="btn primary" onClick={handleSubmit}>
-            Enviar formulario
+            {TEXT.patient.view.submit}
           </button>
         </div>
       </div>
-      <div className="notice">Demo: los datos ingresados no se envían ni almacenan.</div>
+      <div className="notice">{TEXT.patient.view.notice}</div>
       <div className="grid">
         <GeneralDataCard
           value={form.general}
@@ -118,19 +113,17 @@ function PatientView() {
           showErrors={showErrors}
         />
       </div>
-      <p className="footer-note">
-        El mockup muestra solo una parte de los campos definidos para mantener la demo legible.
-      </p>
+      <p className="footer-note">{TEXT.patient.view.footerNote}</p>
       {confirming && (
         <Modal open>
-          <h2>Enviar formulario</h2>
-          <p className="subtitle">Verifica que está correcto.</p>
+          <h2>{TEXT.patient.view.confirmModal.title}</h2>
+          <p className="subtitle">{TEXT.patient.view.confirmModal.subtitle}</p>
           <div className="modal-actions">
             <button type="button" className="btn" onClick={() => setConfirming(false)}>
-              Cancelar
+              {TEXT.common.cancel}
             </button>
             <button type="button" className="btn primary" onClick={confirmSubmit}>
-              Enviar
+              {TEXT.patient.view.confirmModal.confirm}
             </button>
           </div>
         </Modal>

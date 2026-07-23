@@ -1,7 +1,7 @@
 import Field from '../../components/Field'
 import RepeatableItem from '../../components/RepeatableItem'
 import RepeatableSection from '../../components/RepeatableSection'
-import { ADHERENCE_OPTIONS, MEDICATION_FREQUENCY_OPTIONS } from '../../data/seed'
+import { ADHERENCE_OPTIONS, MEDICATION_FREQUENCY_OPTIONS, TEXT } from '../../text'
 import { patchAt, removeAt, setAt } from '../../utils/list'
 import { invalidClass, isFilled, isValidText } from '../../utils/validation'
 import type { Adherence, Medication, MedicationFrequency } from '../../types'
@@ -33,9 +33,9 @@ function MedicationsCard({ value, onChange, showErrors }: MedicationsCardProps) 
   return (
     <RepeatableSection
       span={6}
-      title="Medicamentos actuales"
-      subtitle="Todos los campos son obligatorios."
-      addLabel="Agregar medicamento"
+      title={TEXT.patient.medications.title}
+      subtitle={TEXT.patient.medications.subtitle}
+      addLabel={TEXT.patient.medications.addLabel}
       onAdd={addMedication}
       isEmpty={value.length === 0}
     >
@@ -44,27 +44,27 @@ function MedicationsCard({ value, onChange, showErrors }: MedicationsCardProps) 
           key={index}
           header={
             <>
-              Medicamento <strong>{index + 1}</strong>
+              {TEXT.patient.medications.itemLabel} <strong>{index + 1}</strong>
             </>
           }
           onRemove={() => onChange(removeAt(value, index))}
         >
           <div className="field-grid">
-            <Field label="Nombre">
+            <Field label={TEXT.patient.medications.fields.name}>
               <input
                 className={invalidClass(showErrors, isValidText(medication.name))}
                 value={medication.name}
                 onChange={(e) => onChange(patchAt(value, index, { name: e.target.value }))}
               />
             </Field>
-            <Field label="Dosis">
+            <Field label={TEXT.patient.medications.fields.dose}>
               <input
                 className={invalidClass(showErrors, isValidText(medication.dose))}
                 value={medication.dose}
                 onChange={(e) => onChange(patchAt(value, index, { dose: e.target.value }))}
               />
             </Field>
-            <Field label="Frecuencia">
+            <Field label={TEXT.patient.medications.fields.frequency}>
               <select
                 value={medication.frequency}
                 onChange={(e) =>
@@ -82,7 +82,7 @@ function MedicationsCard({ value, onChange, showErrors }: MedicationsCardProps) 
               </select>
             </Field>
             {medication.frequency === 'Otro' && (
-              <Field label="Especificar frecuencia">
+              <Field label={TEXT.patient.medications.fields.frequencyDetail}>
                 <input
                   className={invalidClass(showErrors, isValidText(medication.frequencyDetail))}
                   value={medication.frequencyDetail}
@@ -92,14 +92,14 @@ function MedicationsCard({ value, onChange, showErrors }: MedicationsCardProps) 
                 />
               </Field>
             )}
-            <Field label="Profesional que indicó">
+            <Field label={TEXT.patient.medications.fields.prescribedBy}>
               <input
                 className={invalidClass(showErrors, isValidText(medication.prescribedBy))}
                 value={medication.prescribedBy}
                 onChange={(e) => onChange(patchAt(value, index, { prescribedBy: e.target.value }))}
               />
             </Field>
-            <Field label="Adherencia percibida">
+            <Field label={TEXT.patient.medications.fields.adherence}>
               <select
                 value={medication.adherence}
                 onChange={(e) =>
@@ -111,7 +111,7 @@ function MedicationsCard({ value, onChange, showErrors }: MedicationsCardProps) 
                 ))}
               </select>
             </Field>
-            <Field label="Horarios (opcional según frecuencia)" fullWidth>
+            <Field label={TEXT.patient.medications.fields.times} fullWidth>
               <div className="time-list">
                 {medication.times.map((time, timeIndex) => (
                   <div key={timeIndex} className="time-row">
@@ -128,7 +128,7 @@ function MedicationsCard({ value, onChange, showErrors }: MedicationsCardProps) 
                       className="btn"
                       onClick={() => patchTimes(index, removeAt(medication.times, timeIndex))}
                     >
-                      Eliminar
+                      {TEXT.common.remove}
                     </button>
                   </div>
                 ))}
@@ -137,7 +137,7 @@ function MedicationsCard({ value, onChange, showErrors }: MedicationsCardProps) 
                   className="btn ghost"
                   onClick={() => patchTimes(index, [...medication.times, ''])}
                 >
-                  Agregar horario
+                  {TEXT.patient.medications.addTime}
                 </button>
               </div>
             </Field>

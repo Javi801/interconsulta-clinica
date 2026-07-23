@@ -1,6 +1,7 @@
 import Card, { SectionHead } from '../../../components/Card'
 import Field from '../../../components/Field'
 import StatusBadge from '../../../components/StatusBadge'
+import { TEXT } from '../../../text'
 import type { ClinicalEvaluation, FormStatus } from '../../../types'
 
 interface EvaluationCardProps {
@@ -9,32 +10,32 @@ interface EvaluationCardProps {
   status: FormStatus
 }
 
-const FIELDS: { key: keyof ClinicalEvaluation; label: string }[] = [
-  { key: 'appearance', label: 'Apariencia y presentación' },
-  { key: 'behavior', label: 'Conducta observada' },
-  { key: 'attitude', label: 'Actitud durante la entrevista' },
-  { key: 'language', label: 'Lenguaje' },
-  { key: 'mood', label: 'Estado de ánimo observado' },
-  { key: 'affect', label: 'Afecto' },
-  { key: 'thought', label: 'Curso y contenido del pensamiento' },
-  { key: 'perception', label: 'Percepción' },
-  { key: 'orientation', label: 'Orientación' },
-  { key: 'attention', label: 'Atención y concentración' },
-  { key: 'memory', label: 'Memoria' },
-  { key: 'judgment', label: 'Juicio' },
-  { key: 'insight', label: 'Conciencia de situación o insight' },
-  { key: 'additionalObservations', label: 'Observaciones clínicas adicionales' },
+const FIELD_KEYS: (keyof ClinicalEvaluation)[] = [
+  'appearance',
+  'behavior',
+  'attitude',
+  'language',
+  'mood',
+  'affect',
+  'thought',
+  'perception',
+  'orientation',
+  'attention',
+  'memory',
+  'judgment',
+  'insight',
+  'additionalObservations',
 ]
 
 function EvaluationCard({ value, onChange, status }: EvaluationCardProps) {
   return (
     <Card span={8}>
-      <SectionHead title="Evaluación clínica" subtitle="Máximo 100 caracteres por campo.">
+      <SectionHead title={TEXT.psych.evaluation.title} subtitle={TEXT.psych.evaluation.subtitle}>
         <StatusBadge status={status} />
       </SectionHead>
       <div className="field-grid">
-        {FIELDS.map(({ key, label }) => (
-          <Field key={key} label={label}>
+        {FIELD_KEYS.map((key) => (
+          <Field key={key} label={TEXT.psych.evaluation.fields[key]}>
             <input
               maxLength={100}
               value={value[key]}

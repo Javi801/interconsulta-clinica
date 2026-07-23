@@ -1,6 +1,6 @@
 import Card from '../../../components/Card'
 import ChipGroup from '../../../components/ChipGroup'
-import { REFERRAL_REASON_OPTIONS } from '../../../data/seed'
+import { REFERRAL_REASON_OPTIONS, TEXT } from '../../../text'
 import { referralSuggestion } from '../../../utils/summary'
 import type { FormStatus, PsychForm } from '../../../types'
 import EvaluationCard from './EvaluationCard'
@@ -26,7 +26,7 @@ function PsychFormContent({ form, onChange, status }: PsychFormContentProps) {
       <HypothesesCard value={form.hypotheses} onChange={update('hypotheses')} />
       <RisksCard value={form.risks} onChange={update('risks')} />
       <Card span={6}>
-        <h2>Motivos de derivación</h2>
+        <h2>{TEXT.psych.referralReasons.title}</h2>
         <ChipGroup
           options={REFERRAL_REASON_OPTIONS}
           selected={form.referralReasons}

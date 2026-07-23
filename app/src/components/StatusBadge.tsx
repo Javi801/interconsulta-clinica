@@ -1,5 +1,12 @@
 import type { FormStatus } from '../types'
-import { STATUS_CLASSES, STATUS_LABELS } from '../data/seed'
+import { STATUS_LABELS } from '../text'
+
+const STATUS_CLASSES: Record<FormStatus, string> = {
+  draft: 'draft',
+  pending: 'pending',
+  sent: 'sent',
+  'not-sent': 'no',
+}
 
 interface StatusBadgeProps {
   status: FormStatus
