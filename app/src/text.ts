@@ -552,7 +552,6 @@ export const REFERRAL_REASON_OPTIONS = [
   'Evaluación de riesgo',
   'Sospecha de bipolaridad',
   'Sospecha de psicosis',
-  'Sospecha de TDAH',
   'Dificultades relacionadas con consumo',
   'Alteraciones graves del sueño',
   'Otra',
