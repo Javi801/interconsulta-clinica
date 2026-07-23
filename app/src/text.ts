@@ -327,7 +327,7 @@ export const TEXT = {
       title: 'Hipótesis clínicas',
       addLabel: 'Agregar hipótesis',
       pickLabel: 'Hipótesis',
-      otherOption: '',
+      otherOption: 'Otro',
       itemLabel: 'Hipótesis',
       fields: {
         priority: 'Prioridad clínica',
@@ -534,7 +534,50 @@ export const RISK_PRESENCE_OPTIONS: RiskPresence[] = ['Presente', 'Antecedente']
 
 export const RISK_LEVEL_OPTIONS: RiskLevel[] = ['Bajo', 'Moderado', 'Alto', 'Inminente']
 
-export const HYPOTHESIS_OPTIONS = ['Place holder 1', 'Place holder 2', 'Place holder 3']
+export const HYPOTHESIS_OPTIONS = [
+  'Trastorno Adaptativo',
+  'Trastorno Adaptativo mixto',
+  'Trastorno Adaptativo mixto puerperal',
+  'Trastorno Adaptativo con síntomas depresivos',
+  'Trastorno Adaptativo con síntomas depresivos puerperal',
+  'Trastorno Adaptativo con síntomas ansiosos',
+  'Trastorno Adaptativo con síntomas ansiosos puerperal',
+  'Trastorno Depresivo único leve',
+  'Trastorno Depresivo único moderado',
+  'Trastorno Depresivo único grave',
+  'Trastorno Depresivo único con síntomas psicóticos',
+  'Trastorno Depresivo recurrente leve',
+  'Trastorno Depresivo recurrente moderado',
+  'Trastorno Depresivo recurrente grave',
+  'Trastorno Depresivo recurrente con síntomas psicóticos',
+  'Trastorno Depresivo post parto leve',
+  'Trastorno Depresivo post parto moderado',
+  'Trastorno Depresivo post parto grave',
+  'Trastorno Depresivo post parto con síntomas psicóticos',
+  'Distimia',
+  'Trastorno Bipolar Tipo I',
+  'Trastorno Bipolar Tipo II',
+  'Trastorno Bipolar Tipo III',
+  'Trastorno Bipolar Ciclotimia',
+  'Consumo problemático de sustancias',
+  'Trastorno mixto con predominio ansioso',
+  'Trastorno mixto con predominio anímico',
+  'Trastorno de estrés agudo (TEA)',
+  'Trastorno de estrés postraumático (TEPT)',
+  'Trastorno de pánico',
+  'Trastorno de pánico con agorafobia',
+  'Agorafobia',
+  'Agorafobia con crisis de pánico',
+  'Trastorno Obsesivo Compulsivo',
+  'Fobia social',
+  'Fobia especifica',
+  'Trastorno de ansiedad generalizada (TAG)',
+  'Trastorno psicótico breve',
+  'Trastorno psicótico esquizofreniforme',
+  'Trastorno psicótico esquizofrenia',
+  'Trastorno Explosivo Intermitente',
+  'Otro',
+]
 
 export const HYPOTHESIS_PRIORITY_OPTIONS: ClinicalPriority[] = ['Alta', 'Media', 'Baja']
 
@@ -563,6 +606,8 @@ export const REFERRAL_REASON_OPTIONS = [
 // ============================================================================
 
 export const EDIT_PIN = '4827'
+
+export const ACCESS_CODE = '738 512'
 
 export const IMPORTED_RUT = '15.222.333-4'
 
@@ -693,7 +738,9 @@ export const SEED_PSYCH_FORM: PsychForm = {
     insight: 'Buena conciencia de su situación actual.',
     additionalObservations: 'Sin hallazgos clínicos adicionales relevantes.',
   },
-  hypotheses: [{ hypothesis: 'Place holder 1', priority: 'Media', comment: '' }],
+  hypotheses: [
+    { hypothesis: 'Trastorno de ansiedad generalizada (TAG)', priority: 'Media', comment: '' },
+  ],
   risks: [{ id: 1, risk: 'Ideas de muerte', presence: 'Antecedente', level: 'Bajo' }],
   referralReasons: [
     'Inicio de esquema farmacológico',
