@@ -4,6 +4,7 @@ export type SymptomCourse = 'Constante' | 'Episódico' | 'Fluctuante' | 'No sabe
 export type Adherence = 'Alta' | 'Media' | 'Baja'
 export type RiskPresence = 'Presente' | 'Antecedente'
 export type RiskLevel = 'Bajo' | 'Moderado' | 'Alto' | 'Inminente'
+export type ClinicalPriority = 'Alta' | 'Media' | 'Baja'
 export type DatePrecision = 'Año' | 'Mes y año' | 'Fecha exacta'
 export type MedicationFrequency =
   | 'Una vez al día'
@@ -117,10 +118,24 @@ export interface PatientForm {
 export interface ClinicalEvaluation {
   appearance: string
   behavior: string
+  attitude: string
   language: string
   mood: string
+  affect: string
   thought: string
+  perception: string
+  orientation: string
+  attention: string
+  memory: string
   judgment: string
+  insight: string
+  additionalObservations: string
+}
+
+export interface ClinicalHypothesis {
+  hypothesis: string
+  priority: ClinicalPriority
+  comment: string
 }
 
 export interface ClinicalRisk {
@@ -141,7 +156,7 @@ export interface ReferralReport {
 
 export interface PsychForm {
   evaluation: ClinicalEvaluation
-  hypotheses: string[]
+  hypotheses: ClinicalHypothesis[]
   risks: ClinicalRisk[]
   referralReasons: string[]
   score: number

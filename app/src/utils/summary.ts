@@ -1,18 +1,19 @@
 import { calculateAge, formatMonth } from './date'
+import { TEXT } from '../text'
 import type { Medication, PatientForm, PsychForm } from '../types'
 
-const EMPTY_SECTION = 'Sin registros.'
+const { summary } = TEXT
 
 export function generalSummary(form: PatientForm): string {
   const general = form.general
   const age = calculateAge(general.birthDate)
   return [
-    age !== null ? `Edad: ${age} años` : null,
-    `Género: ${general.gender}`,
-    `Nacionalidad: ${general.nationality}`,
-    `Ocupación: ${general.occupations.join(', ')}`,
-    `Detalle: ${general.occupationDetail}`,
-    `Vive con: ${general.livesWith}`,
+    age !== null ? summary.general.age(age) : null,
+    summary.general.gender(general.gender),
+    summary.general.nationality(general.nationality),
+    summary.general.occupation(general.occupations.join(', ')),
+    summary.general.detail(general.occupationDetail),
+    summary.general.livesWith(general.livesWith),
   ]
     .filter(Boolean)
     .join('\n')
@@ -21,20 +22,24 @@ export function generalSummary(form: PatientForm): string {
 export function motiveSummary(form: PatientForm): string {
   const motive = form.motive
   return [
-    `Motivo principal: ${motive.mainReason}`,
-    `Desde cuándo ocurre: ${motive.since}`,
-    `Qué espera obtener: ${motive.expectations}`,
+    summary.motive.mainReason(motive.mainReason),
+    summary.motive.since(motive.since),
+    summary.motive.expectations(motive.expectations),
   ].join('\n\n')
 }
 
 export function symptomsSummary(form: PatientForm): string {
-  if (form.symptoms.length === 0) return EMPTY_SECTION
+  if (form.symptoms.length === 0) return summary.emptySection
   return form.symptoms
-    .map((symptom) => {
-      const detail = symptom.observation ? ` (${symptom.observation})` : ''
-      const onset = symptom.onset ? ` · inicio ${formatMonth(symptom.onset)}` : ''
-      return `- ${symptom.name}${detail}: ${symptom.intensity}/10${onset} · ${symptom.course.toLowerCase()}`
-    })
+    .map((symptom) =>
+      summary.symptom.line(
+        symptom.name,
+        symptom.intensity,
+        symptom.onset ? formatMonth(symptom.onset) : '',
+        symptom.course.toLowerCase(),
+        symptom.observation,
+      ),
+    )
     .join('\n')
 }
 
@@ -43,7 +48,7 @@ function medicationFrequency(medication: Medication): string {
 }
 
 export function medicationsSummary(form: PatientForm): string {
-  if (form.medications.length === 0) return EMPTY_SECTION
+  if (form.medications.length === 0) return summary.emptySection
   return form.medications
     .map((medication) => {
       const times = medication.times.filter(Boolean).join(', ')
@@ -51,41 +56,49 @@ export function medicationsSummary(form: PatientForm): string {
         [medication.name, medication.dose, medicationFrequency(medication), times]
           .filter(Boolean)
           .join(' · '),
-        `Indicado por ${medication.prescribedBy}`,
-        `Adherencia percibida: ${medication.adherence.toLowerCase()}`,
+        summary.medication.prescribedBy(medication.prescribedBy),
+        summary.medication.adherence(medication.adherence.toLowerCase()),
       ].join('\n')
     })
     .join('\n\n')
 }
 
 export function referralSuggestion(psychForm: PsychForm): string {
-  return psychForm.score >= psychForm.threshold ? 'Derivar' : 'No derivar'
+  return psychForm.score >= psychForm.threshold
+    ? summary.suggestion.derive
+    : summary.suggestion.notDerive
 }
 
 export function simpleSummary(patientForm: PatientForm, psychForm: PsychForm): string {
   const symptoms =
     patientForm.symptoms.length === 0
-      ? EMPTY_SECTION
-      : patientForm.symptoms.map((symptom) => `- ${symptom.name}: ${symptom.intensity}/10`).join('\n')
+      ? summary.emptySection
+      : patientForm.symptoms
+          .map((symptom) => summary.symptom.simpleLine(symptom.name, symptom.intensity))
+          .join('\n')
   return [
-    `DATOS GENERALES\n${generalSummary(patientForm)}`,
-    `SÍNTOMAS ACTUALES\n${symptoms}`,
-    `SUGERENCIA\n- ${referralSuggestion(psychForm)}\n- Puntaje: ${psychForm.score}`,
+    `${summary.simple.generalHeading}\n${generalSummary(patientForm)}`,
+    `${summary.simple.symptomsHeading}\n${symptoms}`,
+    `${summary.simple.suggestionHeading}\n- ${referralSuggestion(psychForm)}\n- ${summary.simple.score(psychForm.score)}`,
   ].join('\n\n')
 }
 
 export function familyAndSubstancesSummary(form: PatientForm): string {
   const family =
     form.familyHistory.length === 0
-      ? EMPTY_SECTION
+      ? summary.emptySection
       : form.familyHistory
-          .map((entry) => `- ${entry.relationship}: ${entry.condition}, ${entry.type.toLowerCase()}`)
+          .map((entry) =>
+            summary.family.line(entry.relationship, entry.condition, entry.type.toLowerCase()),
+          )
           .join('\n')
   const substances =
     form.substances.length === 0
-      ? EMPTY_SECTION
+      ? summary.emptySection
       : form.substances
-          .map((substance) => `- ${substance.substance}: ${substance.frequency} · ${substance.usualAmount}`)
+          .map((substance) =>
+            summary.substance.line(substance.substance, substance.frequency, substance.usualAmount),
+          )
           .join('\n')
-  return `Antecedente familiar:\n${family}\n\nConsumo:\n${substances}`
+  return summary.familyAndSubstances(family, substances)
 }

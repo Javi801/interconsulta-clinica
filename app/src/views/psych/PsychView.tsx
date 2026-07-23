@@ -1,13 +1,11 @@
 import { useState } from 'react'
-import { SEED_PATIENTS } from '../../data/seed'
+import { IMPORTED_RUT, SEED_PATIENTS, TEXT } from '../../text'
 import type { Patient } from '../../types'
 import Dashboard from './Dashboard'
 import PatientRecord from './PatientRecord'
 import PsychFormView from './PsychFormView'
 
 type SubView = 'dashboard' | 'record' | 'form'
-
-const IMPORTED_RUT = '15.222.333-4'
 
 function PsychView() {
   const [patients, setPatients] = useState<Patient[]>(SEED_PATIENTS)
@@ -16,7 +14,7 @@ function PsychView() {
 
   const openRecord = (patient: Patient) => {
     if (patient.patientFormStatus !== 'sent') {
-      alert('El formulario del paciente aún no ha sido enviado.')
+      alert(TEXT.psych.view.notSentAlert)
       return
     }
     setSelected(patient)
@@ -35,26 +33,26 @@ function PsychView() {
       ...patients,
       {
         rut,
-        name: name || 'Paciente sin nombre',
+        name: name || TEXT.psych.view.unnamedPatient,
         patientFormStatus: 'not-sent',
         psychFormStatus: 'pending',
-        updatedAt: 'Hoy',
+        updatedAt: TEXT.psych.view.today,
       },
     ])
   }
 
   const importExcel = (fileName: string) => {
-    const importedName = fileName.replace(/\.(xlsx|xls)$/i, '') || 'Paciente importado'
+    const importedName = fileName.replace(/\.(xlsx|xls)$/i, '') || TEXT.psych.view.importedPatient
     const existing = patients.find((patient) => patient.rut === IMPORTED_RUT)
     if (existing) {
       setPatients(
         patients.map((patient) =>
           patient.rut === IMPORTED_RUT
-            ? { ...patient, patientFormStatus: 'sent', updatedAt: 'Hoy' }
+            ? { ...patient, patientFormStatus: 'sent', updatedAt: TEXT.psych.view.today }
             : patient,
         ),
       )
-      alert('Excel cargado: el formulario del paciente existente fue reemplazado y quedó como enviado.')
+      alert(TEXT.psych.view.excelReplacedAlert)
     } else {
       setPatients([
         ...patients,
@@ -63,10 +61,10 @@ function PsychView() {
           name: importedName,
           patientFormStatus: 'sent',
           psychFormStatus: 'pending',
-          updatedAt: 'Hoy',
+          updatedAt: TEXT.psych.view.today,
         },
       ])
-      alert('Excel cargado: se creó un nuevo paciente y su formulario quedó como enviado.')
+      alert(TEXT.psych.view.excelCreatedAlert)
     }
   }
 
@@ -74,12 +72,12 @@ function PsychView() {
     <section className="view active">
       <div className="topbar">
         <div>
-          <h1>Panel del psicólogo</h1>
-          <p className="subtitle">Accede a cada formulario directamente desde su estado.</p>
+          <h1>{TEXT.psych.view.title}</h1>
+          <p className="subtitle">{TEXT.psych.view.subtitle}</p>
         </div>
         <div className="actions">
           <button type="button" className="btn">
-            Exportar Excel
+            {TEXT.psych.view.exportExcel}
           </button>
         </div>
       </div>

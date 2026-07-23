@@ -1,8 +1,10 @@
+import { TEXT } from '../text'
+
 export type ViewId = 'patient' | 'psych'
 
 const NAV_ITEMS: { id: ViewId; label: string }[] = [
-  { id: 'patient', label: 'Vista paciente' },
-  { id: 'psych', label: 'Vista psicólogo' },
+  { id: 'patient', label: TEXT.nav.items.patient },
+  { id: 'psych', label: TEXT.nav.items.psych },
 ]
 
 interface SidebarProps {
@@ -14,8 +16,8 @@ function Sidebar({ activeView, onNavigate }: SidebarProps) {
   return (
     <aside>
       <div className="brand">
-        Derivación Clínica
-        <small>Mockup de demostración</small>
+        {TEXT.nav.brand}
+        <small>{TEXT.nav.brandSubtitle}</small>
       </div>
       {NAV_ITEMS.map(({ id, label }) => (
         <button

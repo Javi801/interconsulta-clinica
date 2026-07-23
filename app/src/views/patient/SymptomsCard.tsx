@@ -2,7 +2,7 @@ import Field from '../../components/Field'
 import RangeWithScore from '../../components/RangeWithScore'
 import RepeatableItem from '../../components/RepeatableItem'
 import RepeatableSection from '../../components/RepeatableSection'
-import { COURSE_OPTIONS, SYMPTOM_OPTIONS } from '../../data/seed'
+import { COURSE_OPTIONS, SYMPTOM_OPTIONS, TEXT } from '../../text'
 import { patchAt, removeAt } from '../../utils/list'
 import { invalidClass, isFilled } from '../../utils/validation'
 import type { Symptom, SymptomCourse } from '../../types'
@@ -22,10 +22,14 @@ function SymptomsCard({ value, onChange, showErrors }: SymptomsCardProps) {
   return (
     <RepeatableSection
       span="full"
-      title="Síntomas actuales"
-      subtitle="Todos los campos son obligatorios."
-      addLabel="Agregar síntoma"
-      pickFrom={{ label: 'Síntoma', options: SYMPTOM_OPTIONS, otherOption: 'Otros síntomas' }}
+      title={TEXT.patient.symptoms.title}
+      subtitle={TEXT.patient.symptoms.subtitle}
+      addLabel={TEXT.patient.symptoms.addLabel}
+      pickFrom={{
+        label: TEXT.patient.symptoms.pickLabel,
+        options: SYMPTOM_OPTIONS,
+        otherOption: TEXT.patient.symptoms.otherOption,
+      }}
       onAdd={addSymptom}
       isEmpty={value.length === 0}
     >
@@ -34,19 +38,19 @@ function SymptomsCard({ value, onChange, showErrors }: SymptomsCardProps) {
           key={index}
           header={
             <>
-              Síntoma: <strong>{symptom.name}</strong>
+              {TEXT.patient.symptoms.itemLabel}: <strong>{symptom.name}</strong>
             </>
           }
           onRemove={() => onChange(removeAt(value, index))}
         >
           <div className="field-grid three">
-            <Field label="Intensidad">
+            <Field label={TEXT.patient.symptoms.fields.intensity}>
               <RangeWithScore
                 value={symptom.intensity}
                 onChange={(intensity) => onChange(patchAt(value, index, { intensity }))}
               />
             </Field>
-            <Field label="Inicio">
+            <Field label={TEXT.patient.symptoms.fields.onset}>
               <input
                 className={invalidClass(showErrors, isFilled(symptom.onset))}
                 type="month"
@@ -54,7 +58,7 @@ function SymptomsCard({ value, onChange, showErrors }: SymptomsCardProps) {
                 onChange={(e) => onChange(patchAt(value, index, { onset: e.target.value }))}
               />
             </Field>
-            <Field label="Curso">
+            <Field label={TEXT.patient.symptoms.fields.course}>
               <select
                 value={symptom.course}
                 onChange={(e) =>
@@ -66,7 +70,7 @@ function SymptomsCard({ value, onChange, showErrors }: SymptomsCardProps) {
                 ))}
               </select>
             </Field>
-            <Field label="Observación (opcional)" fullWidth>
+            <Field label={TEXT.patient.symptoms.fields.observation} fullWidth>
               <input
                 value={symptom.observation}
                 onChange={(e) => onChange(patchAt(value, index, { observation: e.target.value }))}

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Card from '../../components/Card'
 import Modal from '../../components/Modal'
-import { EDIT_PIN, SEED_PATIENT_FORM } from '../../data/seed'
+import { EDIT_PIN, SEED_PATIENT_FORM, TEXT } from '../../text'
 import {
   familyAndSubstancesSummary,
   generalSummary,
@@ -25,55 +25,52 @@ function PatientRecord({ patient, onBack }: PatientRecordProps) {
       <div className="topbar">
         <div>
           <button type="button" className="btn ghost" onClick={onBack}>
-            ← Volver
+            {TEXT.common.back}
           </button>
-          <h1 style={{ marginTop: 12 }}>Respuestas del paciente</h1>
+          <h1 style={{ marginTop: 12 }}>{TEXT.psych.record.title}</h1>
           <p className="subtitle">
             {patient.name} · {patient.rut}
           </p>
         </div>
         <div className="actions">
           <button type="button" className="btn" onClick={() => setShowPin(true)}>
-            Generar PIN
+            {TEXT.psych.record.generatePin}
           </button>
           <button
             type="button"
             className="btn primary"
-            onClick={() => alert('Demo: descarga de resultados del formulario del paciente.')}
+            onClick={() => alert(TEXT.psych.record.downloadAlert)}
           >
-            Descargar resultados
+            {TEXT.psych.record.downloadResults}
           </button>
         </div>
       </div>
       <div className="grid">
         <Card span={6}>
-          <h2>Datos generales</h2>
+          <h2>{TEXT.psych.record.cards.generalData}</h2>
           <div className="summary-box">{generalSummary(form)}</div>
         </Card>
         <Card span={6}>
-          <h2>Motivo y expectativas</h2>
+          <h2>{TEXT.psych.record.cards.motive}</h2>
           <div className="summary-box">{motiveSummary(form)}</div>
         </Card>
         <Card span="full">
-          <h2>Síntomas actuales</h2>
+          <h2>{TEXT.psych.record.cards.symptoms}</h2>
           <div className="summary-box">{symptomsSummary(form)}</div>
         </Card>
         <Card span={6}>
-          <h2>Medicamentos actuales</h2>
+          <h2>{TEXT.psych.record.cards.medications}</h2>
           <div className="summary-box">{medicationsSummary(form)}</div>
         </Card>
         <Card span={6}>
-          <h2>Antecedentes familiares y consumo</h2>
+          <h2>{TEXT.psych.record.cards.familyAndSubstances}</h2>
           <div className="summary-box">{familyAndSubstancesSummary(form)}</div>
         </Card>
       </div>
       {showPin && (
         <Modal open>
-          <h2>PIN de edición</h2>
-          <p className="subtitle">
-            Este PIN debe ser entregado por un psicólogo para habilitar cambios en el formulario
-            del paciente.
-          </p>
+          <h2>{TEXT.psych.record.pinModal.title}</h2>
+          <p className="subtitle">{TEXT.psych.record.pinModal.subtitle}</p>
           <div
             className="summary-box"
             style={{
@@ -88,10 +85,10 @@ function PatientRecord({ patient, onBack }: PatientRecordProps) {
           </div>
           <div className="modal-actions">
             <button type="button" className="btn" onClick={() => setShowPin(false)}>
-              Cerrar
+              {TEXT.psych.record.pinModal.close}
             </button>
             <button type="button" className="btn primary">
-              Copiar PIN
+              {TEXT.psych.record.pinModal.copy}
             </button>
           </div>
         </Modal>

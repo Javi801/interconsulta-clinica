@@ -1,5 +1,6 @@
 import Card, { SectionHead } from '../../components/Card'
 import Field from '../../components/Field'
+import { TEXT } from '../../text'
 import { simpleSummary } from '../../utils/summary'
 import type { PatientForm, PsychForm, ReferralReport } from '../../types'
 
@@ -9,13 +10,13 @@ interface PsychResultsProps {
   onReportChange: (report: ReferralReport) => void
 }
 
-const REPORT_FIELDS: { key: keyof ReferralReport; label: string }[] = [
-  { key: 'request', label: '1. Solicitud de consultoría' },
-  { key: 'summary', label: '2. Breve resumen' },
-  { key: 'symptoms', label: '3. Síntomas actuales' },
-  { key: 'medications', label: '4. Medicamentos actuales' },
-  { key: 'previousTreatments', label: '5. Tratamientos de salud mental anteriores' },
-  { key: 'background', label: '6. Antecedentes relevantes' },
+const REPORT_KEYS: (keyof ReferralReport)[] = [
+  'request',
+  'summary',
+  'symptoms',
+  'medications',
+  'previousTreatments',
+  'background',
 ]
 
 function PsychResults({ patientForm, psychForm, onReportChange }: PsychResultsProps) {
@@ -24,21 +25,29 @@ function PsychResults({ patientForm, psychForm, onReportChange }: PsychResultsPr
   return (
     <div className="grid">
       <Card span={6}>
-        <SectionHead title="Resumen simple" subtitle="Información vigente.">
-          <button type="button" className="btn" onClick={() => alert('Demo: resumen copiado.')}>
-            Copiar
+        <SectionHead title={TEXT.psych.results.simple.title} subtitle={TEXT.psych.results.simple.subtitle}>
+          <button
+            type="button"
+            className="btn"
+            onClick={() => alert(TEXT.psych.results.simple.copyAlert)}
+          >
+            {TEXT.psych.results.simple.copy}
           </button>
         </SectionHead>
         <div className="summary-box">{simpleSummary(patientForm, psychForm)}</div>
       </Card>
       <Card span={6}>
-        <SectionHead title="Informe para psiquiatría" subtitle="Texto editable.">
-          <button type="button" className="btn" onClick={() => alert('Demo: exportación de informe.')}>
-            Exportar
+        <SectionHead title={TEXT.psych.results.report.title} subtitle={TEXT.psych.results.report.subtitle}>
+          <button
+            type="button"
+            className="btn"
+            onClick={() => alert(TEXT.psych.results.report.exportAlert)}
+          >
+            {TEXT.psych.results.report.export}
           </button>
         </SectionHead>
-        {REPORT_FIELDS.map(({ key, label }) => (
-          <Field key={key} label={label}>
+        {REPORT_KEYS.map((key) => (
+          <Field key={key} label={TEXT.psych.results.report.fields[key]}>
             <textarea
               value={report[key]}
               onChange={(e) => onReportChange({ ...report, [key]: e.target.value })}

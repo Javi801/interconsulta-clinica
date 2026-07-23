@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Modal from './Modal'
+import { TEXT } from '../text'
 
 interface AddFromListModalProps {
   title: string
@@ -37,7 +38,7 @@ function AddFromListModal({
       </div>
       {isOther && (
         <div className="field" style={{ marginTop: 12 }}>
-          <label>Especificar</label>
+          <label>{TEXT.common.specify}</label>
           <input
             value={customName}
             onChange={(e) => setCustomName(e.target.value)}
@@ -47,10 +48,10 @@ function AddFromListModal({
       )}
       <div className="modal-actions">
         <button type="button" className="btn" onClick={onClose}>
-          Cancelar
+          {TEXT.common.cancel}
         </button>
         <button type="button" className="btn primary" disabled={!name} onClick={() => onAdd(name)}>
-          Agregar
+          {TEXT.common.add}
         </button>
       </div>
     </Modal>

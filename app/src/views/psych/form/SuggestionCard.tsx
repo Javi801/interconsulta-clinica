@@ -1,5 +1,6 @@
 import Card, { SectionHead } from '../../../components/Card'
 import Chip from '../../../components/Chip'
+import { TEXT } from '../../../text'
 
 interface SuggestionCardProps {
   score: number
@@ -13,26 +14,26 @@ function SuggestionCard({ score, threshold, suggestion, valid, onValidChange }: 
   return (
     <Card span="full">
       <SectionHead
-        title="Sugerencia de derivación"
-        subtitle="Resultado temporal basado en puntaje configurable."
+        title={TEXT.psych.suggestion.title}
+        subtitle={TEXT.psych.suggestion.subtitle}
       />
       <div className="score-panel">
         <div className="score-circle">{score}</div>
         <div>
-          <h3>Sugerencia: {suggestion}</h3>
-          <p className="subtitle">Umbral de demostración: {threshold} puntos.</p>
+          <h3>{TEXT.psych.suggestion.suggestionLabel(suggestion)}</h3>
+          <p className="subtitle">{TEXT.psych.suggestion.thresholdLabel(threshold)}</p>
           <div className="chip-row" style={{ marginTop: 12 }}>
             <Chip
               type="radio"
               name="suggestion-valid"
-              label="La sugerencia está correcta"
+              label={TEXT.psych.suggestion.valid}
               checked={valid}
               onChange={() => onValidChange(true)}
             />
             <Chip
               type="radio"
               name="suggestion-valid"
-              label="La sugerencia no está correcta"
+              label={TEXT.psych.suggestion.invalid}
               checked={!valid}
               onChange={() => onValidChange(false)}
             />

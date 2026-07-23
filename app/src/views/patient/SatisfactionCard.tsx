@@ -1,5 +1,6 @@
 import Card from '../../components/Card'
 import RangeWithScore from '../../components/RangeWithScore'
+import { TEXT } from '../../text'
 import type { SatisfactionScores } from '../../types'
 
 interface SatisfactionCardProps {
@@ -7,25 +8,19 @@ interface SatisfactionCardProps {
   onChange: (value: SatisfactionScores) => void
 }
 
-const SCORE_FIELDS: { key: keyof SatisfactionScores; label: string }[] = [
-  { key: 'work', label: 'Trabajo' },
-  { key: 'family', label: 'Familia' },
-  { key: 'couple', label: 'Pareja' },
-  { key: 'selfCare', label: 'Autocuidado' },
-  { key: 'general', label: 'Satisfacción general' },
-]
+const SCORE_KEYS: (keyof SatisfactionScores)[] = ['work', 'family', 'couple', 'selfCare', 'general']
 
 function SatisfactionCard({ value, onChange }: SatisfactionCardProps) {
   return (
     <Card span={4}>
-      <h2>Funcionamiento y satisfacción</h2>
+      <h2>{TEXT.patient.satisfaction.title}</h2>
       <p className="subtitle" style={{ marginBottom: 16 }}>
-        1 = muy baja satisfacción; 10 = muy alta.
+        {TEXT.patient.satisfaction.subtitle}
       </p>
       <div className="field">
-        {SCORE_FIELDS.map(({ key, label }) => (
+        {SCORE_KEYS.map((key) => (
           <div key={key} className="field">
-            <label>{label}</label>
+            <label>{TEXT.patient.satisfaction.fields[key]}</label>
             <RangeWithScore
               value={value[key]}
               onChange={(score) => onChange({ ...value, [key]: score })}
