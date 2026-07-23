@@ -1,7 +1,7 @@
 import Card, { SectionHead } from '../../../components/Card'
 import Field from '../../../components/Field'
 import StatusBadge from '../../../components/StatusBadge'
-import { TEXT } from '../../../text'
+import { FIELD_MAX_LENGTH, TEXT } from '../../../text'
 import type { ClinicalEvaluation, FormStatus } from '../../../types'
 
 interface EvaluationCardProps {
@@ -37,7 +37,7 @@ function EvaluationCard({ value, onChange, status }: EvaluationCardProps) {
         {FIELD_KEYS.map((key) => (
           <Field key={key} label={TEXT.psych.evaluation.fields[key]}>
             <input
-              maxLength={100}
+              maxLength={FIELD_MAX_LENGTH.evaluation}
               value={value[key]}
               onChange={(e) => onChange({ ...value, [key]: e.target.value })}
             />

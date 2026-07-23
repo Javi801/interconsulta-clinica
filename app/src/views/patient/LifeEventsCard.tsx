@@ -1,7 +1,7 @@
 import Field from '../../components/Field'
 import RepeatableItem from '../../components/RepeatableItem'
 import RepeatableSection from '../../components/RepeatableSection'
-import { DATE_PRECISION_OPTIONS, LIFE_EVENT_CATEGORY_OPTIONS, TEXT } from '../../text'
+import { DATE_PRECISION_OPTIONS, FIELD_MAX_LENGTH, LIFE_EVENT_CATEGORY_OPTIONS, TEXT } from '../../text'
 import { patchAt, removeAt } from '../../utils/list'
 import { invalidClass, isFilled } from '../../utils/validation'
 import type { DatePrecision, LifeEvent } from '../../types'
@@ -93,7 +93,7 @@ function LifeEventsCard({ value, onChange, showErrors }: LifeEventsCardProps) {
             </Field>
             <Field label={TEXT.patient.lifeEvents.fields.description} fullWidth>
               <input
-                maxLength={50}
+                maxLength={FIELD_MAX_LENGTH.lifeEventDescription}
                 value={event.description}
                 onChange={(e) => onChange(patchAt(value, index, { description: e.target.value }))}
               />

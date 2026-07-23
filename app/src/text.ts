@@ -14,6 +14,18 @@ import type {
 } from './types'
 
 // ============================================================================
+// FIELD LIMITS
+// Max character length per field group. Single source of truth shared by the
+// input constraint and the copy that announces it.
+// ============================================================================
+
+export const FIELD_MAX_LENGTH = {
+  motive: 200,
+  evaluation: 100,
+  lifeEventDescription: 50,
+} as const
+
+// ============================================================================
 // UI COPY
 // All user-facing strings, grouped by view and section.
 // ============================================================================
@@ -73,7 +85,7 @@ export const TEXT = {
     },
     motive: {
       title: 'Motivo y expectativas',
-      subtitle: 'Máximo 200 caracteres por campo.',
+      subtitle: `Máximo ${FIELD_MAX_LENGTH.motive} caracteres por campo.`,
       fields: {
         mainReason: 'Motivo principal de consulta',
         since: 'Desde cuándo ocurre',
@@ -273,7 +285,7 @@ export const TEXT = {
     },
     evaluation: {
       title: 'Evaluación clínica',
-      subtitle: 'Máximo 100 caracteres por campo.',
+      subtitle: `Máximo ${FIELD_MAX_LENGTH.evaluation} caracteres por campo.`,
       fields: {
         appearance: 'Apariencia y presentación',
         behavior: 'Conducta observada',

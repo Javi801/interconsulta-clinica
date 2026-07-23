@@ -1,6 +1,6 @@
 import Card, { SectionHead } from '../../components/Card'
 import Field from '../../components/Field'
-import { TEXT } from '../../text'
+import { FIELD_MAX_LENGTH, TEXT } from '../../text'
 import { invalidClass, isValidText } from '../../utils/validation'
 import type { MotiveExpectations } from '../../types'
 
@@ -20,7 +20,7 @@ function MotiveCard({ value, onChange, showErrors }: MotiveCardProps) {
         <Field label={TEXT.patient.motive.fields.mainReason}>
           <textarea
             className={invalidClass(showErrors, isValidText(value.mainReason))}
-            maxLength={200}
+            maxLength={FIELD_MAX_LENGTH.motive}
             value={value.mainReason}
             onChange={(e) => set({ mainReason: e.target.value })}
           />
@@ -28,7 +28,7 @@ function MotiveCard({ value, onChange, showErrors }: MotiveCardProps) {
         <Field label={TEXT.patient.motive.fields.since}>
           <textarea
             className={invalidClass(showErrors, isValidText(value.since))}
-            maxLength={200}
+            maxLength={FIELD_MAX_LENGTH.motive}
             value={value.since}
             onChange={(e) => set({ since: e.target.value })}
           />
@@ -36,7 +36,7 @@ function MotiveCard({ value, onChange, showErrors }: MotiveCardProps) {
         <Field label={TEXT.patient.motive.fields.expectations}>
           <textarea
             className={invalidClass(showErrors, isValidText(value.expectations))}
-            maxLength={200}
+            maxLength={FIELD_MAX_LENGTH.motive}
             value={value.expectations}
             onChange={(e) => set({ expectations: e.target.value })}
           />
@@ -44,7 +44,7 @@ function MotiveCard({ value, onChange, showErrors }: MotiveCardProps) {
         <Field label={TEXT.patient.motive.fields.psychiatryFears}>
           <textarea
             className={invalidClass(showErrors, isValidText(value.psychiatryFears))}
-            maxLength={200}
+            maxLength={FIELD_MAX_LENGTH.motive}
             value={value.psychiatryFears}
             onChange={(e) => set({ psychiatryFears: e.target.value })}
           />
@@ -52,7 +52,7 @@ function MotiveCard({ value, onChange, showErrors }: MotiveCardProps) {
         <Field label={TEXT.patient.motive.fields.additionalInfo} fullWidth>
           <textarea
             className={invalidClass(showErrors, isValidText(value.additionalInfo))}
-            maxLength={200}
+            maxLength={FIELD_MAX_LENGTH.motive}
             value={value.additionalInfo}
             onChange={(e) => set({ additionalInfo: e.target.value })}
           />
