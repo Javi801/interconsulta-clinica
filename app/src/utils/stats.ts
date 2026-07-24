@@ -1,4 +1,5 @@
 import { getSeedPatientForm, getSeedPsychForm } from '../seed/demoData'
+import { SYMPTOM_OPTIONS } from '../text'
 import type { ClinicalRisk, FormStatus, Patient, Psychologist, RiskLevel } from '../types'
 import { computeSadPersons, referralOutcome, type ReferralOutcome } from './sadPersons'
 
@@ -8,6 +9,36 @@ export interface SymptomStat {
   count: number
   averageIntensity: number
 }
+
+/** Average reported intensity for a fixed symptom domain, comparable across scopes. */
+export interface SymptomDomainStat {
+  domain: string
+  averageIntensity: number
+  count: number
+}
+
+/** One case reduced to the dimensions plotted in the triage scatter and density map. */
+export interface CasePoint {
+  rut: string
+  score: number
+  maxRisk: RiskLevel | null
+  symptomCount: number
+  referral: ReferralOutcome
+}
+
+/** Canonical symptom domains (SYMPTOM_OPTIONS without the free "other" bucket). */
+const SYMPTOM_DOMAINS = SYMPTOM_OPTIONS.filter((option) => option !== 'Otros síntomas')
+
+const normalize = (value: string) =>
+  value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+
+const DOMAIN_BY_NORM = new Map(SYMPTOM_DOMAINS.map((domain) => [normalize(domain), domain]))
+
+const domainOf = (name: string): string | null => DOMAIN_BY_NORM.get(normalize(name)) ?? null
 
 export interface ClinicalStats {
   totalCases: number
@@ -24,6 +55,10 @@ export interface ClinicalStats {
   pendingEvalCount: number
   /** Symptoms ordered by frequency, then average intensity. */
   symptoms: SymptomStat[]
+  /** Average intensity per canonical symptom domain, fixed order for comparison. */
+  symptomProfile: SymptomDomainStat[]
+  /** One point per case with a sent patient form. */
+  casePoints: CasePoint[]
   /** Case updates grouped by weekday, Monday (0) to Sunday (6). */
   weekdayActivity: number[]
 }
@@ -59,6 +94,8 @@ export function computeClinicalStats(patients: Patient[]): ClinicalStats {
   const referral: Record<ReferralOutcome, number> = { derive: 0, review: 0, notDerive: 0 }
   const risk: Record<RiskLevel, number> = { Bajo: 0, Moderado: 0, Alto: 0, Inminente: 0 }
   const symptomAcc = new Map<string, { count: number; sum: number }>()
+  const domainAcc = new Map<string, { count: number; sum: number }>()
+  const casePoints: CasePoint[] = []
   const weekdayActivity = [0, 0, 0, 0, 0, 0, 0]
   let pendingEvalCount = 0
 
@@ -75,25 +112,50 @@ export function computeClinicalStats(patients: Patient[]): ClinicalStats {
 
     const patientForm = getSeedPatientForm(patient.rut)
     const psychForm = getSeedPsychForm(patient.rut)
-
-    if (patient.patientFormStatus === 'sent') {
-      referral[referralOutcome(computeSadPersons(patientForm, psychForm))] += 1
-    }
-
     const level = highestRisk(psychForm.risks)
     if (level) risk[level] += 1
+
+    if (patient.patientFormStatus === 'sent') {
+      const sad = computeSadPersons(patientForm, psychForm)
+      const outcome = referralOutcome(sad)
+      referral[outcome] += 1
+      casePoints.push({
+        rut: patient.rut,
+        score: sad.score,
+        maxRisk: level,
+        symptomCount: patientForm.symptoms.length,
+        referral: outcome,
+      })
+    }
 
     for (const symptom of patientForm.symptoms) {
       const acc = symptomAcc.get(symptom.name) ?? { count: 0, sum: 0 }
       acc.count += 1
       acc.sum += symptom.intensity
       symptomAcc.set(symptom.name, acc)
+
+      const domain = domainOf(symptom.name)
+      if (domain) {
+        const domainStat = domainAcc.get(domain) ?? { count: 0, sum: 0 }
+        domainStat.count += 1
+        domainStat.sum += symptom.intensity
+        domainAcc.set(domain, domainStat)
+      }
     }
   }
 
   const symptoms = [...symptomAcc.entries()]
     .map(([name, { count, sum }]) => ({ name, count, averageIntensity: sum / count }))
     .sort((a, b) => b.count - a.count || b.averageIntensity - a.averageIntensity)
+
+  const symptomProfile = SYMPTOM_DOMAINS.map((domain) => {
+    const acc = domainAcc.get(domain)
+    return {
+      domain,
+      count: acc?.count ?? 0,
+      averageIntensity: acc ? acc.sum / acc.count : 0,
+    }
+  })
 
   return {
     totalCases: patients.length,
@@ -105,6 +167,8 @@ export function computeClinicalStats(patients: Patient[]): ClinicalStats {
     highRiskCount: risk.Alto + risk.Inminente,
     pendingEvalCount,
     symptoms,
+    symptomProfile,
+    casePoints,
     weekdayActivity,
   }
 }

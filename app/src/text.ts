@@ -548,6 +548,34 @@ export const TEXT = {
       referral: { title: 'Mis derivaciones', subtitle: 'Resultado de tus formularios enviados.' },
       activity: { title: 'Actividad reciente', subtitle: 'Actualizaciones por día de la semana.' },
     },
+    personalCharts: {
+      triage: {
+        title: 'Mapa de triage',
+        subtitle: 'Cada punto es un caso: puntaje × riesgo, tamaño según nº de síntomas.',
+        scoreAxis: 'Puntaje SAD PERSONS',
+        noRisk: 'Sin riesgo',
+      },
+      profile: {
+        title: 'Perfil de síntomas',
+        subtitle: 'Intensidad promedio por dominio: tus casos vs. todos.',
+        mine: 'Mis casos',
+        all: 'Todos los casos',
+      },
+      density: {
+        title: 'Concentración puntaje × riesgo',
+        subtitle: 'Número de casos por banda de puntaje y nivel de riesgo.',
+        scoreBands: ['0–2', '3–4', '5–6', '7–10'],
+      },
+    },
+    symptomShort: {
+      'Estado de ánimo': 'Ánimo',
+      Ansiedad: 'Ansiedad',
+      Sueño: 'Sueño',
+      'Energía y activación': 'Energía',
+      Cognición: 'Cognición',
+      'Conducta e impulsividad': 'Conducta',
+      Alimentación: 'Alimentación',
+    },
     formStatus: {
       patientSent: 'Paciente enviado',
       patientPending: 'Paciente pendiente',

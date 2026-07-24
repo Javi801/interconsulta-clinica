@@ -54,7 +54,7 @@ function StatsDashboard({ allStats, personalStats, onBack }: StatsDashboardProps
         </div>
       )}
       {tab === 'mine' && personalStats ? (
-        <PersonalStats stats={personalStats} />
+        <PersonalStats stats={personalStats} populationStats={allStats} />
       ) : (
         <AggregatedStats stats={allStats} />
       )}

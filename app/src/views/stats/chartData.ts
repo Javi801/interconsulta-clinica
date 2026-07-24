@@ -1,13 +1,26 @@
 import type { ColumnItem } from '../../components/charts/ColumnChart'
 import type { DonutSegment } from '../../components/charts/Donut'
 import type { BarItem } from '../../components/charts/MiniBars'
+import type { RadarSeries } from '../../components/charts/RadarChart'
+import type { ScatterPoint, ScatterTone } from '../../components/charts/ScatterChart'
 import { TEXT } from '../../text'
-import type { ClinicalStats, PsychologistLoad, SymptomStat } from '../../utils/stats'
+import type { ReferralOutcome } from '../../utils/sadPersons'
+import type {
+  CasePoint,
+  ClinicalStats,
+  PsychologistLoad,
+  SymptomDomainStat,
+  SymptomStat,
+} from '../../utils/stats'
+import type { RiskLevel } from '../../types'
 
-const { formStatus, referral, risk, weekdays } = TEXT.stats
+const { formStatus, referral, risk, weekdays, personalCharts, symptomShort } = TEXT.stats
 
 /** Intensity scale used to map symptom averages to full column height. */
 export const INTENSITY_MAX = 10
+
+/** Maximum SAD PERSONS score (one point per factor). */
+export const SCORE_MAX = 10
 
 export const donutPercent = (value: number, total: number) => `${Math.round((value / total) * 100)}%`
 
@@ -70,3 +83,75 @@ export const activityColumns = (stats: ClinicalStats): ColumnItem[] =>
 
 export const psychologistLoadBars = (loads: PsychologistLoad[]): BarItem[] =>
   loads.map((load) => ({ label: load.name, value: load.count, tone: 'default' }))
+
+// --- New-primitive charts (triage scatter, symptom radar, score×risk density) ---
+
+const REFERRAL_TONE: Record<ReferralOutcome, ScatterTone> = {
+  derive: 'success',
+  review: 'warning',
+  notDerive: 'info',
+}
+
+/** Scatter row index per risk level; 0 is reserved for cases without recorded risk. */
+const RISK_ROW: Record<RiskLevel, number> = { Bajo: 1, Moderado: 2, Alto: 3, Inminente: 4 }
+
+/** Triage y-axis, bottom to top. */
+export const triageYLabels = [
+  personalCharts.triage.noRisk,
+  risk.Bajo,
+  risk.Moderado,
+  risk.Alto,
+  risk.Inminente,
+]
+
+export const triageLegend: { label: string; tone: ScatterTone }[] = [
+  { label: referral.derive, tone: 'success' },
+  { label: referral.review, tone: 'warning' },
+  { label: referral.notDerive, tone: 'info' },
+]
+
+export const triagePoints = (casePoints: CasePoint[]): ScatterPoint[] =>
+  casePoints.map((point) => ({
+    x: point.score,
+    y: point.maxRisk ? RISK_ROW[point.maxRisk] : 0,
+    size: point.symptomCount,
+    tone: REFERRAL_TONE[point.referral],
+    title: `${point.rut} · ${point.score} pts`,
+  }))
+
+const shortLabel = symptomShort as Record<string, string>
+
+export const symptomRadarAxes = (profile: SymptomDomainStat[]): string[] =>
+  profile.map((point) => shortLabel[point.domain] ?? point.domain)
+
+export const symptomRadarSeries = (
+  own: SymptomDomainStat[],
+  all: SymptomDomainStat[],
+): RadarSeries[] => [
+  { label: personalCharts.profile.all, values: all.map((point) => point.averageIntensity), tone: 'primary' },
+  { label: personalCharts.profile.mine, values: own.map((point) => point.averageIntensity), tone: 'accent' },
+]
+
+/** Density rows, top (most severe) to bottom. */
+const DENSITY_ROWS: (RiskLevel | 'none')[] = ['Inminente', 'Alto', 'Moderado', 'Bajo', 'none']
+
+export const densityRowLabels = [
+  risk.Inminente,
+  risk.Alto,
+  risk.Moderado,
+  risk.Bajo,
+  personalCharts.triage.noRisk,
+]
+
+export const densityColLabels = [...personalCharts.density.scoreBands]
+
+const scoreBand = (score: number): number => (score <= 2 ? 0 : score <= 4 ? 1 : score <= 6 ? 2 : 3)
+
+export const densityMatrix = (casePoints: CasePoint[]): number[][] => {
+  const matrix = DENSITY_ROWS.map(() => Array<number>(densityColLabels.length).fill(0))
+  for (const point of casePoints) {
+    const row = DENSITY_ROWS.indexOf(point.maxRisk ?? 'none')
+    matrix[row][scoreBand(point.score)] += 1
+  }
+  return matrix
+}
