@@ -3,6 +3,7 @@ import Card, { SectionHead } from '../../components/Card'
 import Modal from '../../components/Modal'
 import StatusBadge from '../../components/StatusBadge'
 import { TEXT } from '../../text'
+import { formatRut } from '../../utils/rut'
 import type { Patient } from '../../types'
 
 interface DashboardProps {
@@ -103,9 +104,10 @@ function Dashboard({ patients, onCreate, onImportExcel, onOpenRecord, onOpenForm
           <div className="field" style={{ marginTop: 16 }}>
             <label>{TEXT.psych.dashboard.createModal.rutLabel}</label>
             <input
+              inputMode="numeric"
               placeholder={TEXT.psych.dashboard.createModal.rutPlaceholder}
               value={newRut}
-              onChange={(e) => setNewRut(e.target.value)}
+              onChange={(e) => setNewRut(formatRut(e.target.value))}
             />
           </div>
           <div className="field" style={{ marginTop: 12 }}>
