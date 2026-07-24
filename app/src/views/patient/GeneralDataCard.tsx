@@ -2,7 +2,7 @@ import Card, { SectionHead } from '../../components/Card'
 import Chip from '../../components/Chip'
 import Field from '../../components/Field'
 import StatusBadge from '../../components/StatusBadge'
-import { GENDER_OPTIONS, OCCUPATION_OPTIONS, TEXT } from '../../text'
+import { GENDER_OPTIONS, OCCUPATION_OPTIONS, RELATIONSHIP_STATUS_OPTIONS, TEXT } from '../../text'
 import { calculateAge } from '../../utils/date'
 import { formatPhone } from '../../utils/phone'
 import { invalidClass, isFilled, isValidEmail, isValidText } from '../../utils/validation'
@@ -85,11 +85,14 @@ function GeneralDataCard({ value, onChange, status, showErrors }: GeneralDataCar
           />
         </Field>
         <Field label={TEXT.patient.generalData.fields.relationshipStatus}>
-          <input
-            className={invalidClass(showErrors, isValidText(value.relationshipStatus))}
+          <select
             value={value.relationshipStatus}
             onChange={(e) => set({ relationshipStatus: e.target.value })}
-          />
+          >
+            {RELATIONSHIP_STATUS_OPTIONS.map((option) => (
+              <option key={option}>{option}</option>
+            ))}
+          </select>
         </Field>
         <Field label={TEXT.patient.generalData.fields.phone}>
           <input

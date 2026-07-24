@@ -6,6 +6,7 @@ import type {
   FamilyHistoryType,
   FormStatus,
   MedicationFrequency,
+  MedicationStatus,
   Patient,
   PatientForm,
   PsychForm,
@@ -114,7 +115,7 @@ export const TEXT = {
         gender: 'Género',
         nationality: 'Nacionalidad',
         livesWith: 'Con quién vive',
-        relationshipStatus: 'Situación de pareja',
+        relationshipStatus: 'Estado civil',
         phone: 'Teléfono',
         email: 'Correo',
       },
@@ -155,16 +156,20 @@ export const TEXT = {
       },
     },
     medications: {
-      title: 'Medicamentos actuales',
-      subtitle: 'Todos los campos son obligatorios.',
+      title: 'Medicamentos',
+      subtitle: 'Incluye los actuales y los que tomaste antes. Solo el nombre y el estado son obligatorios.',
       addLabel: 'Agregar medicamento',
       itemLabel: 'Medicamento',
       addTime: 'Agregar horario',
+      linkNone: 'Otra / No sé',
       fields: {
         name: 'Nombre',
+        status: 'Estado',
+        forCondition: '¿Para qué lo tomas?',
         dose: 'Dosis',
         frequency: 'Frecuencia',
         frequencyDetail: 'Especificar frecuencia',
+        period: 'Período aproximado',
         prescribedBy: 'Profesional que indicó',
         adherence: 'Adherencia percibida',
         times: 'Horarios (opcional según frecuencia)',
@@ -483,6 +488,15 @@ export const OCCUPATION_OPTIONS = [
 
 export const GENDER_OPTIONS = ['Mujer', 'Hombre', 'No binario', 'Otro']
 
+export const RELATIONSHIP_STATUS_OPTIONS = [
+  'Soltero/a',
+  'Casado/a',
+  'Conviviente',
+  'Separado/a',
+  'Divorciado/a',
+  'Viudo/a',
+]
+
 export const COURSE_OPTIONS: SymptomCourse[] = ['Constante', 'Episódico', 'Fluctuante', 'No sabe']
 
 export const SYMPTOM_OPTIONS = [
@@ -522,6 +536,8 @@ export const MEDICATION_FREQUENCY_OPTIONS: MedicationFrequency[] = [
   'Según necesidad (SOS)',
   'Otro',
 ]
+
+export const MEDICATION_STATUS_OPTIONS: MedicationStatus[] = ['Actual', 'Pasado']
 
 export const DATE_PRECISION_OPTIONS: DatePrecision[] = ['Año', 'Mes y año', 'Fecha exacta']
 
@@ -739,7 +755,7 @@ export const SEED_PATIENT_FORM: PatientForm = {
     gender: 'Mujer',
     nationality: 'Chilena',
     livesWith: 'Pareja e hija',
-    relationshipStatus: 'En pareja',
+    relationshipStatus: 'Conviviente',
     phone: '+569 1234 5678',
     email: 'daniela@ejemplo.cl',
     occupations: ['Trabaja'],
@@ -783,12 +799,16 @@ export const SEED_PATIENT_FORM: PatientForm = {
   ],
   medications: [
     {
+      id: 1,
       name: 'Sertralina',
+      status: 'Actual',
+      linkedCondition: { source: 'mental', id: 1 },
       dose: '50 mg',
       frequency: 'Una vez al día',
       frequencyDetail: '',
       times: ['08:00'],
-      prescribedBy: 'Médico general',
+      period: '',
+      prescribedBy: 'Médico general o de familia',
       adherence: 'Alta',
     },
   ],

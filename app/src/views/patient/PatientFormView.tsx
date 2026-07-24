@@ -110,6 +110,8 @@ function PatientFormView({ rut, onSubmit }: PatientFormViewProps) {
         <MedicationsCard
           value={form.medications}
           onChange={update('medications')}
+          mentalHistory={form.mentalHistory}
+          physicalHistory={form.physicalHistory}
           showErrors={showErrors}
         />
         <SubstancesCard

@@ -70,12 +70,18 @@ export interface Symptom {
 }
 
 export interface Medication {
+  id: number
   name: string
+  status: MedicationStatus
+  /** Antecedent the medication is prescribed for, or null when unknown/other. */
+  linkedCondition: ConditionRef | null
   dose: string
   frequency: MedicationFrequency
   /** Free-text description, only used when frequency is 'Otro'. */
   frequencyDetail: string
   times: string[]
+  /** Approximate period, used for past medications. */
+  period: string
   prescribedBy: string
   adherence: Adherence
 }

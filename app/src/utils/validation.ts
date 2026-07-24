@@ -43,10 +43,16 @@ export const isMotiveValid = (motive: MotiveExpectations): boolean =>
 
 export const isSymptomValid = (symptom: Symptom): boolean => isFilled(symptom.onset)
 
-export const isMedicationValid = (medication: Medication): boolean =>
-  [medication.name, medication.dose, medication.prescribedBy].every(isValidText) &&
-  (medication.frequency !== 'Otro' || isValidText(medication.frequencyDetail)) &&
-  medication.times.every(isFilled)
+export const isMedicationValid = (medication: Medication): boolean => {
+  if (!isFilled(medication.name)) return false
+  if (
+    medication.status === 'Actual' &&
+    medication.frequency === 'Otro' &&
+    !isValidText(medication.frequencyDetail)
+  )
+    return false
+  return medication.times.every(isFilled)
+}
 
 export const isSubstanceValid = (substance: SubstanceUse): boolean =>
   [substance.frequency, substance.usualAmount].every(isValidText) &&
