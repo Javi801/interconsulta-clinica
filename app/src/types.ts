@@ -23,9 +23,23 @@ export type FamilyHistoryType =
   | 'Referido por la familia'
   | 'Inferido o sospechado'
 
+export type Role = 'psychologist' | 'coordinator'
+
+export interface Psychologist {
+  id: string
+  name: string
+}
+
+export interface Coordinator {
+  id: string
+  name: string
+}
+
 export interface Patient {
   rut: string
   name: string
+  /** Psychologist currently in charge of the record. Always assigned. */
+  assignedPsychologistId: string
   patientFormStatus: FormStatus
   psychFormStatus: FormStatus
   updatedAt: string

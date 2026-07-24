@@ -1,7 +1,7 @@
 import { useState, type ChangeEvent } from 'react'
 import Card, { SectionHead } from '../../components/Card'
 import Modal from '../../components/Modal'
-import StatusBadge from '../../components/StatusBadge'
+import PatientsTable from '../../components/PatientsTable'
 import { TEXT } from '../../text'
 import { formatRut } from '../../utils/rut'
 import type { Patient } from '../../types'
@@ -68,35 +68,7 @@ function Dashboard({ patients, onCreate, onImportExcel, onOpenRecord, onOpenForm
           </label>
         </div>
       </SectionHead>
-      <table>
-        <thead>
-          <tr>
-            <th>{TEXT.psych.dashboard.columns.rut}</th>
-            <th>{TEXT.psych.dashboard.columns.patient}</th>
-            <th>{TEXT.psych.dashboard.columns.patientForm}</th>
-            <th>{TEXT.psych.dashboard.columns.psychForm}</th>
-            <th>{TEXT.psych.dashboard.columns.updatedAt}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {patients.map((patient) => (
-            <tr key={patient.rut}>
-              <td>{patient.rut}</td>
-              <td>{patient.name}</td>
-              <td>
-                <StatusBadge
-                  status={patient.patientFormStatus}
-                  onClick={() => onOpenRecord(patient)}
-                />
-              </td>
-              <td>
-                <StatusBadge status={patient.psychFormStatus} onClick={() => onOpenForm(patient)} />
-              </td>
-              <td>{patient.updatedAt}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <PatientsTable patients={patients} onOpenRecord={onOpenRecord} onOpenForm={onOpenForm} />
       {creating && (
         <Modal open>
           <h2>{TEXT.psych.dashboard.createModal.title}</h2>

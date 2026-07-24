@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { IMPORTED_RUT, TEXT } from '../../text'
+import { IMPORTED_RUT } from '../../seed/demoData'
+import { TEXT } from '../../text'
 import type { Patient } from '../../types'
 import Dashboard from './Dashboard'
 import PatientRecord from './PatientRecord'
@@ -9,12 +10,17 @@ type SubView = 'dashboard' | 'record' | 'form'
 
 interface PsychViewProps {
   patients: Patient[]
+  psychologistId: string
   onPatientsChange: (patients: Patient[]) => void
 }
 
-function PsychView({ patients, onPatientsChange }: PsychViewProps) {
+function PsychView({ patients, psychologistId, onPatientsChange }: PsychViewProps) {
   const [subview, setSubview] = useState<SubView>('dashboard')
   const [selected, setSelected] = useState<Patient | null>(null)
+
+  const ownPatients = patients.filter(
+    (patient) => patient.assignedPsychologistId === psychologistId,
+  )
 
   const openRecord = (patient: Patient) => {
     if (patient.patientFormStatus !== 'sent') {
@@ -38,6 +44,7 @@ function PsychView({ patients, onPatientsChange }: PsychViewProps) {
       {
         rut,
         name,
+        assignedPsychologistId: psychologistId,
         patientFormStatus: 'not-sent',
         psychFormStatus: 'pending',
         updatedAt: TEXT.psych.view.today,
@@ -52,7 +59,12 @@ function PsychView({ patients, onPatientsChange }: PsychViewProps) {
       onPatientsChange(
         patients.map((patient) =>
           patient.rut === IMPORTED_RUT
-            ? { ...patient, patientFormStatus: 'sent', updatedAt: TEXT.psych.view.today }
+            ? {
+                ...patient,
+                assignedPsychologistId: psychologistId,
+                patientFormStatus: 'sent',
+                updatedAt: TEXT.psych.view.today,
+              }
             : patient,
         ),
       )
@@ -63,6 +75,7 @@ function PsychView({ patients, onPatientsChange }: PsychViewProps) {
         {
           rut: IMPORTED_RUT,
           name: importedName,
+          assignedPsychologistId: psychologistId,
           patientFormStatus: 'sent',
           psychFormStatus: 'pending',
           updatedAt: TEXT.psych.view.today,
@@ -79,15 +92,10 @@ function PsychView({ patients, onPatientsChange }: PsychViewProps) {
           <h1>{TEXT.psych.view.title}</h1>
           <p className="subtitle">{TEXT.psych.view.subtitle}</p>
         </div>
-        <div className="actions">
-          <button type="button" className="btn">
-            {TEXT.psych.view.exportExcel}
-          </button>
-        </div>
       </div>
       {subview === 'dashboard' && (
         <Dashboard
-          patients={patients}
+          patients={ownPatients}
           onCreate={createPatient}
           onImportExcel={importExcel}
           onOpenRecord={openRecord}

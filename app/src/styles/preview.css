@@ -124,10 +124,20 @@ h3{font-size:16px}
 .btn.ghost{
   background:transparent;
 }
+.btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
 label.btn{
   font-size:1rem;
   font-weight:600;
   cursor:pointer;
+}
+.readonly-form{
+  border:0;
+  margin:0;
+  padding:0;
+  min-width:0;
 }
 .grid{
   display:grid;

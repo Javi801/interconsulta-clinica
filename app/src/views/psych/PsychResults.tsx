@@ -8,6 +8,8 @@ interface PsychResultsProps {
   patientForm: PatientForm
   psychForm: PsychForm
   onReportChange: (report: ReferralReport) => void
+  /** Coordinator view: hide copy/export and lock the report text. */
+  readOnly?: boolean
 }
 
 const REPORT_KEYS: (keyof ReferralReport)[] = [
@@ -19,37 +21,42 @@ const REPORT_KEYS: (keyof ReferralReport)[] = [
   'background',
 ]
 
-function PsychResults({ patientForm, psychForm, onReportChange }: PsychResultsProps) {
+function PsychResults({ patientForm, psychForm, onReportChange, readOnly = false }: PsychResultsProps) {
   const report = psychForm.report
 
   return (
     <div className="grid">
       <Card span={6}>
         <SectionHead title={TEXT.psych.results.simple.title} subtitle={TEXT.psych.results.simple.subtitle}>
-          <button
-            type="button"
-            className="btn"
-            onClick={() => alert(TEXT.psych.results.simple.copyAlert)}
-          >
-            {TEXT.psych.results.simple.copy}
-          </button>
+          {!readOnly && (
+            <button
+              type="button"
+              className="btn"
+              onClick={() => alert(TEXT.psych.results.simple.copyAlert)}
+            >
+              {TEXT.psych.results.simple.copy}
+            </button>
+          )}
         </SectionHead>
         <div className="summary-box">{simpleSummary(patientForm, psychForm)}</div>
       </Card>
       <Card span={6}>
         <SectionHead title={TEXT.psych.results.report.title} subtitle={TEXT.psych.results.report.subtitle}>
-          <button
-            type="button"
-            className="btn"
-            onClick={() => alert(TEXT.psych.results.report.exportAlert)}
-          >
-            {TEXT.psych.results.report.export}
-          </button>
+          {!readOnly && (
+            <button
+              type="button"
+              className="btn"
+              onClick={() => alert(TEXT.psych.results.report.exportAlert)}
+            >
+              {TEXT.psych.results.report.export}
+            </button>
+          )}
         </SectionHead>
         {REPORT_KEYS.map((key) => (
           <Field key={key} label={TEXT.psych.results.report.fields[key]}>
             <textarea
               value={report[key]}
+              readOnly={readOnly}
               onChange={(e) => onReportChange({ ...report, [key]: e.target.value })}
             />
           </Field>

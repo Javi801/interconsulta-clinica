@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { SEED_PATIENT_FORM, SEED_PSYCH_FORM, TEXT } from '../../text'
+import { getSeedPatientForm, getSeedPsychForm } from '../../seed/demoData'
+import { TEXT } from '../../text'
 import type { FormStatus, Patient, PsychForm, ReferralReport } from '../../types'
 import PsychResults from './PsychResults'
 import PsychFormContent from './form/PsychFormContent'
@@ -7,23 +8,21 @@ import PsychFormContent from './form/PsychFormContent'
 interface PsychFormViewProps {
   patient: Patient
   onBack: () => void
+  /** Coordinator view: content stays visible but no editing, export or submit. */
+  readOnly?: boolean
 }
 
-function PsychFormView({ patient, onBack }: PsychFormViewProps) {
-  const [form, setForm] = useState<PsychForm>(SEED_PSYCH_FORM)
+function PsychFormView({ patient, onBack, readOnly = false }: PsychFormViewProps) {
+  const patientForm = getSeedPatientForm(patient.rut)
+  const [form, setForm] = useState<PsychForm>(() => getSeedPsychForm(patient.rut))
   const [status, setStatus] = useState<FormStatus>(patient.psychFormStatus)
   const [showResults, setShowResults] = useState(false)
 
-  const handleGenerate = () => setShowResults(true)
+  const isSent = status === 'sent'
 
   const handleSend = () => {
     setStatus('sent')
     alert(TEXT.psych.formView.sentAlert)
-  }
-
-  const handleEdit = () => {
-    setShowResults(false)
-    setStatus('draft')
   }
 
   const setReport = (report: ReferralReport) => setForm({ ...form, report })
@@ -39,30 +38,79 @@ function PsychFormView({ patient, onBack }: PsychFormViewProps) {
           <p className="subtitle">{TEXT.psych.formView.subtitle(patient.name)}</p>
         </div>
         <div className="actions">
-          {status === 'sent' && (
-            <button type="button" className="btn" onClick={handleEdit}>
-              {TEXT.psych.formView.edit}
-            </button>
+          {showResults ? (
+            <>
+              <button type="button" className="btn" onClick={() => setShowResults(false)}>
+                {TEXT.psych.formView.backToForm}
+              </button>
+              {!readOnly && (
+                <button
+                  type="button"
+                  className="btn primary"
+                  onClick={() => alert(TEXT.psych.formView.exportResultsAlert)}
+                >
+                  {TEXT.psych.formView.exportResults}
+                </button>
+              )}
+            </>
+          ) : (
+            <>
+              {!readOnly && (
+                <>
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => alert(TEXT.psych.formView.exportExcelAlert)}
+                  >
+                    {TEXT.psych.formView.exportExcel}
+                  </button>
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => alert(TEXT.psych.formView.draftSavedAlert)}
+                  >
+                    {TEXT.psych.formView.saveDraft}
+                  </button>
+                  <button type="button" className="btn success" onClick={handleSend}>
+                    {isSent ? TEXT.psych.formView.resubmit : TEXT.psych.formView.submit}
+                  </button>
+                </>
+              )}
+              <button
+                type="button"
+                className="btn primary"
+                onClick={() => setShowResults(true)}
+                disabled={!isSent}
+              >
+                {TEXT.psych.formView.viewResults}
+              </button>
+            </>
           )}
-          <button
-            type="button"
-            className="btn"
-            onClick={() => alert(TEXT.psych.formView.exportAlert)}
-          >
-            {TEXT.psych.formView.exportResults}
-          </button>
-          <button type="button" className="btn primary" onClick={handleGenerate}>
-            {TEXT.psych.formView.generateResults}
-          </button>
-          <button type="button" className="btn success" onClick={handleSend}>
-            {TEXT.psych.formView.submit}
-          </button>
         </div>
       </div>
       {showResults ? (
-        <PsychResults patientForm={SEED_PATIENT_FORM} psychForm={form} onReportChange={setReport} />
+        <PsychResults
+          patientForm={patientForm}
+          psychForm={form}
+          onReportChange={setReport}
+          readOnly={readOnly}
+        />
+      ) : readOnly ? (
+        <fieldset className="readonly-form" disabled>
+          <PsychFormContent
+            patientForm={patientForm}
+            form={form}
+            onChange={setForm}
+            status={status}
+          />
+        </fieldset>
       ) : (
-        <PsychFormContent form={form} onChange={setForm} status={status} />
+        <PsychFormContent
+          patientForm={patientForm}
+          form={form}
+          onChange={setForm}
+          status={status}
+        />
       )}
     </div>
   )

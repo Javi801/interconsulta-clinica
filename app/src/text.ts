@@ -53,7 +53,27 @@ export const TEXT = {
   },
 
   coordinator: {
-    placeholder: 'Vista del coordinador (pendiente de implementar).',
+    view: {
+      title: 'Panel del coordinador',
+      subtitle: 'Supervisión de todos los pacientes en modo solo lectura.',
+    },
+    dashboard: {
+      title: 'Todos los pacientes',
+      subtitle: 'Revisa cualquier ficha y reasigna pacientes entre psicólogos.',
+      columns: {
+        assignedPsych: 'Psicólogo asignado',
+        actions: 'Acciones',
+      },
+      reassign: 'Reasignar',
+    },
+    reassignModal: {
+      title: 'Reasignar paciente',
+      subtitle:
+        'El psicólogo elegido hereda la ficha completa. El anterior pierde el acceso de inmediato.',
+      currentLabel: 'Psicólogo actual',
+      newLabel: 'Nuevo psicólogo',
+      confirm: 'Reasignar',
+    },
   },
 
   auth: {
@@ -278,7 +298,6 @@ export const TEXT = {
     view: {
       title: 'Panel del psicólogo',
       subtitle: 'Accede a cada formulario directamente desde su estado.',
-      exportExcel: 'Exportar Excel',
       notSentAlert: 'El formulario del paciente aún no ha sido enviado.',
       importedPatient: 'Paciente importado',
       today: 'Hoy',
@@ -338,12 +357,17 @@ export const TEXT = {
     formView: {
       title: 'Formulario del psicólogo',
       subtitle: (patientName: string) => `${patientName} · evaluación clínica`,
-      edit: 'Editar',
-      exportResults: 'Exportar resultados',
-      exportAlert: 'Demo: exportación de resultados.',
-      generateResults: 'Generar resultados',
+      exportExcel: 'Exportar Excel',
+      exportExcelAlert: 'Demo: exportación a Excel.',
+      saveDraft: 'Guardar borrador',
+      draftSavedAlert: 'Borrador guardado en esta demostración.',
       submit: 'Enviar formulario',
+      resubmit: 'Re-enviar formulario',
       sentAlert: 'Formulario del psicólogo marcado como enviado.',
+      viewResults: 'Visualizar resultados',
+      backToForm: 'Volver al formulario',
+      exportResults: 'Exportar resultados',
+      exportResultsAlert: 'Demo: exportación de resultados.',
     },
     results: {
       simple: {
@@ -761,187 +785,3 @@ export const REFERRAL_REASON_OPTIONS = [
   'Alteraciones graves del sueño',
   'Otra',
 ]
-
-// ============================================================================
-// DEMO DATA
-// Seed content used to populate the mockup.
-// ============================================================================
-
-export const EDIT_PIN = '4827'
-
-export const ACCESS_CODE = '738 512'
-
-export const IMPORTED_RUT = '15.222.333-4'
-
-export const SEED_PATIENTS: Patient[] = [
-  {
-    rut: '12.345.678-5',
-    name: 'Daniela Pérez Soto',
-    patientFormStatus: 'sent',
-    psychFormStatus: 'draft',
-    updatedAt: '21/07/2026',
-  },
-  {
-    rut: '9.876.543-2',
-    name: 'Martín González',
-    patientFormStatus: 'not-sent',
-    psychFormStatus: 'pending',
-    updatedAt: '20/07/2026',
-  },
-]
-
-export const SEED_PATIENT_FORM: PatientForm = {
-  general: {
-    rut: '12.345.678-5',
-    firstName: 'Daniela',
-    lastName: 'Pérez Soto',
-    birthDate: '1991-05-18',
-    gender: 'Mujer',
-    nationality: 'Chilena',
-    livesWith: 'Pareja e hija',
-    relationshipStatus: 'Conviviente',
-    phone: '+569 1234 5678',
-    email: 'daniela@ejemplo.cl',
-    occupations: ['Trabaja'],
-    occupationDetail: 'Profesora de educación básica, jornada completa',
-  },
-  motive: {
-    mainReason: 'Ansiedad persistente, dificultades para dormir y problemas de concentración.',
-    since: 'Desde aproximadamente marzo de 2025.',
-    expectations: 'Entender mejor lo que me ocurre y recuperar mi funcionamiento habitual.',
-    psychiatryFears: 'Me preocupa depender de medicamentos.',
-    additionalInfo: 'Mi madre tuvo depresión y actualmente estoy pasando por un cambio de jefatura.',
-  },
-  satisfaction: {
-    work: 3,
-    family: 7,
-    couple: 6,
-    selfCare: 4,
-  },
-  symptoms: [
-    {
-      name: 'Ansiedad',
-      intensity: 8,
-      onset: '2025-03',
-      course: 'Constante',
-      observation: 'Preocupación excesiva',
-    },
-    {
-      name: 'Sueño',
-      intensity: 8,
-      onset: '2025-04',
-      course: 'Fluctuante',
-      observation: 'Dificultad para dormir',
-    },
-    {
-      name: 'Energía y activación',
-      intensity: 6,
-      onset: '2025-05',
-      course: 'Constante',
-      observation: 'Fatiga',
-    },
-  ],
-  medications: [
-    {
-      id: 1,
-      name: 'Sertralina',
-      status: 'Actual',
-      linkedCondition: { source: 'mental', id: 1 },
-      dose: '50 mg',
-      frequency: 'Una vez al día',
-      frequencyDetail: '',
-      times: ['08:00'],
-      period: '',
-      prescribedBy: 'Médico general o de familia',
-      adherence: 'Alta',
-    },
-  ],
-  substances: [
-    {
-      substance: 'Alcohol',
-      status: 'Consumo actual',
-      frequency: '2 a 3 veces por semana',
-      usualAmount: '2 copas por ocasión',
-      onset: '2012-01',
-      lastUse: '2026-07-18',
-    },
-  ],
-  familyHistory: [
-    {
-      condition: 'Depresión',
-      relationship: 'Madre',
-      type: 'Diagnóstico confirmado',
-      observation: 'Tratamiento previo conocido',
-    },
-  ],
-  mentalHistory: [
-    {
-      id: 1,
-      condition: 'Ansiedad',
-      origin: 'Diagnóstico médico',
-      diagnosisDate: '2025-03',
-      diagnosedBy: 'Médico general o de familia',
-      observation: '',
-    },
-  ],
-  physicalHistory: [
-    {
-      id: 1,
-      condition: 'Hipertensión',
-      origin: 'Diagnóstico médico',
-      diagnosisDate: '2019-06',
-      diagnosedBy: 'Médico general o de familia',
-      severe: true,
-      observation: '',
-    },
-  ],
-  lifeEvents: [
-    {
-      category: 'Cambio laboral',
-      startPrecision: 'Año',
-      startDate: '2025',
-      endPrecision: 'Año',
-      endDate: '2025',
-      description: 'Cambio de jefatura y aumento de carga',
-    },
-  ],
-}
-
-export const SEED_PSYCH_FORM: PsychForm = {
-  evaluation: {
-    appearance: 'Presentación personal adecuada al contexto.',
-    behavior: 'Colaboradora, inquietud motora leve.',
-    attitude: 'Cooperadora y dispuesta durante la entrevista.',
-    language: 'Fluido, coherente y de volumen conservado.',
-    mood: 'Ansioso, con afecto congruente.',
-    affect: 'Reactivo, resonancia conservada.',
-    thought: 'Curso conservado, preocupación laboral persistente.',
-    perception: 'Sin alteraciones sensoperceptivas.',
-    orientation: 'Orientada en tiempo, espacio y persona.',
-    attention: 'Atención y concentración levemente disminuidas.',
-    memory: 'Memoria reciente y remota conservadas.',
-    judgment: 'Conservado.',
-    insight: 'Buena conciencia de su situación actual.',
-    additionalObservations: 'Sin hallazgos clínicos adicionales relevantes.',
-  },
-  hypotheses: [
-    { hypothesis: 'Trastorno de ansiedad generalizada (TAG)', priority: 'Media', comment: '' },
-  ],
-  risks: [{ id: 1, risk: 'Ideas de muerte', presence: 'Antecedente', level: 'Bajo' }],
-  referralReasons: [
-    'Inicio de esquema farmacológico',
-    'Persistencia de síntomas',
-    'Deterioro funcional',
-  ],
-  score: 18,
-  threshold: 12,
-  suggestionValid: true,
-  report: {
-    request: 'Se solicita evaluación psiquiátrica para considerar el inicio de esquema farmacológico.',
-    summary: 'Paciente de 35 años, mujer, chilena, profesora de educación básica, vive con su pareja e hija.',
-    symptoms: 'Refiere preocupación excesiva de intensidad 8/10, dificultad para dormir 8/10 y fatiga 6/10.',
-    medications: 'Sertralina 50 mg una vez al día a las 08:00.',
-    previousTreatments: 'Se encuentra actualmente en atención psicológica.',
-    background: 'Antecedente familiar de depresión materna y consumo actual de alcohol dos a tres veces por semana.',
-  },
-}

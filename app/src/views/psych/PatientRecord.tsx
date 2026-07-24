@@ -16,9 +16,11 @@ import type { Patient } from '../../types'
 interface PatientRecordProps {
   patient: Patient
   onBack: () => void
+  /** Coordinator view: hide PIN generation and result download. */
+  readOnly?: boolean
 }
 
-function PatientRecord({ patient, onBack }: PatientRecordProps) {
+function PatientRecord({ patient, onBack, readOnly = false }: PatientRecordProps) {
   const [showPin, setShowPin] = useState(false)
   const form = getSeedPatientForm(patient.rut)
 
@@ -34,18 +36,20 @@ function PatientRecord({ patient, onBack }: PatientRecordProps) {
             {patient.name} · {patient.rut}
           </p>
         </div>
-        <div className="actions">
-          <button type="button" className="btn" onClick={() => setShowPin(true)}>
-            {TEXT.psych.record.generatePin}
-          </button>
-          <button
-            type="button"
-            className="btn primary"
-            onClick={() => alert(TEXT.psych.record.downloadAlert)}
-          >
-            {TEXT.psych.record.downloadResults}
-          </button>
-        </div>
+        {!readOnly && (
+          <div className="actions">
+            <button type="button" className="btn" onClick={() => setShowPin(true)}>
+              {TEXT.psych.record.generatePin}
+            </button>
+            <button
+              type="button"
+              className="btn primary"
+              onClick={() => alert(TEXT.psych.record.downloadAlert)}
+            >
+              {TEXT.psych.record.downloadResults}
+            </button>
+          </div>
+        )}
       </div>
       <div className="grid">
         <Card span={6}>

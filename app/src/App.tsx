@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import Sidebar, { type ViewId } from './components/Sidebar'
-import { SEED_PATIENTS, TEXT } from './text'
+import { DEMO_PSYCHOLOGIST_ID, SEED_PATIENTS, SEED_PSYCHOLOGISTS } from './seed/demoData'
 import type { Patient } from './types'
 import PatientView from './views/PatientView'
 import CoordinatorLogin from './views/auth/CoordinatorLogin'
 import PsychologistLogin from './views/auth/PsychologistLogin'
+import CoordinatorView from './views/coordinator/CoordinatorView'
 import PsychView from './views/psych/PsychView'
 
 const DEMO_PATIENT_RUT = SEED_PATIENTS[0].rut
@@ -21,6 +22,13 @@ function App() {
   const overwritePatientName = (rut: string, name: string) =>
     setPatients((current) =>
       current.map((patient) => (patient.rut === rut ? { ...patient, name } : patient)),
+    )
+
+  const reassignPatient = (rut: string, psychologistId: string) =>
+    setPatients((current) =>
+      current.map((patient) =>
+        patient.rut === rut ? { ...patient, assignedPsychologistId: psychologistId } : patient,
+      ),
     )
 
   const sessions: Record<ViewId, boolean> = {
@@ -51,15 +59,21 @@ function App() {
         )}
         {activeView === 'psych' &&
           (sessions.psych ? (
-            <PsychView patients={patients} onPatientsChange={setPatients} />
+            <PsychView
+              patients={patients}
+              psychologistId={DEMO_PSYCHOLOGIST_ID}
+              onPatientsChange={setPatients}
+            />
           ) : (
             <PsychologistLogin onLogin={() => toggleSession('psych')} />
           ))}
         {activeView === 'coordinator' &&
           (sessions.coordinator ? (
-            <section className="view active">
-              <p className="subtitle">{TEXT.coordinator.placeholder}</p>
-            </section>
+            <CoordinatorView
+              patients={patients}
+              psychologists={SEED_PSYCHOLOGISTS}
+              onReassign={reassignPatient}
+            />
           ) : (
             <CoordinatorLogin onLogin={() => toggleSession('coordinator')} />
           ))}
