@@ -103,6 +103,8 @@ function PatientFormView({ rut, onSubmit }: PatientFormViewProps) {
         <MotiveCard value={form.motive} onChange={update('motive')} showErrors={showErrors} />
         <SatisfactionCard value={form.satisfaction} onChange={update('satisfaction')} />
         <SymptomsCard value={form.symptoms} onChange={update('symptoms')} showErrors={showErrors} />
+        <MentalHistoryCard value={form.mentalHistory} onChange={update('mentalHistory')} />
+        <PhysicalHistoryCard value={form.physicalHistory} onChange={update('physicalHistory')} />
         <MedicationsCard
           value={form.medications}
           onChange={update('medications')}
@@ -110,18 +112,16 @@ function PatientFormView({ rut, onSubmit }: PatientFormViewProps) {
           physicalHistory={form.physicalHistory}
           showErrors={showErrors}
         />
-        <SubstancesCard
-          value={form.substances}
-          onChange={update('substances')}
-          showErrors={showErrors}
-        />
         <FamilyHistoryCard
           value={form.familyHistory}
           onChange={update('familyHistory')}
           showErrors={showErrors}
         />
-        <MentalHistoryCard value={form.mentalHistory} onChange={update('mentalHistory')} />
-        <PhysicalHistoryCard value={form.physicalHistory} onChange={update('physicalHistory')} />
+        <SubstancesCard
+          value={form.substances}
+          onChange={update('substances')}
+          showErrors={showErrors}
+        />
         <LifeEventsCard
           value={form.lifeEvents}
           onChange={update('lifeEvents')}
