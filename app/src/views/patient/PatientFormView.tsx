@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Modal from '../../components/Modal'
-import { SEED_PATIENT_FORM, TEXT } from '../../text'
+import { getSeedPatientForm } from '../../seed/demoData'
+import { TEXT } from '../../text'
 import { isValidRut } from '../../utils/rut'
 import {
   isFamilyHistoryValid,
@@ -47,10 +48,7 @@ interface PatientFormViewProps {
 }
 
 function PatientFormView({ rut, onSubmit }: PatientFormViewProps) {
-  const [form, setForm] = useState<PatientForm>(() => ({
-    ...SEED_PATIENT_FORM,
-    general: { ...SEED_PATIENT_FORM.general, rut },
-  }))
+  const [form, setForm] = useState<PatientForm>(() => getSeedPatientForm(rut))
   const [status, setStatus] = useState<FormStatus>('draft')
   const [confirming, setConfirming] = useState(false)
   const [showErrors, setShowErrors] = useState(false)

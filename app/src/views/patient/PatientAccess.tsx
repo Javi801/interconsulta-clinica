@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Field from '../../components/Field'
-import { ACCESS_CODE, TEXT } from '../../text'
+import { ACCESS_CODE } from '../../seed/demoData'
+import { TEXT } from '../../text'
 import { formatRut, isValidRut } from '../../utils/rut'
 import { invalidClass } from '../../utils/validation'
 

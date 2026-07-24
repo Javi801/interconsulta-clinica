@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import Card from '../../components/Card'
 import Modal from '../../components/Modal'
-import { EDIT_PIN, SEED_PATIENT_FORM, TEXT } from '../../text'
+import { EDIT_PIN, getSeedPatientForm } from '../../seed/demoData'
+import { TEXT } from '../../text'
 import {
   familyAndSubstancesSummary,
   generalSummary,
@@ -19,7 +20,7 @@ interface PatientRecordProps {
 
 function PatientRecord({ patient, onBack }: PatientRecordProps) {
   const [showPin, setShowPin] = useState(false)
-  const form = SEED_PATIENT_FORM
+  const form = getSeedPatientForm(patient.rut)
 
   return (
     <div>
