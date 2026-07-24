@@ -60,9 +60,22 @@ export const TEXT = {
   },
 
   auth: {
-    closedTitle: 'Sesión cerrada',
-    closedNote:
-      'El inicio de sesión de este perfil aún no está implementado. Usa el candado para volver a iniciar sesión.',
+    login: {
+      emailLabel: 'Correo',
+      emailPlaceholder: 'nombre@ejemplo.cl',
+      passwordLabel: 'Contraseña',
+      passwordPlaceholder: '••••••••',
+      enter: 'Ingresar',
+      demoNote: 'Demo: cualquier correo y contraseña inician la sesión.',
+    },
+    psych: {
+      title: 'Acceso psicólogo',
+      subtitle: 'Ingresa con tus credenciales para ver tus pacientes asignados.',
+    },
+    coordinator: {
+      title: 'Acceso coordinador',
+      subtitle: 'Ingresa con tus credenciales para supervisar todos los pacientes.',
+    },
   },
 
   patient: {

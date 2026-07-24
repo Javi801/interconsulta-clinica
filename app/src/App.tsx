@@ -3,7 +3,8 @@ import Sidebar, { type ViewId } from './components/Sidebar'
 import { SEED_PATIENTS, TEXT } from './text'
 import type { Patient } from './types'
 import PatientView from './views/PatientView'
-import SessionClosed from './views/auth/SessionClosed'
+import CoordinatorLogin from './views/auth/CoordinatorLogin'
+import PsychologistLogin from './views/auth/PsychologistLogin'
 import PsychView from './views/psych/PsychView'
 
 const DEMO_PATIENT_RUT = SEED_PATIENTS[0].rut
@@ -52,7 +53,7 @@ function App() {
           (sessions.psych ? (
             <PsychView patients={patients} onPatientsChange={setPatients} />
           ) : (
-            <SessionClosed />
+            <PsychologistLogin onLogin={() => toggleSession('psych')} />
           ))}
         {activeView === 'coordinator' &&
           (sessions.coordinator ? (
@@ -60,7 +61,7 @@ function App() {
               <p className="subtitle">{TEXT.coordinator.placeholder}</p>
             </section>
           ) : (
-            <SessionClosed />
+            <CoordinatorLogin onLogin={() => toggleSession('coordinator')} />
           ))}
       </main>
     </div>
