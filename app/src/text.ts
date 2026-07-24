@@ -118,11 +118,10 @@ export const TEXT = {
       title: 'Funcionamiento y satisfacción',
       subtitle: '1 = muy baja satisfacción; 10 = muy alta.',
       fields: {
-        work: 'Trabajo',
-        family: 'Familia',
-        couple: 'Pareja',
-        selfCare: 'Autocuidado',
-        general: 'Satisfacción general',
+        work: 'Individualmente (bienestar personal)',
+        family: 'Interpersonalmente (familia o relaciones cercanas)',
+        couple: 'Socialmente (trabajo, colegio, amistades)',
+        selfCare: 'Globalmente (sensación de bienestar general)',
       },
     },
     symptoms: {
@@ -656,7 +655,6 @@ export const SEED_PATIENT_FORM: PatientForm = {
     family: 7,
     couple: 6,
     selfCare: 4,
-    general: 5,
   },
   symptoms: [
     {

@@ -56,7 +56,6 @@ export interface SatisfactionScores {
   family: number
   couple: number
   selfCare: number
-  general: number
 }
 
 export interface Symptom {

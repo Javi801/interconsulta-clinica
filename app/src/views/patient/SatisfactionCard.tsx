@@ -8,7 +8,7 @@ interface SatisfactionCardProps {
   onChange: (value: SatisfactionScores) => void
 }
 
-const SCORE_KEYS: (keyof SatisfactionScores)[] = ['work', 'family', 'couple', 'selfCare', 'general']
+const SCORE_KEYS: (keyof SatisfactionScores)[] = ['work', 'family', 'couple', 'selfCare']
 
 function SatisfactionCard({ value, onChange }: SatisfactionCardProps) {
   return (
