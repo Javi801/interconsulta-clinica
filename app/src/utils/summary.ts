@@ -1,4 +1,5 @@
 import { calculateAge, formatMonth } from './date'
+import { computeSadPersons, DERIVE_THRESHOLD } from './sadPersons'
 import { TEXT } from '../text'
 import type { Medication, PatientForm, PsychForm } from '../types'
 
@@ -76,6 +77,7 @@ export function simpleSummary(patientForm: PatientForm, psychForm: PsychForm): s
       : patientForm.symptoms
           .map((symptom) => summary.symptom.simpleLine(symptom.name, symptom.intensity))
           .join('\n')
+  const sad = computeSadPersons(patientForm, psychForm)
   return [
     `${summary.simple.generalHeading}\n${generalSummary(patientForm)}`,
     `${summary.simple.symptomsHeading}\n${symptoms}`,

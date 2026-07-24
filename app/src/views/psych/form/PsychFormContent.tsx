@@ -1,24 +1,30 @@
 import Card from '../../../components/Card'
 import ChipGroup from '../../../components/ChipGroup'
 import { REFERRAL_REASON_OPTIONS, TEXT } from '../../../text'
-import { referralSuggestion } from '../../../utils/summary'
-import type { FormStatus, PsychForm } from '../../../types'
+import { computeSadPersons } from '../../../utils/sadPersons'
+import type { FormStatus, PatientForm, PsychForm, SadPersonsKey } from '../../../types'
 import EvaluationCard from './EvaluationCard'
 import HypothesesCard from './HypothesesCard'
 import RisksCard from './RisksCard'
 import SuggestionCard from './SuggestionCard'
 
 interface PsychFormContentProps {
+  patientForm: PatientForm
   form: PsychForm
   onChange: (form: PsychForm) => void
   status: FormStatus
 }
 
-function PsychFormContent({ form, onChange, status }: PsychFormContentProps) {
+function PsychFormContent({ patientForm, form, onChange, status }: PsychFormContentProps) {
   const update =
     <K extends keyof PsychForm>(key: K) =>
     (value: PsychForm[K]) =>
       onChange({ ...form, [key]: value })
+
+  const sadPersons = computeSadPersons(patientForm, form)
+
+  const toggleItem = (key: SadPersonsKey, scored: boolean) =>
+    onChange({ ...form, sadPersonsOverrides: { ...form.sadPersonsOverrides, [key]: scored } })
 
   return (
     <div className="grid">
@@ -34,10 +40,9 @@ function PsychFormContent({ form, onChange, status }: PsychFormContentProps) {
         />
       </Card>
       <SuggestionCard
-        score={form.score}
-        threshold={form.threshold}
-        suggestion={referralSuggestion(form)}
+        result={sadPersons}
         valid={form.suggestionValid}
+        onToggle={toggleItem}
         onValidChange={update('suggestionValid')}
       />
     </div>

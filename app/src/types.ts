@@ -186,13 +186,25 @@ export interface ReferralReport {
   background: string
 }
 
+export type SadPersonsKey =
+  | 'sex'
+  | 'age'
+  | 'depression'
+  | 'previous'
+  | 'substances'
+  | 'rational'
+  | 'support'
+  | 'plan'
+  | 'noSpouse'
+  | 'sickness'
+
 export interface PsychForm {
   evaluation: ClinicalEvaluation
   hypotheses: ClinicalHypothesis[]
   risks: ClinicalRisk[]
   referralReasons: string[]
-  score: number
-  threshold: number
+  /** Manual per-item corrections to the computed SAD PERSONS score. */
+  sadPersonsOverrides: Partial<Record<SadPersonsKey, boolean>>
   suggestionValid: boolean
   report: ReferralReport
 }
