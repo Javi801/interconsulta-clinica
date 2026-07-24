@@ -94,9 +94,9 @@ function GeneralDataCard({ value, onChange, status, showErrors }: GeneralDataCar
           </select>
         </Field>
       </div>
-      <div style={{ marginTop: 16 }}>
+      <div className="mt-16">
         <label>{TEXT.patient.generalData.occupationsLabel}</label>
-        <div className="chip-row" style={{ marginTop: 8 }}>
+        <div className="chip-row mt-8">
           {OCCUPATION_OPTIONS.map((occupation) => (
             <Chip
               key={occupation}
@@ -107,7 +107,7 @@ function GeneralDataCard({ value, onChange, status, showErrors }: GeneralDataCar
           ))}
         </div>
       </div>
-      <div style={{ marginTop: 14 }}>
+      <div className="mt-16">
         <Field label={TEXT.patient.generalData.occupationDetailLabel}>
           <input
             className={invalidClass(showErrors, isValidText(value.occupationDetail))}

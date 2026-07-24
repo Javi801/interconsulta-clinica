@@ -9,7 +9,7 @@ interface FieldProps {
 
 function Field({ label, counter, fullWidth, children }: FieldProps) {
   return (
-    <div className="field" style={fullWidth ? { gridColumn: '1 / -1' } : undefined}>
+    <div className={fullWidth ? 'field full' : 'field'}>
       <label>{label}</label>
       {children}
       {counter && <span className="counter">{counter}</span>}

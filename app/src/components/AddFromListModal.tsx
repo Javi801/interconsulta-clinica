@@ -28,7 +28,7 @@ function AddFromListModal({
   return (
     <Modal open>
       <h2>{title}</h2>
-      <div className="field" style={{ marginTop: 16 }}>
+      <div className="field mt-16">
         <label>{label}</label>
         <select value={selected} onChange={(e) => setSelected(e.target.value)}>
           {options.map((option) => (
@@ -37,7 +37,7 @@ function AddFromListModal({
         </select>
       </div>
       {isOther && (
-        <div className="field" style={{ marginTop: 12 }}>
+        <div className="field mt-12">
           <label>{TEXT.common.specify}</label>
           <input
             value={customName}

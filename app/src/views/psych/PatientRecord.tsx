@@ -31,7 +31,7 @@ function PatientRecord({ patient, onBack, readOnly = false }: PatientRecordProps
           <button type="button" className="btn ghost" onClick={onBack}>
             {TEXT.common.back}
           </button>
-          <h1 style={{ marginTop: 12 }}>{TEXT.psych.record.title}</h1>
+          <h1 className="mt-12">{TEXT.psych.record.title}</h1>
           <p className="subtitle">
             {patient.name} · {patient.rut}
           </p>
@@ -81,18 +81,7 @@ function PatientRecord({ patient, onBack, readOnly = false }: PatientRecordProps
         <Modal open>
           <h2>{TEXT.psych.record.pinModal.title}</h2>
           <p className="subtitle">{TEXT.psych.record.pinModal.subtitle}</p>
-          <div
-            className="summary-box"
-            style={{
-              fontSize: 28,
-              textAlign: 'center',
-              fontWeight: 800,
-              letterSpacing: 8,
-              marginTop: 16,
-            }}
-          >
-            {EDIT_PIN}
-          </div>
+          <div className="summary-box pin-display">{EDIT_PIN}</div>
           <div className="modal-actions">
             <button type="button" className="btn" onClick={() => setShowPin(false)}>
               {TEXT.psych.record.pinModal.close}

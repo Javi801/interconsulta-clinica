@@ -34,7 +34,7 @@ function PsychFormView({ patient, onBack, readOnly = false }: PsychFormViewProps
           <button type="button" className="btn ghost" onClick={onBack}>
             {TEXT.common.back}
           </button>
-          <h1 style={{ marginTop: 12 }}>{TEXT.psych.formView.title}</h1>
+          <h1 className="mt-12">{TEXT.psych.formView.title}</h1>
           <p className="subtitle">{TEXT.psych.formView.subtitle(patient.name)}</p>
         </div>
         <div className="actions">

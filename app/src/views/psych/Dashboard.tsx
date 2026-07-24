@@ -57,7 +57,7 @@ function Dashboard({ patients, onCreate, onImportExcel, onOpenRecord, onOpenForm
           <button type="button" className="btn" onClick={() => setCreating(true)}>
             {TEXT.psych.dashboard.newPatient}
           </button>
-          <label className="btn" style={{ display: 'inline-flex', alignItems: 'center' }}>
+          <label className="btn">
             {TEXT.psych.dashboard.loadExcel}
             <input
               type="file"
@@ -73,7 +73,7 @@ function Dashboard({ patients, onCreate, onImportExcel, onOpenRecord, onOpenForm
         <Modal open>
           <h2>{TEXT.psych.dashboard.createModal.title}</h2>
           <p className="subtitle">{TEXT.psych.dashboard.createModal.subtitle}</p>
-          <div className="field" style={{ marginTop: 16 }}>
+          <div className="field mt-16">
             <label>{TEXT.psych.dashboard.createModal.rutLabel}</label>
             <input
               inputMode="numeric"
@@ -82,7 +82,7 @@ function Dashboard({ patients, onCreate, onImportExcel, onOpenRecord, onOpenForm
               onChange={(e) => setNewRut(formatRut(e.target.value))}
             />
           </div>
-          <div className="field" style={{ marginTop: 12 }}>
+          <div className="field mt-12">
             <label>{TEXT.psych.dashboard.createModal.firstNameLabel}</label>
             <input
               placeholder={TEXT.psych.dashboard.createModal.firstNamePlaceholder}
@@ -90,7 +90,7 @@ function Dashboard({ patients, onCreate, onImportExcel, onOpenRecord, onOpenForm
               onChange={(e) => setNewFirstName(e.target.value)}
             />
           </div>
-          <div className="field" style={{ marginTop: 12 }}>
+          <div className="field mt-12">
             <label>{TEXT.psych.dashboard.createModal.lastNameLabel}</label>
             <input
               placeholder={TEXT.psych.dashboard.createModal.lastNamePlaceholder}

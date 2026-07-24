@@ -14,7 +14,7 @@ function SatisfactionCard({ value, onChange }: SatisfactionCardProps) {
   return (
     <Card span={4}>
       <h2>{TEXT.patient.satisfaction.title}</h2>
-      <p className="subtitle" style={{ marginBottom: 16 }}>
+      <p className="subtitle mb-16">
         {TEXT.patient.satisfaction.subtitle}
       </p>
       <div className="field">

@@ -42,7 +42,7 @@ function PatientAccess({ onEnter }: PatientAccessProps) {
   return (
     <div style={{ maxWidth: 440, margin: '40px auto 0' }}>
       <div className="card">
-        <h1 style={{ fontSize: 24 }}>{TEXT.patient.access.title}</h1>
+        <h1 className="auth-title">{TEXT.patient.access.title}</h1>
         <p className="subtitle" style={{ marginBottom: 20 }}>
           {TEXT.patient.access.subtitle}
         </p>

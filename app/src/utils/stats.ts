@@ -1,5 +1,5 @@
 import { getSeedPatientForm, getSeedPsychForm } from '../seed/demoData'
-import type { ClinicalRisk, FormStatus, Patient, RiskLevel } from '../types'
+import type { ClinicalRisk, FormStatus, Patient, Psychologist, RiskLevel } from '../types'
 import { computeSadPersons, referralOutcome, type ReferralOutcome } from './sadPersons'
 
 export interface SymptomStat {
@@ -107,4 +107,28 @@ export function computeClinicalStats(patients: Patient[]): ClinicalStats {
     symptoms,
     weekdayActivity,
   }
+}
+
+export interface PsychologistLoad {
+  id: string
+  name: string
+  count: number
+}
+
+/** Assigned-case count per psychologist, ordered from most to least loaded. */
+export function computePsychologistLoads(
+  patients: Patient[],
+  psychologists: Psychologist[],
+): PsychologistLoad[] {
+  const counts = new Map<string, number>()
+  for (const patient of patients) {
+    counts.set(patient.assignedPsychologistId, (counts.get(patient.assignedPsychologistId) ?? 0) + 1)
+  }
+  return psychologists
+    .map((psychologist) => ({
+      id: psychologist.id,
+      name: psychologist.name,
+      count: counts.get(psychologist.id) ?? 0,
+    }))
+    .sort((a, b) => b.count - a.count)
 }

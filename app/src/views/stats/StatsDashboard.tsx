@@ -26,7 +26,7 @@ function StatsDashboard({ allStats, personalStats, onBack }: StatsDashboardProps
           <button type="button" className="btn ghost" onClick={onBack}>
             {TEXT.common.back}
           </button>
-          <h1 style={{ marginTop: 12 }}>{dashboard.title}</h1>
+          <h1 className="mt-12">{dashboard.title}</h1>
           <p className="subtitle">{dashboard.subtitle}</p>
         </div>
         <div className="actions">

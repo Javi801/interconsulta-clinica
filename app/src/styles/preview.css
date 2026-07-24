@@ -101,6 +101,7 @@ h1,h2,h3{margin-top:0}
 h1{font-size:28px;margin-bottom:6px}
 h2{font-size:20px}
 h3{font-size:16px}
+.auth-title{font-size:24px}
 .subtitle{color:var(--muted);margin:0}
 .actions{display:flex;gap:10px;flex-wrap:wrap}
 .btn{
@@ -132,6 +133,8 @@ label.btn{
   font-size:1rem;
   font-weight:600;
   cursor:pointer;
+  display:inline-flex;
+  align-items:center;
 }
 .readonly-form{
   border:0;
@@ -164,6 +167,7 @@ label.btn{
   grid-template-columns:repeat(3,minmax(0,1fr));
 }
 .field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
 label{font-size:13px;font-weight:700}
 input,select,textarea{
   width:100%;
@@ -293,6 +297,13 @@ th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.04
   line-height:1.55;
   font-size:14px;
 }
+.pin-display{
+  margin-top:16px;
+  font-size:28px;
+  font-weight:800;
+  letter-spacing:8px;
+  text-align:center;
+}
 .score-panel{
   display:grid;
   grid-template-columns:120px 1fr;
@@ -398,6 +409,10 @@ th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.04
   border-color:var(--primary);
 }
 .hidden{display:none!important}
+.mt-8{margin-top:8px}
+.mt-12{margin-top:12px}
+.mt-16{margin-top:16px}
+.mb-16{margin-bottom:16px}
 .modal{
   position:fixed;
   inset:0;
