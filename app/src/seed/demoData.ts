@@ -134,6 +134,7 @@ export const DEFAULT_PATIENT_FORM: PatientForm = {
   lifeEvents: [],
 }
 
+// Autorreporte completado por cada paciente sobre sí mismo.
 export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
   '12.345.678-5': {
     general: {
@@ -151,9 +152,9 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
     motive: {
       mainReason: 'Ansiedad persistente, insomnio y baja concentración en el trabajo.',
       since: 'Desde marzo de 2025, con aumento durante el primer semestre de 2026.',
-      expectations: 'Evaluar si requiere apoyo farmacológico y recuperar funcionamiento diario.',
-      psychiatryFears: 'Le preocupa depender de medicamentos o sentirse aplanada.',
-      additionalInfo: 'Cambio de jefatura reciente y antecedente familiar de depresión.',
+      expectations: 'Quiero entender qué me pasa y volver a funcionar mejor en mi día a día.',
+      psychiatryFears: 'Me preocupa depender de medicamentos o sentirme aplanada.',
+      additionalInfo: 'En mi trabajo cambió la jefatura y mi mamá tuvo depresión.',
     },
     satisfaction: { work: 3, family: 7, couple: 6, selfCare: 4 },
     symptoms: [
@@ -172,7 +173,7 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
         observation: 'Latencia prolongada y despertares nocturnos',
       },
       {
-        name: 'Cognicion',
+        name: 'Cognición',
         intensity: 6,
         onset: '2025-08',
         course: 'Constante',
@@ -219,7 +220,7 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
     ],
     familyHistory: [
       {
-        condition: 'Depresion',
+        condition: 'Depresión',
         relationship: 'Madre',
         type: 'Diagnóstico confirmado',
         observation: 'Tratamiento previo con buena respuesta',
@@ -273,9 +274,9 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
     motive: {
       mainReason: 'Ánimo bajo, irritabilidad y consumo de alcohol después de la separación.',
       since: 'Desde noviembre de 2025, mas intenso en las ultimas ocho semanas.',
-      expectations: 'Recibir orientación medica y disminuir el consumo.',
-      psychiatryFears: 'Teme que una licencia afecte su estabilidad laboral.',
-      additionalInfo: 'Ha faltado al trabajo y evita contacto con su familia.',
+      expectations: 'Quiero ordenar lo que me está pasando y bajar el consumo de alcohol.',
+      psychiatryFears: 'Me preocupa que me den licencia y eso afecte mi trabajo.',
+      additionalInfo: 'He faltado al trabajo y me he alejado de mi familia.',
     },
     satisfaction: { work: 4, family: 3, couple: 2, selfCare: 3 },
     symptoms: [
@@ -291,7 +292,7 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
         intensity: 7,
         onset: '2026-05',
         course: 'Episódico',
-        observation: 'Discute bajo consumo de alcohol',
+        observation: 'Discuto más cuando he tomado alcohol',
       },
       {
         name: 'Sueño',
@@ -331,22 +332,22 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
     mentalHistory: [
       {
         id: 1,
-        condition: 'Depresion',
+        condition: 'Depresión',
         origin: 'En estudio',
         diagnosisDate: '',
         diagnosedBy: '',
-        observation: 'Sintomas actuales con deterioro funcional',
+        observation: 'Me cuesta mantener mi rutina y cumplir con el trabajo',
       },
     ],
     physicalHistory: [],
     lifeEvents: [
       {
-        category: 'Separacion',
+        category: 'Separación',
         startPrecision: 'Mes y año',
         startDate: '2025-11',
         endPrecision: 'Mes y año',
         endDate: '2026-02',
-        description: 'Separacion de pareja y cambio de domicilio',
+        description: 'Separación de pareja y cambio de domicilio',
       },
     ],
   },
@@ -364,11 +365,11 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
       occupationDetail: 'Estudiante vespertina y vendedora part-time',
     },
     motive: {
-      mainReason: 'Crisis de pánico, evitacion de transporte publico y miedo a descompensarse.',
+      mainReason: 'Crisis de pánico, evitación de transporte público y miedo a descompensarme.',
       since: 'Desde enero de 2026 tras un asalto camino al trabajo.',
-      expectations: 'Confirmar diagnóstico y revisar opciones de tratamiento.',
-      psychiatryFears: 'Tiene dudas por experiencias negativas de una amiga con farmacos.',
-      additionalInfo: 'La evitacion afecta asistencia a clases y turnos laborales.',
+      expectations: 'Quiero saber cómo manejar las crisis y poder volver a moverme con más seguridad.',
+      psychiatryFears: 'Tengo dudas por experiencias negativas que escuché sobre medicamentos.',
+      additionalInfo: 'La evitación me está afectando para ir a clases y cumplir turnos.',
     },
     satisfaction: { work: 5, family: 6, couple: 5, selfCare: 4 },
     symptoms: [
@@ -380,7 +381,7 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
         observation: 'Crisis con palpitaciones y temor a morir',
       },
       {
-        name: 'Cognicion',
+        name: 'Cognición',
         intensity: 6,
         onset: '2026-02',
         course: 'Fluctuante',
@@ -406,7 +407,7 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
     familyHistory: [
       {
         condition: 'Trastornos de ansiedad',
-        relationship: 'Tia materna',
+        relationship: 'Tía materna',
         type: 'Diagnóstico confirmado',
         observation: '',
       },
@@ -448,10 +449,10 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
     },
     motive: {
       mainReason: 'Fatiga, ánimo bajo y baja motivación asociada a dolor crónico.',
-      since: 'Desde mediados de 2024, con empeoramiento posterior a licencia medica.',
-      expectations: 'Evaluar tratamiento integral y descartar depresión mayor.',
+      since: 'Desde mediados de 2024, con empeoramiento posterior a una licencia médica.',
+      expectations: 'Quiero saber si mi ánimo bajo tiene tratamiento y cómo manejarlo junto con el dolor.',
       psychiatryFears: 'Le inquietan efectos secundarios y somnolencia.',
-      additionalInfo: 'Dolor lumbar crónico limita actividad fisica y laboral.',
+      additionalInfo: 'El dolor lumbar crónico limita mi actividad física y laboral.',
     },
     satisfaction: { work: 4, family: 7, couple: 7, selfCare: 3 },
     symptoms: [
@@ -488,7 +489,7 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
     substances: [
       {
         substance: 'Alcohol',
-        status: 'Uso ocasiónal',
+        status: 'Uso ocasional',
         frequency: '1 vez al mes',
         usualAmount: '1 a 2 copas',
         onset: '1994-01',
@@ -497,7 +498,7 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
     ],
     familyHistory: [
       {
-        condition: 'Depresion',
+        condition: 'Depresión',
         relationship: 'Hermana',
         type: 'Diagnóstico confirmado',
         observation: '',
@@ -543,8 +544,8 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
       mainReason: 'Duelo prolongado, insomnio y preocupación por salud.',
       since: 'Desde fallecimiento de su esposo en septiembre de 2025.',
       expectations: 'Recibir apoyo para dormir y manejar el duelo.',
-      psychiatryFears: 'Teme que la evaluacion signifique hospitalizacion.',
-      additionalInfo: 'Ha bajado actividades sociales y refiere cansancio persistente.',
+      psychiatryFears: 'Me da miedo que la evaluación signifique hospitalización.',
+      additionalInfo: 'He dejado de hacer actividades sociales y me siento cansada casi todos los días.',
     },
     satisfaction: { work: 5, family: 6, couple: 1, selfCare: 4 },
     symptoms: [
@@ -615,8 +616,8 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
   '20.111.222-8': {
     general: {
       rut: '20.111.222-8',
-      firstName: 'Nicolas',
-      lastName: 'Paredes Nunez',
+      firstName: 'Nicolás',
+      lastName: 'Paredes Núñez',
       birthDate: '2007-03-12',
       gender: 'Hombre',
       nationality: 'Chilena',
@@ -628,9 +629,9 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
     motive: {
       mainReason: 'Autolesiones recientes, ansiedad escolar y aislamiento.',
       since: 'Desde abril de 2026, asociado a conflicto escolar.',
-      expectations: 'Que evalen riesgo y alternativas de apoyo.',
-      psychiatryFears: 'Teme que su familia revise todo lo que conversa.',
-      additionalInfo: 'La madre solicita orientación por cambios de conducta.',
+      expectations: 'Quiero dejar de sentirme tan sobrepasado y tener apoyo sin sentirme juzgado.',
+      psychiatryFears: 'Me preocupa que mi familia lea todo lo que converse.',
+      additionalInfo: 'Me cuesta hablar de esto en mi casa y he faltado a clases.',
     },
     satisfaction: { work: 2, family: 4, couple: 5, selfCare: 2 },
     symptoms: [
@@ -653,7 +654,7 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
     substances: [
       {
         substance: 'Cannabis',
-        status: 'Uso ocasiónal',
+        status: 'Uso ocasional',
         frequency: 'Fines de semana',
         usualAmount: '1 cigarro compartido',
         onset: '2025-10',
@@ -675,7 +676,7 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
         origin: 'En estudio',
         diagnosisDate: '',
         diagnosedBy: '',
-        observation: 'Episodios recientes sin atencion medica previa',
+        observation: 'No he consultado antes por esto',
       },
     ],
     physicalHistory: [],
@@ -694,7 +695,7 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
     general: {
       rut: '14.333.222-6',
       firstName: 'Teresa',
-      lastName: 'Valdes Aguirre',
+      lastName: 'Valdés Aguirre',
       birthDate: '1969-06-21',
       gender: 'Mujer',
       nationality: 'Chilena',
@@ -706,9 +707,9 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
     motive: {
       mainReason: 'Preocupación constante, irritabilidad y temor a perder control.',
       since: 'Desde 2024, con mayor intensidad por deudas familiares.',
-      expectations: 'Revisar diagnóstico diferencial y manejo farmacológico.',
-      psychiatryFears: 'Le preocupa subir de peso con medicamentos.',
-      additionalInfo: 'Antecedente de cancer de mama en remision.',
+      expectations: 'Quiero manejar mejor la ansiedad y revisar si mi tratamiento actual me está ayudando.',
+      psychiatryFears: 'Me preocupa subir de peso con medicamentos.',
+      additionalInfo: 'Tuve cáncer de mama y actualmente estoy en remisión.',
     },
     satisfaction: { work: 5, family: 4, couple: 2, selfCare: 4 },
     symptoms: [
@@ -769,7 +770,7 @@ export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
         diagnosisDate: '2020-01',
         diagnosedBy: 'Otro especialista',
         severe: true,
-        observation: 'En remision, controles anuales',
+        observation: 'En remisión, controles anuales',
       },
     ],
     lifeEvents: [
@@ -815,6 +816,7 @@ export const DEFAULT_PSYCH_FORM: PsychForm = {
   },
 }
 
+// Evaluación clínica completada por el psicólogo sobre el paciente.
 export const SEED_PSYCH_FORMS: Record<string, PsychForm> = {
   '12.345.678-5': {
     evaluation: {
