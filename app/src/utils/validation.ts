@@ -4,6 +4,7 @@ import type {
   LifeEvent,
   Medication,
   MotiveExpectations,
+  PersonalHistoryBase,
   SubstanceUse,
   Symptom,
 } from '../types'
@@ -53,6 +54,9 @@ export const isSubstanceValid = (substance: SubstanceUse): boolean =>
 
 export const isFamilyHistoryValid = (entry: FamilyHistory): boolean =>
   isValidText(entry.relationship)
+
+export const isPersonalHistoryValid = (entry: PersonalHistoryBase): boolean =>
+  isFilled(entry.condition)
 
 export const isLifeEventValid = (event: LifeEvent): boolean =>
   [event.startDate, event.endDate].every(isFilled)

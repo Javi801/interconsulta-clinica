@@ -15,6 +15,9 @@ export type MedicationFrequency =
   | 'Días específicos'
   | 'Según necesidad (SOS)'
   | 'Otro'
+export type MedicationStatus = 'Actual' | 'Pasado'
+export type DiagnosisOrigin = 'Diagnóstico médico' | 'Autopercibido' | 'En estudio' | 'No sé'
+export type HistorySource = 'mental' | 'physical'
 export type FamilyHistoryType =
   | 'Diagnóstico confirmado'
   | 'Referido por la familia'
@@ -93,6 +96,29 @@ export interface FamilyHistory {
   observation: string
 }
 
+export interface ConditionRef {
+  source: HistorySource
+  id: number
+}
+
+export interface PersonalHistoryBase {
+  id: number
+  condition: string
+  origin: DiagnosisOrigin
+  /** 'YYYY-MM'; only meaningful when origin is 'Diagnóstico médico'. */
+  diagnosisDate: string
+  /** Only meaningful when origin is 'Diagnóstico médico'. */
+  diagnosedBy: string
+  observation: string
+}
+
+export type MentalHistory = PersonalHistoryBase
+
+export interface PhysicalHistory extends PersonalHistoryBase {
+  /** Marks the condition as serious, chronic or disabling (SAD PERSONS "Sickness"). */
+  severe: boolean
+}
+
 export interface LifeEvent {
   category: string
   startPrecision: DatePrecision
@@ -110,6 +136,8 @@ export interface PatientForm {
   medications: Medication[]
   substances: SubstanceUse[]
   familyHistory: FamilyHistory[]
+  mentalHistory: MentalHistory[]
+  physicalHistory: PhysicalHistory[]
   lifeEvents: LifeEvent[]
 }
 

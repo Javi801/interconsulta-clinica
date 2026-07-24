@@ -2,6 +2,7 @@ import type {
   Adherence,
   ClinicalPriority,
   DatePrecision,
+  DiagnosisOrigin,
   FamilyHistoryType,
   FormStatus,
   MedicationFrequency,
@@ -197,6 +198,35 @@ export const TEXT = {
         observation: 'Observación (opcional)',
       },
     },
+    mentalHistory: {
+      title: 'Antecedentes personales de salud mental',
+      subtitle: 'Diagnósticos o problemas de salud mental que hayas tenido tú.',
+      addLabel: 'Agregar antecedente',
+      pickLabel: 'Condición',
+      otherOption: 'Otro',
+      itemLabel: 'Condición',
+      fields: {
+        origin: '¿Diagnosticado por un profesional?',
+        diagnosisDate: 'Fecha aproximada (opcional)',
+        diagnosedBy: '¿Quién lo diagnosticó?',
+        observation: 'Observación (opcional)',
+      },
+    },
+    physicalHistory: {
+      title: 'Antecedentes personales de salud física',
+      subtitle: 'Enfermedades físicas o crónicas que tengas o hayas tenido tú.',
+      addLabel: 'Agregar antecedente',
+      pickLabel: 'Condición',
+      otherOption: 'Otra',
+      itemLabel: 'Condición',
+      severeLabel: '¿Es una condición grave, crónica o discapacitante?',
+      fields: {
+        origin: '¿Diagnosticado por un profesional?',
+        diagnosisDate: 'Fecha aproximada (opcional)',
+        diagnosedBy: '¿Quién lo diagnosticó?',
+        observation: 'Observación (opcional)',
+      },
+    },
     lifeEvents: {
       title: 'Eventos importantes',
       subtitle: 'Todos los campos son obligatorios.',
@@ -221,9 +251,11 @@ export const TEXT = {
     motive: 'Completa todos los campos de Motivo y expectativas.',
     symptomsRequired: 'Debes registrar al menos un síntoma.',
     symptoms: 'Completa los campos obligatorios de Síntomas actuales.',
-    medications: 'Completa los campos obligatorios de Medicamentos actuales.',
+    medications: 'Completa los campos obligatorios de Medicamentos.',
     substances: 'Completa los campos obligatorios de Consumo de sustancias.',
     familyHistory: 'Completa los campos obligatorios de Antecedentes familiares.',
+    mentalHistory: 'Completa los campos obligatorios de Antecedentes de salud mental.',
+    physicalHistory: 'Completa los campos obligatorios de Antecedentes de salud física.',
     lifeEvents: 'Completa los campos obligatorios de Eventos importantes.',
   },
 
@@ -513,6 +545,61 @@ export const FAMILY_HISTORY_TYPE_OPTIONS: FamilyHistoryType[] = [
   'Inferido o sospechado',
 ]
 
+export const MENTAL_HISTORY_OPTIONS = [
+  'Depresión',
+  'Ansiedad',
+  'Ataques de pánico',
+  'Trastorno bipolar',
+  'Intento de suicidio previo',
+  'Autolesiones',
+  'Hospitalización psiquiátrica',
+  'Consumo problemático de alcohol o drogas',
+  'TDAH',
+  'Insomnio o trastorno del sueño',
+  'Trastorno alimentario',
+  'Trastorno obsesivo compulsivo (TOC)',
+  'Estrés postraumático',
+  'Otro',
+]
+
+export const PHYSICAL_HISTORY_OPTIONS = [
+  'Hipertensión',
+  'Diabetes',
+  'Dislipidemia (colesterol o triglicéridos altos)',
+  'Obesidad',
+  'Enfermedad cardíaca',
+  'Enfermedad respiratoria crónica (asma o EPOC)',
+  'Enfermedad renal crónica',
+  'Enfermedad hepática crónica',
+  'Enfermedad tiroidea',
+  'Enfermedad gastrointestinal crónica',
+  'Enfermedad neurológica (epilepsia o migraña)',
+  'Enfermedad neurodegenerativa',
+  'Cáncer',
+  'Enfermedad autoinmune',
+  'VIH u otra infección crónica',
+  'Dolor crónico o fibromialgia',
+  'Discapacidad física o sensorial',
+  'Cirugía u hospitalización relevante',
+  'Otra',
+]
+
+export const DIAGNOSIS_ORIGIN_OPTIONS: DiagnosisOrigin[] = [
+  'Diagnóstico médico',
+  'Autopercibido',
+  'En estudio',
+  'No sé',
+]
+
+export const HEALTH_PROFESSIONAL_OPTIONS = [
+  'Psiquiatra',
+  'Médico general o de familia',
+  'Neurólogo',
+  'Pediatra',
+  'Otro especialista',
+  'No sé / No recuerdo',
+]
+
 export const LIFE_EVENT_CATEGORY_OPTIONS = [
   'Duelo',
   'Separación',
@@ -721,6 +808,27 @@ export const SEED_PATIENT_FORM: PatientForm = {
       relationship: 'Madre',
       type: 'Diagnóstico confirmado',
       observation: 'Tratamiento previo conocido',
+    },
+  ],
+  mentalHistory: [
+    {
+      id: 1,
+      condition: 'Ansiedad',
+      origin: 'Diagnóstico médico',
+      diagnosisDate: '2025-03',
+      diagnosedBy: 'Médico general o de familia',
+      observation: '',
+    },
+  ],
+  physicalHistory: [
+    {
+      id: 1,
+      condition: 'Hipertensión',
+      origin: 'Diagnóstico médico',
+      diagnosisDate: '2019-06',
+      diagnosedBy: 'Médico general o de familia',
+      severe: true,
+      observation: '',
     },
   ],
   lifeEvents: [

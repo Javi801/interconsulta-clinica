@@ -8,6 +8,7 @@ import {
   isLifeEventValid,
   isMedicationValid,
   isMotiveValid,
+  isPersonalHistoryValid,
   isSubstanceValid,
   isSymptomValid,
   isValidEmail,
@@ -17,7 +18,9 @@ import FamilyHistoryCard from './FamilyHistoryCard'
 import GeneralDataCard from './GeneralDataCard'
 import LifeEventsCard from './LifeEventsCard'
 import MedicationsCard from './MedicationsCard'
+import MentalHistoryCard from './MentalHistoryCard'
 import MotiveCard from './MotiveCard'
+import PhysicalHistoryCard from './PhysicalHistoryCard'
 import SatisfactionCard from './SatisfactionCard'
 import SubstancesCard from './SubstancesCard'
 import SymptomsCard from './SymptomsCard'
@@ -32,6 +35,8 @@ function validateForSubmit(form: PatientForm): string | null {
   if (!form.medications.every(isMedicationValid)) return TEXT.validation.medications
   if (!form.substances.every(isSubstanceValid)) return TEXT.validation.substances
   if (!form.familyHistory.every(isFamilyHistoryValid)) return TEXT.validation.familyHistory
+  if (!form.mentalHistory.every(isPersonalHistoryValid)) return TEXT.validation.mentalHistory
+  if (!form.physicalHistory.every(isPersonalHistoryValid)) return TEXT.validation.physicalHistory
   if (!form.lifeEvents.every(isLifeEventValid)) return TEXT.validation.lifeEvents
   return null
 }
@@ -117,6 +122,8 @@ function PatientFormView({ rut, onSubmit }: PatientFormViewProps) {
           onChange={update('familyHistory')}
           showErrors={showErrors}
         />
+        <MentalHistoryCard value={form.mentalHistory} onChange={update('mentalHistory')} />
+        <PhysicalHistoryCard value={form.physicalHistory} onChange={update('physicalHistory')} />
         <LifeEventsCard
           value={form.lifeEvents}
           onChange={update('lifeEvents')}
