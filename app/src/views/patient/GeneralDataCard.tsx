@@ -5,7 +5,6 @@ import StatusBadge from '../../components/StatusBadge'
 import { GENDER_OPTIONS, OCCUPATION_OPTIONS, TEXT } from '../../text'
 import { calculateAge } from '../../utils/date'
 import { formatPhone } from '../../utils/phone'
-import { formatRut, isValidRut } from '../../utils/rut'
 import { invalidClass, isFilled, isValidEmail, isValidText } from '../../utils/validation'
 import type { FormStatus, GeneralData } from '../../types'
 
@@ -37,12 +36,7 @@ function GeneralDataCard({ value, onChange, status, showErrors }: GeneralDataCar
       </SectionHead>
       <div className="field-grid three">
         <Field label={TEXT.patient.generalData.fields.rut}>
-          <input
-            className={invalidClass(showErrors || value.rut !== '', isValidRut(value.rut))}
-            inputMode="numeric"
-            value={value.rut}
-            onChange={(e) => set({ rut: formatRut(e.target.value) })}
-          />
+          <input value={value.rut} readOnly />
         </Field>
         <Field label={TEXT.patient.generalData.fields.firstName}>
           <input

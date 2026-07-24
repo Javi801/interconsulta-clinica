@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { IMPORTED_RUT, SEED_PATIENTS, TEXT } from '../../text'
+import { IMPORTED_RUT, TEXT } from '../../text'
 import type { Patient } from '../../types'
 import Dashboard from './Dashboard'
 import PatientRecord from './PatientRecord'
@@ -7,8 +7,12 @@ import PsychFormView from './PsychFormView'
 
 type SubView = 'dashboard' | 'record' | 'form'
 
-function PsychView() {
-  const [patients, setPatients] = useState<Patient[]>(SEED_PATIENTS)
+interface PsychViewProps {
+  patients: Patient[]
+  onPatientsChange: (patients: Patient[]) => void
+}
+
+function PsychView({ patients, onPatientsChange }: PsychViewProps) {
   const [subview, setSubview] = useState<SubView>('dashboard')
   const [selected, setSelected] = useState<Patient | null>(null)
 
@@ -29,11 +33,11 @@ function PsychView() {
   const backToDashboard = () => setSubview('dashboard')
 
   const createPatient = (rut: string, name: string) => {
-    setPatients([
+    onPatientsChange([
       ...patients,
       {
         rut,
-        name: name || TEXT.psych.view.unnamedPatient,
+        name,
         patientFormStatus: 'not-sent',
         psychFormStatus: 'pending',
         updatedAt: TEXT.psych.view.today,
@@ -45,7 +49,7 @@ function PsychView() {
     const importedName = fileName.replace(/\.(xlsx|xls)$/i, '') || TEXT.psych.view.importedPatient
     const existing = patients.find((patient) => patient.rut === IMPORTED_RUT)
     if (existing) {
-      setPatients(
+      onPatientsChange(
         patients.map((patient) =>
           patient.rut === IMPORTED_RUT
             ? { ...patient, patientFormStatus: 'sent', updatedAt: TEXT.psych.view.today }
@@ -54,7 +58,7 @@ function PsychView() {
       )
       alert(TEXT.psych.view.excelReplacedAlert)
     } else {
-      setPatients([
+      onPatientsChange([
         ...patients,
         {
           rut: IMPORTED_RUT,

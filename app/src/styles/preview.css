@@ -145,6 +145,7 @@ input,select,textarea{
 }
 textarea{min-height:88px;resize:vertical}
 input.invalid,textarea.invalid{border-color:#dc2626}
+input[readonly]{background:var(--surface-2);color:var(--muted);cursor:not-allowed}
 .help,.counter{font-size:12px;color:var(--muted)}
 .section-head{
   display:flex;

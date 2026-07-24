@@ -36,8 +36,16 @@ function validateForSubmit(form: PatientForm): string | null {
   return null
 }
 
-function PatientFormView() {
-  const [form, setForm] = useState<PatientForm>(SEED_PATIENT_FORM)
+interface PatientFormViewProps {
+  rut: string
+  onSubmit: (rut: string, name: string) => void
+}
+
+function PatientFormView({ rut, onSubmit }: PatientFormViewProps) {
+  const [form, setForm] = useState<PatientForm>(() => ({
+    ...SEED_PATIENT_FORM,
+    general: { ...SEED_PATIENT_FORM.general, rut },
+  }))
   const [status, setStatus] = useState<FormStatus>('draft')
   const [confirming, setConfirming] = useState(false)
   const [showErrors, setShowErrors] = useState(false)
@@ -63,6 +71,8 @@ function PatientFormView() {
   const confirmSubmit = () => {
     setConfirming(false)
     setStatus('sent')
+    const name = `${form.general.firstName.trim()} ${form.general.lastName.trim()}`.trim()
+    onSubmit(form.general.rut, name)
   }
 
   return (

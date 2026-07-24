@@ -5,7 +5,7 @@ import { formatRut, isValidRut } from '../../utils/rut'
 import { invalidClass } from '../../utils/validation'
 
 interface PatientAccessProps {
-  onEnter: () => void
+  onEnter: (rut: string) => void
 }
 
 const normalizeCode = (value: string): string => value.replace(/\s+/g, '')
@@ -30,7 +30,7 @@ function PatientAccess({ onEnter }: PatientAccessProps) {
       return
     }
     setError(null)
-    onEnter()
+    onEnter(rut)
   }
 
   const useLink = () => {
