@@ -19,7 +19,6 @@ export type FamilyHistoryType =
   | 'Diagnóstico confirmado'
   | 'Referido por la familia'
   | 'Inferido o sospechado'
-  | 'No sabe'
 
 export interface Patient {
   rut: string

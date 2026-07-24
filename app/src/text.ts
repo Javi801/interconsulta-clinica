@@ -495,7 +495,6 @@ export const FAMILY_HISTORY_TYPE_OPTIONS: FamilyHistoryType[] = [
   'Diagnóstico confirmado',
   'Referido por la familia',
   'Inferido o sospechado',
-  'No sabe',
 ]
 
 export const LIFE_EVENT_CATEGORY_OPTIONS = [
