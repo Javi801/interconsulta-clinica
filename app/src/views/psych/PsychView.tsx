@@ -1,12 +1,15 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { IMPORTED_RUT } from '../../seed/demoData'
 import { TEXT } from '../../text'
 import type { Patient } from '../../types'
+import { computeClinicalStats } from '../../utils/stats'
+import StatsDashboard from '../stats/StatsDashboard'
+import StatsOverview from '../stats/StatsOverview'
 import Dashboard from './Dashboard'
 import PatientRecord from './PatientRecord'
 import PsychFormView from './PsychFormView'
 
-type SubView = 'dashboard' | 'record' | 'form'
+type SubView = 'dashboard' | 'stats' | 'record' | 'form'
 
 interface PsychViewProps {
   patients: Patient[]
@@ -18,9 +21,13 @@ function PsychView({ patients, psychologistId, onPatientsChange }: PsychViewProp
   const [subview, setSubview] = useState<SubView>('dashboard')
   const [selected, setSelected] = useState<Patient | null>(null)
 
-  const ownPatients = patients.filter(
-    (patient) => patient.assignedPsychologistId === psychologistId,
+  const ownPatients = useMemo(
+    () => patients.filter((patient) => patient.assignedPsychologistId === psychologistId),
+    [patients, psychologistId],
   )
+
+  const allStats = useMemo(() => computeClinicalStats(patients), [patients])
+  const ownStats = useMemo(() => computeClinicalStats(ownPatients), [ownPatients])
 
   const openRecord = (patient: Patient) => {
     if (patient.patientFormStatus !== 'sent') {
@@ -94,13 +101,19 @@ function PsychView({ patients, psychologistId, onPatientsChange }: PsychViewProp
         </div>
       </div>
       {subview === 'dashboard' && (
-        <Dashboard
-          patients={ownPatients}
-          onCreate={createPatient}
-          onImportExcel={importExcel}
-          onOpenRecord={openRecord}
-          onOpenForm={openForm}
-        />
+        <>
+          <StatsOverview stats={allStats} onOpenFull={() => setSubview('stats')} />
+          <Dashboard
+            patients={ownPatients}
+            onCreate={createPatient}
+            onImportExcel={importExcel}
+            onOpenRecord={openRecord}
+            onOpenForm={openForm}
+          />
+        </>
+      )}
+      {subview === 'stats' && (
+        <StatsDashboard allStats={allStats} personalStats={ownStats} onBack={backToDashboard} />
       )}
       {subview === 'record' && selected && (
         <PatientRecord patient={selected} onBack={backToDashboard} />

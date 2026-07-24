@@ -1,11 +1,14 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { TEXT } from '../../text'
 import type { Patient, Psychologist } from '../../types'
+import { computeClinicalStats } from '../../utils/stats'
+import StatsDashboard from '../stats/StatsDashboard'
+import StatsOverview from '../stats/StatsOverview'
 import PatientRecord from '../psych/PatientRecord'
 import PsychFormView from '../psych/PsychFormView'
 import CoordinatorDashboard from './CoordinatorDashboard'
 
-type SubView = 'dashboard' | 'record' | 'form'
+type SubView = 'dashboard' | 'stats' | 'record' | 'form'
 
 interface CoordinatorViewProps {
   patients: Patient[]
@@ -16,6 +19,8 @@ interface CoordinatorViewProps {
 function CoordinatorView({ patients, psychologists, onReassign }: CoordinatorViewProps) {
   const [subview, setSubview] = useState<SubView>('dashboard')
   const [selected, setSelected] = useState<Patient | null>(null)
+
+  const allStats = useMemo(() => computeClinicalStats(patients), [patients])
 
   const openRecord = (patient: Patient) => {
     if (patient.patientFormStatus !== 'sent') {
@@ -42,14 +47,18 @@ function CoordinatorView({ patients, psychologists, onReassign }: CoordinatorVie
         </div>
       </div>
       {subview === 'dashboard' && (
-        <CoordinatorDashboard
-          patients={patients}
-          psychologists={psychologists}
-          onReassign={onReassign}
-          onOpenRecord={openRecord}
-          onOpenForm={openForm}
-        />
+        <>
+          <StatsOverview stats={allStats} onOpenFull={() => setSubview('stats')} />
+          <CoordinatorDashboard
+            patients={patients}
+            psychologists={psychologists}
+            onReassign={onReassign}
+            onOpenRecord={openRecord}
+            onOpenForm={openForm}
+          />
+        </>
       )}
+      {subview === 'stats' && <StatsDashboard allStats={allStats} onBack={backToDashboard} />}
       {subview === 'record' && selected && (
         <PatientRecord patient={selected} onBack={backToDashboard} readOnly />
       )}

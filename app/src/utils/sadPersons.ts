@@ -121,6 +121,20 @@ function rawItems(patient: PatientForm, psych: PsychForm): RawItem[] {
   ]
 }
 
+/** Referral suggestion grouped into three actionable outcomes. */
+export type ReferralOutcome = 'derive' | 'review' | 'notDerive'
+
+/**
+ * Collapses the SAD PERSONS band into a three-way referral outcome.
+ * Bajo -> no referral; Moderado -> needs review; Alto/Muy alto -> refer.
+ * Consistent with {@link SadPersonsResult.derive} (Alto/Muy alto reach the threshold).
+ */
+export function referralOutcome(result: SadPersonsResult): ReferralOutcome {
+  if (result.band === 'Bajo') return 'notDerive'
+  if (result.band === 'Moderado') return 'review'
+  return 'derive'
+}
+
 export function computeSadPersons(patient: PatientForm, psych: PsychForm): SadPersonsResult {
   const items: SadPersonsItem[] = rawItems(patient, psych).map((item) => ({
     key: item.key,

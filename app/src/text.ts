@@ -490,6 +490,80 @@ export const TEXT = {
     },
   },
 
+  stats: {
+    empty: 'Sin datos suficientes para mostrar.',
+    overview: {
+      title: 'Resumen clínico',
+      subtitle: 'Datos agregados de todos los casos.',
+      openFull: 'Ver dashboard completo',
+      forms: { title: 'Formularios', meta: 'Formularios de pacientes' },
+      referral: { title: 'Derivación', meta: 'Sugerencia desde formularios enviados' },
+      risk: { title: 'Riesgo clínico', meta: 'Casos con riesgo alto o inminente' },
+      symptoms: { title: 'Síntomas frecuentes', meta: 'Promedio de intensidad reportada' },
+    },
+    dashboard: {
+      title: 'Dashboard clínico',
+      subtitle: 'Indicadores agregados sin exponer información identificable en los gráficos.',
+      export: 'Exportar estadísticas',
+      exportAlert: 'Demo: exportación de estadísticas.',
+      tabs: {
+        all: 'Todos los casos',
+        mine: 'Mis formularios',
+      },
+    },
+    aggregated: {
+      notice: 'Vista agregada de todos los pacientes. Resume tendencias globales sin mostrar datos personales.',
+      formStatus: { title: 'Estado de formularios', subtitle: 'Todos los casos registrados.' },
+      referral: { title: 'Derivaciones sugeridas', subtitle: 'Según puntaje de la escala SAD PERSONS.' },
+      risk: { title: 'Riesgos clínicos', subtitle: 'Nivel más alto consignado por caso.' },
+      symptoms: { title: 'Síntomas reportados', subtitle: 'Frecuencia e intensidad promedio.' },
+    },
+    personal: {
+      notice: 'Vista personal. Muestra tus formularios asignados y pendientes de acción.',
+      load: {
+        title: 'Mi carga actual',
+        subtitle: 'Formularios donde eres responsable.',
+        toReview: 'Por revisar',
+        drafts: 'Borradores',
+        sent: 'Enviados',
+      },
+      alerts: {
+        title: 'Alertas clínicas',
+        subtitle: 'Casos asignados con mayor prioridad.',
+        highRisk: (count: number) => `${count} casos con riesgo alto o inminente`,
+        pendingEval: (count: number) =>
+          `${count} formularios de paciente enviados sin evaluación del psicólogo`,
+        derive: (count: number) => `${count} casos con sugerencia de derivar`,
+        none: 'Sin alertas para tus casos asignados.',
+      },
+      referral: { title: 'Mis derivaciones', subtitle: 'Resultado de tus formularios enviados.' },
+      activity: { title: 'Actividad reciente', subtitle: 'Actualizaciones por día de la semana.' },
+    },
+    formStatus: {
+      patientSent: 'Paciente enviado',
+      patientPending: 'Paciente pendiente',
+      psychSent: 'Psicólogo enviado',
+      psychPending: 'Psicólogo pendiente',
+      sent: 'Enviados',
+      pending: 'Pendientes',
+      draft: 'Borrador',
+      notSent: 'No enviados',
+    },
+    referral: {
+      derive: 'Derivar',
+      review: 'Requiere revisión',
+      notDerive: 'No derivar',
+    },
+    risk: {
+      Bajo: 'Bajo',
+      Moderado: 'Moderado',
+      Alto: 'Alto',
+      Inminente: 'Inminente',
+      highCombined: 'Alto o inminente',
+    },
+    weekdays: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+  },
+
   summary: {
     emptySection: 'Sin registros.',
     general: {
