@@ -495,6 +495,7 @@ export const TEXT = {
     overview: {
       title: 'Resumen clínico',
       subtitle: 'Datos agregados de todos los casos.',
+      subtitlePersonal: 'Datos de tus formularios asignados.',
       openFull: 'Ver dashboard completo',
       forms: { title: 'Formularios', meta: 'Formularios de pacientes' },
       referral: { title: 'Derivación', meta: 'Sugerencia desde formularios enviados' },

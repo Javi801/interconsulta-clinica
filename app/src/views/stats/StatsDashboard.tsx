@@ -16,8 +16,8 @@ type Tab = 'all' | 'mine'
 const { dashboard } = TEXT.stats
 
 function StatsDashboard({ allStats, personalStats, onBack }: StatsDashboardProps) {
-  const [tab, setTab] = useState<Tab>('all')
   const showPersonal = personalStats !== undefined
+  const [tab, setTab] = useState<Tab>(showPersonal ? 'mine' : 'all')
 
   return (
     <div>

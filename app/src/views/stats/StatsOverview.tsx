@@ -15,19 +15,21 @@ import {
 interface StatsOverviewProps {
   stats: ClinicalStats
   onOpenFull: () => void
+  /** Overview scope caption. Defaults to the aggregated (all cases) copy. */
+  subtitle?: string
 }
 
 const { overview, empty } = TEXT.stats
 
 const percent = (value: number, total: number) => `${Math.round((value / total) * 100)}%`
 
-function StatsOverview({ stats, onOpenFull }: StatsOverviewProps) {
+function StatsOverview({ stats, onOpenFull, subtitle = overview.subtitle }: StatsOverviewProps) {
   return (
     <div className="card full stats-overview">
       <div className="section-head">
         <div>
           <h2>{overview.title}</h2>
-          <p>{overview.subtitle}</p>
+          <p>{subtitle}</p>
         </div>
         <button type="button" className="btn primary" onClick={onOpenFull}>
           {overview.openFull}

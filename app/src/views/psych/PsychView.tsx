@@ -102,7 +102,11 @@ function PsychView({ patients, psychologistId, onPatientsChange }: PsychViewProp
       </div>
       {subview === 'dashboard' && (
         <>
-          <StatsOverview stats={allStats} onOpenFull={() => setSubview('stats')} />
+          <StatsOverview
+            stats={ownStats}
+            subtitle={TEXT.stats.overview.subtitlePersonal}
+            onOpenFull={() => setSubview('stats')}
+          />
           <Dashboard
             patients={ownPatients}
             onCreate={createPatient}
