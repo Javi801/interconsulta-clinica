@@ -45,7 +45,22 @@ export const TEXT = {
     items: {
       patient: 'Vista paciente',
       psych: 'Vista psicólogo',
+      coordinator: 'Coordinador',
     },
+    session: {
+      open: 'Iniciar sesión',
+      close: 'Cerrar sesión',
+    },
+  },
+
+  coordinator: {
+    placeholder: 'Vista del coordinador (pendiente de implementar).',
+  },
+
+  auth: {
+    closedTitle: 'Sesión cerrada',
+    closedNote:
+      'El inicio de sesión de este perfil aún no está implementado. Usa el candado para volver a iniciar sesión.',
   },
 
   patient: {
