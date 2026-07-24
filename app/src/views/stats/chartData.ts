@@ -2,12 +2,14 @@ import type { ColumnItem } from '../../components/charts/ColumnChart'
 import type { DonutSegment } from '../../components/charts/Donut'
 import type { BarItem } from '../../components/charts/MiniBars'
 import { TEXT } from '../../text'
-import type { ClinicalStats, SymptomStat } from '../../utils/stats'
+import type { ClinicalStats, PsychologistLoad, SymptomStat } from '../../utils/stats'
 
 const { formStatus, referral, risk, weekdays } = TEXT.stats
 
 /** Intensity scale used to map symptom averages to full column height. */
 export const INTENSITY_MAX = 10
+
+export const donutPercent = (value: number, total: number) => `${Math.round((value / total) * 100)}%`
 
 export const referralSegments = (stats: ClinicalStats): DonutSegment[] => [
   { label: referral.derive, value: stats.referral.derive, tone: 'success' },
@@ -65,3 +67,6 @@ export const personalLoadBars = (stats: ClinicalStats): BarItem[] => [
 /** Weekday activity, Monday to Friday. */
 export const activityColumns = (stats: ClinicalStats): ColumnItem[] =>
   weekdays.slice(0, 5).map((label, index) => ({ label, value: stats.weekdayActivity[index] }))
+
+export const psychologistLoadBars = (loads: PsychologistLoad[]): BarItem[] =>
+  loads.map((load) => ({ label: load.name, value: load.count, tone: 'default' }))

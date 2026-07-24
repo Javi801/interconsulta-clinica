@@ -497,10 +497,18 @@ export const TEXT = {
       subtitle: 'Datos agregados de todos los casos.',
       subtitlePersonal: 'Datos de tus formularios asignados.',
       openFull: 'Ver dashboard completo',
-      forms: { title: 'Formularios', meta: 'Formularios de pacientes' },
-      referral: { title: 'Derivación', meta: 'Sugerencia desde formularios enviados' },
-      risk: { title: 'Riesgo clínico', meta: 'Casos con riesgo alto o inminente' },
-      symptoms: { title: 'Síntomas frecuentes', meta: 'Promedio de intensidad reportada' },
+      psych: {
+        load: { title: 'Mi carga', meta: 'Formularios de paciente sin tu evaluación' },
+        referral: { title: 'Mis derivaciones', meta: 'Sugerencia desde formularios enviados' },
+        risk: { title: 'Riesgo clínico', meta: 'Casos con riesgo alto o inminente' },
+        symptoms: { title: 'Síntomas frecuentes', meta: 'Promedio de intensidad reportada' },
+      },
+      coordinator: {
+        forms: { title: 'Estado global', meta: 'Formularios de pacientes' },
+        byPsychologist: { title: 'Pacientes por psicólogo', meta: 'Casos asignados a cada profesional' },
+        referral: { title: 'Derivación global', meta: 'Sugerencia desde formularios enviados' },
+        risk: { title: 'Riesgo clínico global', meta: 'Casos con riesgo alto o inminente' },
+      },
     },
     dashboard: {
       title: 'Dashboard clínico',

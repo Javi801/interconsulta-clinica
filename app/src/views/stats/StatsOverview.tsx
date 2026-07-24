@@ -1,29 +1,17 @@
-import ColumnChart from '../../components/charts/ColumnChart'
-import Donut from '../../components/charts/Donut'
-import MiniBars from '../../components/charts/MiniBars'
+import type { ReactNode } from 'react'
 import { TEXT } from '../../text'
-import type { ClinicalStats } from '../../utils/stats'
-import StatCard from './StatCard'
-import {
-  INTENSITY_MAX,
-  overviewFormBars,
-  overviewRiskBars,
-  referralSegments,
-  symptomColumns,
-} from './chartData'
 
 interface StatsOverviewProps {
-  stats: ClinicalStats
+  /** Scope caption shown under the title. */
+  subtitle: string
   onOpenFull: () => void
-  /** Overview scope caption. Defaults to the aggregated (all cases) copy. */
-  subtitle?: string
+  /** The four stat cards, role-specific. */
+  children: ReactNode
 }
 
-const { overview, empty } = TEXT.stats
+const { overview } = TEXT.stats
 
-const percent = (value: number, total: number) => `${Math.round((value / total) * 100)}%`
-
-function StatsOverview({ stats, onOpenFull, subtitle = overview.subtitle }: StatsOverviewProps) {
+function StatsOverview({ subtitle, onOpenFull, children }: StatsOverviewProps) {
   return (
     <div className="card full stats-overview">
       <div className="section-head">
@@ -35,24 +23,7 @@ function StatsOverview({ stats, onOpenFull, subtitle = overview.subtitle }: Stat
           {overview.openFull}
         </button>
       </div>
-      <div className="stats-grid">
-        <StatCard title={overview.forms.title} number={stats.totalCases} meta={overview.forms.meta}>
-          <MiniBars items={overviewFormBars(stats)} max={stats.totalCases} />
-        </StatCard>
-        <StatCard title={overview.referral.title} meta={overview.referral.meta}>
-          <Donut segments={referralSegments(stats)} formatValue={percent} emptyLabel={empty} />
-        </StatCard>
-        <StatCard
-          title={overview.risk.title}
-          number={stats.highRiskCount}
-          meta={overview.risk.meta}
-        >
-          <MiniBars items={overviewRiskBars(stats)} />
-        </StatCard>
-        <StatCard title={overview.symptoms.title} meta={overview.symptoms.meta}>
-          <ColumnChart columns={symptomColumns(stats.symptoms, 4)} max={INTENSITY_MAX} emptyLabel={empty} />
-        </StatCard>
-      </div>
+      <div className="stats-grid">{children}</div>
     </div>
   )
 }

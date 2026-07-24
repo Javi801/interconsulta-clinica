@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react'
 import { TEXT } from '../../text'
 import type { Patient, Psychologist } from '../../types'
-import { computeClinicalStats } from '../../utils/stats'
+import { computeClinicalStats, computePsychologistLoads } from '../../utils/stats'
+import CoordinatorStatsOverview from '../stats/CoordinatorStatsOverview'
 import StatsDashboard from '../stats/StatsDashboard'
-import StatsOverview from '../stats/StatsOverview'
 import PatientRecord from '../psych/PatientRecord'
 import PsychFormView from '../psych/PsychFormView'
 import CoordinatorDashboard from './CoordinatorDashboard'
@@ -21,6 +21,10 @@ function CoordinatorView({ patients, psychologists, onReassign }: CoordinatorVie
   const [selected, setSelected] = useState<Patient | null>(null)
 
   const allStats = useMemo(() => computeClinicalStats(patients), [patients])
+  const loads = useMemo(
+    () => computePsychologistLoads(patients, psychologists),
+    [patients, psychologists],
+  )
 
   const openRecord = (patient: Patient) => {
     if (patient.patientFormStatus !== 'sent') {
@@ -48,7 +52,11 @@ function CoordinatorView({ patients, psychologists, onReassign }: CoordinatorVie
       </div>
       {subview === 'dashboard' && (
         <>
-          <StatsOverview stats={allStats} onOpenFull={() => setSubview('stats')} />
+          <CoordinatorStatsOverview
+            stats={allStats}
+            loads={loads}
+            onOpenFull={() => setSubview('stats')}
+          />
           <CoordinatorDashboard
             patients={patients}
             psychologists={psychologists}

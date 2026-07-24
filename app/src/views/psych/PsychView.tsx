@@ -3,8 +3,8 @@ import { IMPORTED_RUT } from '../../seed/demoData'
 import { TEXT } from '../../text'
 import type { Patient } from '../../types'
 import { computeClinicalStats } from '../../utils/stats'
+import PsychStatsOverview from '../stats/PsychStatsOverview'
 import StatsDashboard from '../stats/StatsDashboard'
-import StatsOverview from '../stats/StatsOverview'
 import Dashboard from './Dashboard'
 import PatientRecord from './PatientRecord'
 import PsychFormView from './PsychFormView'
@@ -102,11 +102,7 @@ function PsychView({ patients, psychologistId, onPatientsChange }: PsychViewProp
       </div>
       {subview === 'dashboard' && (
         <>
-          <StatsOverview
-            stats={ownStats}
-            subtitle={TEXT.stats.overview.subtitlePersonal}
-            onOpenFull={() => setSubview('stats')}
-          />
+          <PsychStatsOverview stats={ownStats} onOpenFull={() => setSubview('stats')} />
           <Dashboard
             patients={ownPatients}
             onCreate={createPatient}
