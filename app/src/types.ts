@@ -54,8 +54,6 @@ export interface GeneralData {
   nationality: string
   livesWith: string
   relationshipStatus: string
-  phone: string
-  email: string
   occupations: string[]
   occupationDetail: string
 }

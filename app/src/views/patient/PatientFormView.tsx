@@ -12,7 +12,6 @@ import {
   isPersonalHistoryValid,
   isSubstanceValid,
   isSymptomValid,
-  isValidEmail,
 } from '../../utils/validation'
 import type { FormStatus, PatientForm } from '../../types'
 import FamilyHistoryCard from './FamilyHistoryCard'
@@ -29,7 +28,6 @@ import SymptomsCard from './SymptomsCard'
 function validateForSubmit(form: PatientForm): string | null {
   if (!isGeneralValid(form.general)) return TEXT.validation.general
   if (!isValidRut(form.general.rut)) return TEXT.validation.rut
-  if (!isValidEmail(form.general.email)) return TEXT.validation.email
   if (!isMotiveValid(form.motive)) return TEXT.validation.motive
   if (form.symptoms.length === 0) return TEXT.validation.symptomsRequired
   if (!form.symptoms.every(isSymptomValid)) return TEXT.validation.symptoms

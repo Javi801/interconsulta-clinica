@@ -146,8 +146,6 @@ export const TEXT = {
         nationality: 'Nacionalidad',
         livesWith: 'Con quién vive',
         relationshipStatus: 'Estado civil',
-        phone: 'Teléfono',
-        email: 'Correo',
       },
     },
     motive: {
@@ -282,7 +280,6 @@ export const TEXT = {
   validation: {
     general: 'Completa todos los campos de Datos generales.',
     rut: 'El RUT ingresado no es válido.',
-    email: 'El correo ingresado no es válido.',
     motive: 'Completa todos los campos de Motivo y expectativas.',
     symptomsRequired: 'Debes registrar al menos un síntoma.',
     symptoms: 'Completa los campos obligatorios de Síntomas actuales.',

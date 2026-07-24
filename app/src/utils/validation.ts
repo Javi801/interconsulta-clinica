@@ -14,8 +14,6 @@ export const isValidText = (value: string): boolean => value.trim().length >= 5
 
 export const isFilled = (value: string): boolean => value.trim() !== ''
 
-export const isValidEmail = (value: string): boolean => /^\S+@\S+\.\S+$/.test(value)
-
 /** Class for fields highlighted as invalid only after a submit attempt. */
 export const invalidClass = (showErrors: boolean, valid: boolean): string | undefined =>
   showErrors && !valid ? 'invalid' : undefined
@@ -29,7 +27,7 @@ export const isGeneralValid = (general: GeneralData): boolean =>
     general.relationshipStatus,
     general.occupationDetail,
   ].every(isValidText) &&
-  [general.birthDate, general.phone].every(isFilled) &&
+  isFilled(general.birthDate) &&
   general.occupations.length > 0
 
 export const isMotiveValid = (motive: MotiveExpectations): boolean =>

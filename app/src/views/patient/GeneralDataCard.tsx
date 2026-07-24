@@ -4,8 +4,7 @@ import Field from '../../components/Field'
 import StatusBadge from '../../components/StatusBadge'
 import { GENDER_OPTIONS, OCCUPATION_OPTIONS, RELATIONSHIP_STATUS_OPTIONS, TEXT } from '../../text'
 import { calculateAge } from '../../utils/date'
-import { formatPhone } from '../../utils/phone'
-import { invalidClass, isFilled, isValidEmail, isValidText } from '../../utils/validation'
+import { invalidClass, isFilled, isValidText } from '../../utils/validation'
 import type { FormStatus, GeneralData } from '../../types'
 
 interface GeneralDataCardProps {
@@ -93,23 +92,6 @@ function GeneralDataCard({ value, onChange, status, showErrors }: GeneralDataCar
               <option key={option}>{option}</option>
             ))}
           </select>
-        </Field>
-        <Field label={TEXT.patient.generalData.fields.phone}>
-          <input
-            className={invalidClass(showErrors, isFilled(value.phone))}
-            type="tel"
-            inputMode="numeric"
-            value={value.phone}
-            onChange={(e) => set({ phone: formatPhone(e.target.value) })}
-          />
-        </Field>
-        <Field label={TEXT.patient.generalData.fields.email}>
-          <input
-            className={invalidClass(showErrors, isValidEmail(value.email))}
-            type="email"
-            value={value.email}
-            onChange={(e) => set({ email: e.target.value })}
-          />
         </Field>
       </div>
       <div style={{ marginTop: 16 }}>
