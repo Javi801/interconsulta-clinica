@@ -546,7 +546,6 @@ export const TEXT = {
         none: 'Sin alertas para tus casos asignados.',
       },
       referral: { title: 'Mis derivaciones', subtitle: 'Resultado de tus formularios enviados.' },
-      activity: { title: 'Actividad reciente', subtitle: 'Actualizaciones por día de la semana.' },
     },
     personalCharts: {
       triage: {
@@ -576,6 +575,31 @@ export const TEXT = {
       'Conducta e impulsividad': 'Conducta',
       Alimentación: 'Alimentación',
     },
+    personalBreakdown: {
+      riskTypes: { title: 'Riesgos por tipo', subtitle: 'Tus casos que presentan cada riesgo.' },
+      referralReasons: { title: 'Motivos de derivación', subtitle: 'Frecuencia en tus formularios.' },
+      hypotheses: { title: 'Hipótesis por familia', subtitle: 'Grupos diagnósticos en tus casos.' },
+      satisfaction: {
+        title: 'Satisfacción por dimensión',
+        subtitle: 'Promedio 1–10 en tus formularios enviados.',
+      },
+    },
+    hypothesisFamilies: {
+      depressive: 'Depresivos',
+      anxiety: 'Ansiosos',
+      bipolar: 'Bipolares',
+      adaptive: 'Adaptativos',
+      stress: 'Estrés/Trauma',
+      substance: 'Consumo',
+      psychotic: 'Psicóticos',
+      other: 'Otros',
+    },
+    satisfactionShort: {
+      work: 'Individual',
+      family: 'Interpersonal',
+      couple: 'Social',
+      selfCare: 'Global',
+    },
     formStatus: {
       patientSent: 'Paciente enviado',
       patientPending: 'Paciente pendiente',
@@ -598,7 +622,6 @@ export const TEXT = {
       Inminente: 'Inminente',
       highCombined: 'Alto o inminente',
     },
-    weekdays: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
   },
 
   summary: {

@@ -40,6 +40,40 @@ const DOMAIN_BY_NORM = new Map(SYMPTOM_DOMAINS.map((domain) => [normalize(domain
 
 const domainOf = (name: string): string | null => DOMAIN_BY_NORM.get(normalize(name)) ?? null
 
+/** A named category with the number of cases it covers. */
+export interface NameCount {
+  name: string
+  count: number
+}
+
+export interface SatisfactionAverages {
+  work: number
+  family: number
+  couple: number
+  selfCare: number
+  /** Cases the averages are based on. */
+  count: number
+}
+
+/** Diagnostic family keys; matched in order so qualifiers do not override the base family. */
+const HYPOTHESIS_FAMILY_RULES: { family: string; pattern: RegExp }[] = [
+  { family: 'bipolar', pattern: /bipolar|ciclotimia/i },
+  { family: 'psychotic', pattern: /psic[oó]tic|esquizo/i },
+  { family: 'substance', pattern: /consumo/i },
+  { family: 'stress', pattern: /estr[eé]s|postraum|trauma/i },
+  { family: 'adaptive', pattern: /adaptativo/i },
+  { family: 'depressive', pattern: /depresiv|distimia/i },
+  { family: 'anxiety', pattern: /ansied|ansios|p[aá]nico|fobia|agorafobia|obsesiv|\btoc\b/i },
+]
+
+const hypothesisFamily = (hypothesis: string): string =>
+  HYPOTHESIS_FAMILY_RULES.find((rule) => rule.pattern.test(hypothesis))?.family ?? 'other'
+
+const toNameCounts = (counts: Map<string, number>): NameCount[] =>
+  [...counts.entries()]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count)
+
 export interface ClinicalStats {
   totalCases: number
   patientFormStatus: Record<FormStatus, number>
@@ -59,8 +93,14 @@ export interface ClinicalStats {
   symptomProfile: SymptomDomainStat[]
   /** One point per case with a sent patient form. */
   casePoints: CasePoint[]
-  /** Case updates grouped by weekday, Monday (0) to Sunday (6). */
-  weekdayActivity: number[]
+  /** Cases presenting each clinical risk, most frequent first. */
+  riskTypes: NameCount[]
+  /** Referral reasons, most frequent first. */
+  referralReasons: NameCount[]
+  /** Cases per diagnostic-hypothesis family, most frequent first. */
+  hypothesisFamilies: NameCount[]
+  /** Average life-satisfaction per dimension over cases with a sent patient form. */
+  satisfaction: SatisfactionAverages
 }
 
 const RISK_ORDER: RiskLevel[] = ['Bajo', 'Moderado', 'Alto', 'Inminente']
@@ -78,16 +118,6 @@ function highestRisk(risks: ClinicalRisk[]): RiskLevel | null {
   return best >= 0 ? RISK_ORDER[best] : null
 }
 
-/** Maps a 'dd/mm/yyyy' date to a Monday-based weekday index, or null if unparseable. */
-function weekdayIndex(updatedAt: string): number | null {
-  const match = updatedAt.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/)
-  if (!match) return null
-  const [, day, month, year] = match
-  const date = new Date(Number(year), Number(month) - 1, Number(day))
-  if (Number.isNaN(date.getTime())) return null
-  return (date.getDay() + 6) % 7
-}
-
 export function computeClinicalStats(patients: Patient[]): ClinicalStats {
   const patientFormStatus = emptyFormStatus()
   const psychFormStatus = emptyFormStatus()
@@ -95,9 +125,14 @@ export function computeClinicalStats(patients: Patient[]): ClinicalStats {
   const risk: Record<RiskLevel, number> = { Bajo: 0, Moderado: 0, Alto: 0, Inminente: 0 }
   const symptomAcc = new Map<string, { count: number; sum: number }>()
   const domainAcc = new Map<string, { count: number; sum: number }>()
+  const riskTypeAcc = new Map<string, number>()
+  const referralReasonAcc = new Map<string, number>()
+  const hypothesisFamilyAcc = new Map<string, number>()
+  const satisfactionAcc = { work: 0, family: 0, couple: 0, selfCare: 0, count: 0 }
   const casePoints: CasePoint[] = []
-  const weekdayActivity = [0, 0, 0, 0, 0, 0, 0]
   let pendingEvalCount = 0
+
+  const bump = (map: Map<string, number>, key: string) => map.set(key, (map.get(key) ?? 0) + 1)
 
   for (const patient of patients) {
     patientFormStatus[patient.patientFormStatus] += 1
@@ -107,13 +142,16 @@ export function computeClinicalStats(patients: Patient[]): ClinicalStats {
       pendingEvalCount += 1
     }
 
-    const weekday = weekdayIndex(patient.updatedAt)
-    if (weekday !== null) weekdayActivity[weekday] += 1
-
     const patientForm = getSeedPatientForm(patient.rut)
     const psychForm = getSeedPsychForm(patient.rut)
     const level = highestRisk(psychForm.risks)
     if (level) risk[level] += 1
+
+    for (const name of new Set(psychForm.risks.map((entry) => entry.risk))) bump(riskTypeAcc, name)
+    for (const reason of psychForm.referralReasons) bump(referralReasonAcc, reason)
+    for (const family of new Set(psychForm.hypotheses.map((entry) => hypothesisFamily(entry.hypothesis)))) {
+      bump(hypothesisFamilyAcc, family)
+    }
 
     if (patient.patientFormStatus === 'sent') {
       const sad = computeSadPersons(patientForm, psychForm)
@@ -126,6 +164,13 @@ export function computeClinicalStats(patients: Patient[]): ClinicalStats {
         symptomCount: patientForm.symptoms.length,
         referral: outcome,
       })
+
+      const { work, family, couple, selfCare } = patientForm.satisfaction
+      satisfactionAcc.work += work
+      satisfactionAcc.family += family
+      satisfactionAcc.couple += couple
+      satisfactionAcc.selfCare += selfCare
+      satisfactionAcc.count += 1
     }
 
     for (const symptom of patientForm.symptoms) {
@@ -157,6 +202,15 @@ export function computeClinicalStats(patients: Patient[]): ClinicalStats {
     }
   })
 
+  const satisfactionCases = satisfactionAcc.count || 1
+  const satisfaction: SatisfactionAverages = {
+    work: satisfactionAcc.work / satisfactionCases,
+    family: satisfactionAcc.family / satisfactionCases,
+    couple: satisfactionAcc.couple / satisfactionCases,
+    selfCare: satisfactionAcc.selfCare / satisfactionCases,
+    count: satisfactionAcc.count,
+  }
+
   return {
     totalCases: patients.length,
     patientFormStatus,
@@ -169,7 +223,10 @@ export function computeClinicalStats(patients: Patient[]): ClinicalStats {
     symptoms,
     symptomProfile,
     casePoints,
-    weekdayActivity,
+    riskTypes: toNameCounts(riskTypeAcc),
+    referralReasons: toNameCounts(referralReasonAcc),
+    hypothesisFamilies: toNameCounts(hypothesisFamilyAcc),
+    satisfaction,
   }
 }
 

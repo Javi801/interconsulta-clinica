@@ -1,5 +1,4 @@
 import Card, { SectionHead } from '../../components/Card'
-import ColumnChart from '../../components/charts/ColumnChart'
 import Donut from '../../components/charts/Donut'
 import Heatmap from '../../components/charts/Heatmap'
 import MiniBars from '../../components/charts/MiniBars'
@@ -11,14 +10,17 @@ import type { ClinicalStats } from '../../utils/stats'
 import {
   INTENSITY_MAX,
   SCORE_MAX,
-  activityColumns,
   densityColLabels,
   densityMatrix,
   densityRowLabels,
+  hypothesisFamilyBars,
+  nameCountBars,
   personalLoadBars,
   referralSegments,
+  satisfactionBars,
   symptomRadarAxes,
   symptomRadarSeries,
+  topCount,
   triageLegend,
   triagePoints,
   triageYLabels,
@@ -30,7 +32,9 @@ interface PersonalStatsProps {
   populationStats: ClinicalStats
 }
 
-const { personal, personalCharts, empty } = TEXT.stats
+const { personal, personalCharts, personalBreakdown, empty } = TEXT.stats
+
+const SATISFACTION_MAX = 10
 
 function alertLines(stats: ClinicalStats): string[] {
   const lines: string[] = []
@@ -47,7 +51,7 @@ function PersonalStats({ stats, populationStats }: PersonalStatsProps) {
     <>
       <div className="notice">{personal.notice}</div>
       <div className="grid">
-        <Card span="full">
+        <Card span={8}>
           <SectionHead title={personalCharts.triage.title} subtitle={personalCharts.triage.subtitle} />
           <ScatterChart
             points={triagePoints(stats.casePoints)}
@@ -59,7 +63,7 @@ function PersonalStats({ stats, populationStats }: PersonalStatsProps) {
             emptyLabel={empty}
           />
         </Card>
-        <Card span={6}>
+        <Card span={4}>
           <SectionHead title={personalCharts.profile.title} subtitle={personalCharts.profile.subtitle} />
           <RadarChart
             axes={symptomRadarAxes(stats.symptomProfile)}
@@ -82,16 +86,63 @@ function PersonalStats({ stats, populationStats }: PersonalStatsProps) {
           <Donut segments={referralSegments(stats)} emptyLabel={empty} />
         </Card>
         <Card span={6}>
+          <SectionHead
+            title={personalBreakdown.riskTypes.title}
+            subtitle={personalBreakdown.riskTypes.subtitle}
+          />
+          {stats.riskTypes.length > 0 ? (
+            <MiniBars items={nameCountBars(stats.riskTypes)} max={topCount(stats.riskTypes)} layout="stacked" />
+          ) : (
+            <p className="subtitle">{empty}</p>
+          )}
+        </Card>
+        <Card span={6}>
+          <SectionHead
+            title={personalBreakdown.referralReasons.title}
+            subtitle={personalBreakdown.referralReasons.subtitle}
+          />
+          {stats.referralReasons.length > 0 ? (
+            <MiniBars
+              items={nameCountBars(stats.referralReasons)}
+              max={topCount(stats.referralReasons)}
+              layout="stacked"
+            />
+          ) : (
+            <p className="subtitle">{empty}</p>
+          )}
+        </Card>
+        <Card span={6}>
+          <SectionHead
+            title={personalBreakdown.hypotheses.title}
+            subtitle={personalBreakdown.hypotheses.subtitle}
+          />
+          {stats.hypothesisFamilies.length > 0 ? (
+            <MiniBars
+              items={hypothesisFamilyBars(stats.hypothesisFamilies)}
+              max={topCount(stats.hypothesisFamilies)}
+            />
+          ) : (
+            <p className="subtitle">{empty}</p>
+          )}
+        </Card>
+        <Card span={6}>
+          <SectionHead
+            title={personalBreakdown.satisfaction.title}
+            subtitle={personalBreakdown.satisfaction.subtitle}
+          />
+          {stats.satisfaction.count > 0 ? (
+            <MiniBars items={satisfactionBars(stats.satisfaction)} max={SATISFACTION_MAX} />
+          ) : (
+            <p className="subtitle">{empty}</p>
+          )}
+        </Card>
+        <Card span={6}>
           <SectionHead title={personal.load.title} subtitle={personal.load.subtitle} />
           <MiniBars items={personalLoadBars(stats)} max={stats.totalCases} />
         </Card>
         <Card span={6}>
           <SectionHead title={personal.alerts.title} subtitle={personal.alerts.subtitle} />
           <div className="summary-box">{alerts.length > 0 ? alerts.join('\n') : personal.alerts.none}</div>
-        </Card>
-        <Card span={6}>
-          <SectionHead title={personal.activity.title} subtitle={personal.activity.subtitle} />
-          <ColumnChart columns={activityColumns(stats)} height={150} emptyLabel={empty} />
         </Card>
       </div>
     </>

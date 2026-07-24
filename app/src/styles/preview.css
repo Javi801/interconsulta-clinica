@@ -488,6 +488,21 @@ th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.04
   text-align:right;
   font-variant-numeric:tabular-nums;
 }
+.mini-bars.stacked .mini-bar{
+  grid-template-columns:1fr 26px;
+  grid-template-areas:"label label" "track value";
+  row-gap:5px;
+}
+.mini-bars.stacked .mini-bar > span{
+  grid-area:label;
+  color:var(--text);
+}
+.mini-bars.stacked .bar-track{
+  grid-area:track;
+}
+.mini-bars.stacked .mini-bar > strong{
+  grid-area:value;
+}
 .bar-track{
   height:8px;
   border-radius:999px;

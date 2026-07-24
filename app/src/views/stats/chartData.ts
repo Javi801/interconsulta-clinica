@@ -1,6 +1,6 @@
 import type { ColumnItem } from '../../components/charts/ColumnChart'
 import type { DonutSegment } from '../../components/charts/Donut'
-import type { BarItem } from '../../components/charts/MiniBars'
+import type { BarItem, BarTone } from '../../components/charts/MiniBars'
 import type { RadarSeries } from '../../components/charts/RadarChart'
 import type { ScatterPoint, ScatterTone } from '../../components/charts/ScatterChart'
 import { TEXT } from '../../text'
@@ -8,13 +8,23 @@ import type { ReferralOutcome } from '../../utils/sadPersons'
 import type {
   CasePoint,
   ClinicalStats,
+  NameCount,
   PsychologistLoad,
+  SatisfactionAverages,
   SymptomDomainStat,
   SymptomStat,
 } from '../../utils/stats'
 import type { RiskLevel } from '../../types'
 
-const { formStatus, referral, risk, weekdays, personalCharts, symptomShort } = TEXT.stats
+const {
+  formStatus,
+  referral,
+  risk,
+  personalCharts,
+  symptomShort,
+  hypothesisFamilies,
+  satisfactionShort,
+} = TEXT.stats
 
 /** Intensity scale used to map symptom averages to full column height. */
 export const INTENSITY_MAX = 10
@@ -76,10 +86,6 @@ export const personalLoadBars = (stats: ClinicalStats): BarItem[] => [
   { label: TEXT.stats.personal.load.drafts, value: stats.psychFormStatus.draft, tone: 'default' },
   { label: TEXT.stats.personal.load.sent, value: stats.psychFormStatus.sent, tone: 'success' },
 ]
-
-/** Weekday activity, Monday to Friday. */
-export const activityColumns = (stats: ClinicalStats): ColumnItem[] =>
-  weekdays.slice(0, 5).map((label, index) => ({ label, value: stats.weekdayActivity[index] }))
 
 export const psychologistLoadBars = (loads: PsychologistLoad[]): BarItem[] =>
   loads.map((load) => ({ label: load.name, value: load.count, tone: 'default' }))
@@ -155,3 +161,27 @@ export const densityMatrix = (casePoints: CasePoint[]): number[][] => {
   }
   return matrix
 }
+
+// --- Personal clinical breakdowns (existing MiniBars primitive) ---
+
+/** Ranked frequency list. Pass `max = topCount(items)` to MiniBars so the leader fills the bar. */
+export const nameCountBars = (items: NameCount[], limit = 6): BarItem[] =>
+  items.slice(0, limit).map((item) => ({ label: item.name, value: item.count, tone: 'default' }))
+
+/** Largest count in a ranked list (already sorted desc), or 1 when empty. */
+export const topCount = (items: NameCount[]): number => items[0]?.count ?? 1
+
+const familyLabel = hypothesisFamilies as Record<string, string>
+
+export const hypothesisFamilyBars = (items: NameCount[]): BarItem[] =>
+  items.map((item) => ({ label: familyLabel[item.name] ?? item.name, value: item.count, tone: 'default' }))
+
+const satisfactionTone = (value: number): BarTone =>
+  value <= 3 ? 'danger' : value <= 5 ? 'warning' : 'success'
+
+export const satisfactionBars = (satisfaction: SatisfactionAverages): BarItem[] =>
+  (['work', 'family', 'couple', 'selfCare'] as const).map((key) => ({
+    label: satisfactionShort[key],
+    value: Math.round(satisfaction[key] * 10) / 10,
+    tone: satisfactionTone(satisfaction[key]),
+  }))
