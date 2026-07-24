@@ -313,7 +313,8 @@ export const TEXT = {
         generalData: 'Datos generales',
         motive: 'Motivo y expectativas',
         symptoms: 'Síntomas actuales',
-        medications: 'Medicamentos actuales',
+        medications: 'Medicamentos',
+        personalHistory: 'Antecedentes personales de salud',
         familyAndSubstances: 'Antecedentes familiares y consumo',
       },
       pinModal: {
@@ -461,6 +462,8 @@ export const TEXT = {
     medication: {
       prescribedBy: (value: string) => `Indicado por ${value}`,
       adherence: (value: string) => `Adherencia percibida: ${value}`,
+      indication: (value: string) => `Para: ${value}`,
+      pastTag: 'anterior',
     },
     family: {
       line: (relationship: string, condition: string, type: string) =>
@@ -472,6 +475,13 @@ export const TEXT = {
     },
     familyAndSubstances: (family: string, substances: string) =>
       `Antecedente familiar:\n${family}\n\nConsumo:\n${substances}`,
+    history: {
+      line: (condition: string, origin: string, detail: string) =>
+        detail ? `- ${condition}: ${origin}, ${detail}` : `- ${condition}: ${origin}`,
+      severe: 'grave, crónica o discapacitante',
+    },
+    personalHistory: (mental: string, physical: string) =>
+      `Salud mental:\n${mental}\n\nSalud física:\n${physical}`,
     suggestion: {
       derive: 'Derivar',
       notDerive: 'No derivar',

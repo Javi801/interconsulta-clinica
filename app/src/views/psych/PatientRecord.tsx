@@ -7,6 +7,7 @@ import {
   generalSummary,
   medicationsSummary,
   motiveSummary,
+  personalHistorySummary,
   symptomsSummary,
 } from '../../utils/summary'
 import type { Patient } from '../../types'
@@ -65,6 +66,10 @@ function PatientRecord({ patient, onBack }: PatientRecordProps) {
         <Card span={6}>
           <h2>{TEXT.psych.record.cards.familyAndSubstances}</h2>
           <div className="summary-box">{familyAndSubstancesSummary(form)}</div>
+        </Card>
+        <Card span="full">
+          <h2>{TEXT.psych.record.cards.personalHistory}</h2>
+          <div className="summary-box">{personalHistorySummary(form)}</div>
         </Card>
       </div>
       {showPin && (
