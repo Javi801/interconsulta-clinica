@@ -215,8 +215,5 @@ export interface PsychForm {
   hypotheses: ClinicalHypothesis[]
   risks: ClinicalRisk[]
   referralReasons: string[]
-  /** Manual per-item corrections to the computed SAD PERSONS score. */
-  sadPersonsOverrides: Partial<Record<SadPersonsKey, boolean>>
-  suggestionValid: boolean
   report: ReferralReport
 }

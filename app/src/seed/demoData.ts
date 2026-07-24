@@ -805,8 +805,6 @@ export const DEFAULT_PSYCH_FORM: PsychForm = {
   hypotheses: [],
   risks: [],
   referralReasons: [],
-  sadPersonsOverrides: {},
-  suggestionValid: true,
   report: {
     request: '',
     summary: '',
@@ -844,8 +842,6 @@ export const SEED_PSYCH_FORMS: Record<string, PsychForm> = {
       'Persistencia de síntomas',
       'Deterioro funcional',
     ],
-    sadPersonsOverrides: {},
-    suggestionValid: true,
     report: {
       request: 'Se solicita evaluación psiquiátrica para revisar continuidad y ajuste farmacológico.',
       summary: 'Paciente de 35 años, profesora, con ansiedad persistente e insomnio asociado a estrés laboral.',
@@ -894,8 +890,6 @@ export const SEED_PSYCH_FORMS: Record<string, PsychForm> = {
       'Evaluación de riesgo',
       'Dificultades relacionadas con consumo',
     ],
-    sadPersonsOverrides: {},
-    suggestionValid: true,
     report: {
       request: 'Se solicita evaluación psiquiátrica prioritaria por síntomas depresivos y consumo de alcohol.',
       summary: 'Paciente separado, vive solo, trabaja por turnos y presenta deterioro funcional reciente.',
@@ -931,8 +925,6 @@ export const SEED_PSYCH_FORMS: Record<string, PsychForm> = {
     ],
     risks: [{ id: 1, risk: 'Abandono del autocuidado', presence: 'Presente', level: 'Bajo' }],
     referralReasons: ['Evaluación diagnóstica', 'Ajuste o revisión de tratamiento'],
-    sadPersonsOverrides: {},
-    suggestionValid: true,
     report: {
       request: 'Se solicita evaluación psiquiátrica para diagnóstico diferencial y manejo integrado.',
       summary: 'Paciente de 51 años con dolor crónico, fatiga y baja motivación.',
@@ -964,8 +956,6 @@ export const SEED_PSYCH_FORMS: Record<string, PsychForm> = {
     ],
     risks: [],
     referralReasons: ['Continuidad de esquema farmacológico', 'Evaluación de respuesta a medicamentos'],
-    sadPersonsOverrides: {},
-    suggestionValid: true,
     report: {
       request: 'Se solicita continuidad psiquiátrica para ajuste de escitalopram.',
       summary: 'Paciente de 57 años con ansiedad crónica, vive sola y mantiene actividad laboral.',
@@ -1005,7 +995,6 @@ export function getSeedPsychForm(rut: string): PsychForm {
     hypotheses: form.hypotheses.map((item) => ({ ...item })),
     risks: form.risks.map((item) => ({ ...item })),
     referralReasons: [...form.referralReasons],
-    sadPersonsOverrides: { ...form.sadPersonsOverrides },
     report: { ...form.report },
   }
 }

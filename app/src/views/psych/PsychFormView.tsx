@@ -97,20 +97,10 @@ function PsychFormView({ patient, onBack, readOnly = false }: PsychFormViewProps
         />
       ) : readOnly ? (
         <fieldset className="readonly-form" disabled>
-          <PsychFormContent
-            patientForm={patientForm}
-            form={form}
-            onChange={setForm}
-            status={status}
-          />
+          <PsychFormContent form={form} onChange={setForm} status={status} />
         </fieldset>
       ) : (
-        <PsychFormContent
-          patientForm={patientForm}
-          form={form}
-          onChange={setForm}
-          status={status}
-        />
+        <PsychFormContent form={form} onChange={setForm} status={status} />
       )}
     </div>
   )

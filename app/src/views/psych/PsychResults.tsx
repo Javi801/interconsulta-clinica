@@ -1,8 +1,10 @@
 import Card, { SectionHead } from '../../components/Card'
 import Field from '../../components/Field'
 import { TEXT } from '../../text'
+import { computeGrayZone, computeSadPersons } from '../../utils/sadPersons'
 import { simpleSummary } from '../../utils/summary'
 import type { PatientForm, PsychForm, ReferralReport } from '../../types'
+import SuggestionPanel from './SuggestionPanel'
 
 interface PsychResultsProps {
   patientForm: PatientForm
@@ -23,9 +25,12 @@ const REPORT_KEYS: (keyof ReferralReport)[] = [
 
 function PsychResults({ patientForm, psychForm, onReportChange, readOnly = false }: PsychResultsProps) {
   const report = psychForm.report
+  const sadPersons = computeSadPersons(patientForm, psychForm)
+  const grayZone = computeGrayZone(patientForm, psychForm)
 
   return (
     <div className="grid">
+      <SuggestionPanel result={sadPersons} grayZone={grayZone} />
       <Card span={6}>
         <SectionHead title={TEXT.psych.results.simple.title} subtitle={TEXT.psych.results.simple.subtitle}>
           {!readOnly && (
