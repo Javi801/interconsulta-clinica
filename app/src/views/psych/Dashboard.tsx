@@ -16,21 +16,29 @@ interface DashboardProps {
 function Dashboard({ patients, onCreate, onImportExcel, onOpenRecord, onOpenForm }: DashboardProps) {
   const [creating, setCreating] = useState(false)
   const [newRut, setNewRut] = useState('')
-  const [newName, setNewName] = useState('')
+  const [newFirstName, setNewFirstName] = useState('')
+  const [newLastName, setNewLastName] = useState('')
 
   const closeModal = () => {
     setCreating(false)
     setNewRut('')
-    setNewName('')
+    setNewFirstName('')
+    setNewLastName('')
   }
 
   const handleCreate = () => {
     const rut = newRut.trim()
+    const firstName = newFirstName.trim()
+    const lastName = newLastName.trim()
     if (!rut) {
       alert(TEXT.psych.dashboard.rutRequiredAlert)
       return
     }
-    onCreate(rut, newName.trim())
+    if (!firstName || !lastName) {
+      alert(TEXT.psych.dashboard.nameRequiredAlert)
+      return
+    }
+    onCreate(rut, `${firstName} ${lastName}`)
     closeModal()
   }
 
@@ -101,11 +109,19 @@ function Dashboard({ patients, onCreate, onImportExcel, onOpenRecord, onOpenForm
             />
           </div>
           <div className="field" style={{ marginTop: 12 }}>
-            <label>{TEXT.psych.dashboard.createModal.nameLabel}</label>
+            <label>{TEXT.psych.dashboard.createModal.firstNameLabel}</label>
             <input
-              placeholder={TEXT.psych.dashboard.createModal.namePlaceholder}
-              value={newName}
-              onChange={(e) => setNewName(e.target.value)}
+              placeholder={TEXT.psych.dashboard.createModal.firstNamePlaceholder}
+              value={newFirstName}
+              onChange={(e) => setNewFirstName(e.target.value)}
+            />
+          </div>
+          <div className="field" style={{ marginTop: 12 }}>
+            <label>{TEXT.psych.dashboard.createModal.lastNameLabel}</label>
+            <input
+              placeholder={TEXT.psych.dashboard.createModal.lastNamePlaceholder}
+              value={newLastName}
+              onChange={(e) => setNewLastName(e.target.value)}
             />
           </div>
           <div className="modal-actions">

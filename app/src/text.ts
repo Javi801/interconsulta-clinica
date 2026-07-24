@@ -219,7 +219,6 @@ export const TEXT = {
       subtitle: 'Accede a cada formulario directamente desde su estado.',
       exportExcel: 'Exportar Excel',
       notSentAlert: 'El formulario del paciente aún no ha sido enviado.',
-      unnamedPatient: 'Paciente sin nombre',
       importedPatient: 'Paciente importado',
       today: 'Hoy',
       excelReplacedAlert:
@@ -232,7 +231,8 @@ export const TEXT = {
       subtitle: 'Haz clic sobre el estado del formulario que quieras revisar.',
       newPatient: 'Nuevo paciente',
       loadExcel: 'Cargar Excel',
-      rutRequiredAlert: 'Debes ingresar al menos el RUT.',
+      rutRequiredAlert: 'Debes ingresar el RUT.',
+      nameRequiredAlert: 'Debes ingresar nombres y apellidos.',
       columns: {
         rut: 'RUT',
         patient: 'Paciente',
@@ -243,11 +243,13 @@ export const TEXT = {
       createModal: {
         title: 'Nueva instancia de paciente',
         subtitle:
-          'Ingresa al menos el RUT para crear el registro y habilitar el formulario del paciente.',
+          'Ingresa el RUT, nombres y apellidos para crear el registro y habilitar el formulario del paciente.',
         rutLabel: 'RUT',
         rutPlaceholder: '12.345.678-9',
-        nameLabel: 'Nombre, opcional',
-        namePlaceholder: 'Nombre del paciente',
+        firstNameLabel: 'Nombres',
+        firstNamePlaceholder: 'Nombres del paciente',
+        lastNameLabel: 'Apellidos',
+        lastNamePlaceholder: 'Apellidos del paciente',
         create: 'Crear paciente',
       },
     },
