@@ -1,103 +1,93 @@
-import type { Coordinator, Patient, PatientForm, PsychForm, Psychologist } from '../types'
+import database from './database.json'
+import type {
+  ClinicalEvaluation,
+  ClinicalHypothesis,
+  ClinicalRisk,
+  Coordinator,
+  DiagnosisOrigin,
+  FamilyHistory,
+  FormStatus,
+  Medication,
+  Patient,
+  PatientForm,
+  PhysicalHistory,
+  PsychForm,
+  Psychologist,
+  RiskLevel,
+  RiskPresence,
+  SubstanceUse,
+  Symptom,
+  SymptomCourse,
+} from '../types'
 
-export const EDIT_PIN = '4827'
+type SatisfactionTuple = [number, number, number, number]
+type SymptomSeed = [string, number, string, SymptomCourse, string]
+type FamilySeed = [string, string]
+type SubstanceSeed = [string, string, string, string]
+type HypothesisSeed = [string, 'Alta' | 'Media' | 'Baja', string]
+type RiskSeed = [string, RiskPresence, RiskLevel]
 
-export const ACCESS_CODE = '738 512'
+interface SeedCase {
+  rut: string
+  name: string
+  assignedPsychologistId: string
+  patientFormStatus: FormStatus
+  psychFormStatus: FormStatus
+  updatedAt: string
+  general: Omit<PatientForm['general'], 'rut'>
+  selfReport: PatientForm['motive'] & { satisfaction: SatisfactionTuple }
+  symptoms: SymptomSeed[]
+  history: {
+    mental: string[]
+    physical: string[]
+    family: FamilySeed[]
+    substances: SubstanceSeed[]
+  }
+  clinical: {
+    presentation: string
+    mood: string
+    thought: string
+    hypotheses: HypothesisSeed[]
+    risks: RiskSeed[]
+    referralReasons: string[]
+  }
+}
 
-export const IMPORTED_RUT = '15.222.333-4'
+interface SeedDatabase {
+  settings: {
+    accessCode: string
+    editPin: string
+    importedRut: string
+    demoPsychologistId: string
+    demoCoordinatorId: string
+  }
+  coordinators: Coordinator[]
+  psychologists: Psychologist[]
+  cases: SeedCase[]
+}
 
-export const SEED_PSYCHOLOGISTS: Psychologist[] = [
-  { id: 'psy-1', name: 'Carla Muñoz' },
-  { id: 'psy-2', name: 'Rodrigo Fuentes' },
-  { id: 'psy-3', name: 'Valentina Rojas' },
-  { id: 'psy-4', name: 'Sebastian Lagos' },
-]
+const db = database as SeedDatabase
 
-/** Psychologist whose session is simulated in the demo. */
-export const DEMO_PSYCHOLOGIST_ID = SEED_PSYCHOLOGISTS[0].id
+export const EDIT_PIN = db.settings.editPin
+export const ACCESS_CODE = db.settings.accessCode
+export const IMPORTED_RUT = db.settings.importedRut
 
-export const SEED_COORDINATORS: Coordinator[] = [
-  { id: 'coord-1', name: 'María José Herrera' },
-  { id: 'coord-2', name: 'Paula Contreras' },
-]
+export const SEED_PSYCHOLOGISTS: Psychologist[] = db.psychologists
+export const DEMO_PSYCHOLOGIST_ID = db.settings.demoPsychologistId
 
-/** Coordinator whose session is simulated in the demo. */
-export const DEMO_COORDINATOR_ID = SEED_COORDINATORS[0].id
+export const SEED_COORDINATORS: Coordinator[] = db.coordinators
+export const DEMO_COORDINATOR_ID = db.settings.demoCoordinatorId
 
-export const SEED_PATIENTS: Patient[] = [
-  {
-    rut: '12.345.678-5',
-    name: 'Daniela Pérez Soto',
-    assignedPsychologistId: 'psy-1',
-    patientFormStatus: 'sent',
-    psychFormStatus: 'sent',
-    updatedAt: '23/07/2026',
-  },
-  {
-    rut: '18.456.321-9',
-    name: 'Camilo Araya Rivas',
-    assignedPsychologistId: 'psy-1',
-    patientFormStatus: 'sent',
-    psychFormStatus: 'draft',
-    updatedAt: '23/07/2026',
-  },
-  {
-    rut: '21.654.987-0',
-    name: 'Florencia Salinas Vera',
-    assignedPsychologistId: 'psy-1',
-    patientFormStatus: 'not-sent',
-    psychFormStatus: 'pending',
-    updatedAt: '22/07/2026',
-  },
-  {
-    rut: '9.876.543-2',
-    name: 'Martín González Mena',
-    assignedPsychologistId: 'psy-1',
-    patientFormStatus: 'draft',
-    psychFormStatus: 'pending',
-    updatedAt: '21/07/2026',
-  },
-  {
-    rut: '11.222.333-4',
-    name: 'Javiera Torres Leiva',
-    assignedPsychologistId: 'psy-2',
-    patientFormStatus: 'sent',
-    psychFormStatus: 'pending',
-    updatedAt: '22/07/2026',
-  },
-  {
-    rut: '16.789.012-3',
-    name: 'Ignacio Bravo Castillo',
-    assignedPsychologistId: 'psy-2',
-    patientFormStatus: 'sent',
-    psychFormStatus: 'sent',
-    updatedAt: '20/07/2026',
-  },
-  {
-    rut: '7.654.321-1',
-    name: 'Elena Rojas Campos',
-    assignedPsychologistId: 'psy-3',
-    patientFormStatus: 'sent',
-    psychFormStatus: 'draft',
-    updatedAt: '19/07/2026',
-  },
-  {
-    rut: '20.111.222-8',
-    name: 'Nicolas Paredes Nunez',
-    assignedPsychologistId: 'psy-3',
-    patientFormStatus: 'sent',
-    psychFormStatus: 'pending',
-    updatedAt: '18/07/2026',
-  },
-  {
-    rut: '14.333.222-6',
-    name: 'Teresa Valdes Aguirre',
-    assignedPsychologistId: 'psy-4',
-    patientFormStatus: 'sent',
-    psychFormStatus: 'sent',
-    updatedAt: '17/07/2026',
-  },
-]
+export const SEED_PATIENTS: Patient[] = db.cases.map(
+  ({ rut, name, assignedPsychologistId, patientFormStatus, psychFormStatus, updatedAt }) => ({
+    rut,
+    name,
+    assignedPsychologistId,
+    patientFormStatus,
+    psychFormStatus,
+    updatedAt,
+  }),
+)
 
 export const DEFAULT_PATIENT_FORM: PatientForm = {
   general: {
@@ -119,12 +109,7 @@ export const DEFAULT_PATIENT_FORM: PatientForm = {
     psychiatryFears: '',
     additionalInfo: '',
   },
-  satisfaction: {
-    work: 5,
-    family: 5,
-    couple: 5,
-    selfCare: 5,
-  },
+  satisfaction: { work: 5, family: 5, couple: 5, selfCare: 5 },
   symptoms: [],
   medications: [],
   substances: [],
@@ -132,658 +117,6 @@ export const DEFAULT_PATIENT_FORM: PatientForm = {
   mentalHistory: [],
   physicalHistory: [],
   lifeEvents: [],
-}
-
-// Autorreporte completado por cada paciente sobre sí mismo.
-export const SEED_PATIENT_FORMS: Record<string, PatientForm> = {
-  '12.345.678-5': {
-    general: {
-      rut: '12.345.678-5',
-      firstName: 'Daniela',
-      lastName: 'Pérez Soto',
-      birthDate: '1991-05-18',
-      gender: 'Mujer',
-      nationality: 'Chilena',
-      livesWith: 'Pareja e hija',
-      relationshipStatus: 'Conviviente',
-      occupations: ['Trabaja'],
-      occupationDetail: 'Profesora de educación básica, jornada completa',
-    },
-    motive: {
-      mainReason: 'Ansiedad persistente, insomnio y baja concentración en el trabajo.',
-      since: 'Desde marzo de 2025, con aumento durante el primer semestre de 2026.',
-      expectations: 'Quiero entender qué me pasa y volver a funcionar mejor en mi día a día.',
-      psychiatryFears: 'Me preocupa depender de medicamentos o sentirme aplanada.',
-      additionalInfo: 'En mi trabajo cambió la jefatura y mi mamá tuvo depresión.',
-    },
-    satisfaction: { work: 3, family: 7, couple: 6, selfCare: 4 },
-    symptoms: [
-      {
-        name: 'Ansiedad',
-        intensity: 8,
-        onset: '2025-03',
-        course: 'Constante',
-        observation: 'Preocupación excesiva y dificultad para desconectarse',
-      },
-      {
-        name: 'Sueño',
-        intensity: 8,
-        onset: '2025-04',
-        course: 'Fluctuante',
-        observation: 'Latencia prolongada y despertares nocturnos',
-      },
-      {
-        name: 'Cognición',
-        intensity: 6,
-        onset: '2025-08',
-        course: 'Constante',
-        observation: 'Olvidos y menor rendimiento laboral',
-      },
-    ],
-    medications: [
-      {
-        id: 1,
-        name: 'Sertralina',
-        status: 'Actual',
-        linkedCondition: { source: 'mental', id: 1 },
-        dose: '50 mg',
-        frequency: 'Una vez al día',
-        frequencyDetail: '',
-        times: ['08:00'],
-        period: '',
-        prescribedBy: 'Médico general o de familia',
-        adherence: 'Alta',
-      },
-      {
-        id: 2,
-        name: 'Zopiclona',
-        status: 'Pasado',
-        linkedCondition: null,
-        dose: '7,5 mg',
-        frequency: 'Según necesidad (SOS)',
-        frequencyDetail: '',
-        times: [],
-        period: 'Abril a mayo de 2026',
-        prescribedBy: 'Médico general o de familia',
-        adherence: 'Media',
-      },
-    ],
-    substances: [
-      {
-        substance: 'Alcohol',
-        status: 'Consumo actual',
-        frequency: '2 a 3 veces por semana',
-        usualAmount: '2 copas por ocasión',
-        onset: '2012-01',
-        lastUse: '2026-07-18',
-      },
-    ],
-    familyHistory: [
-      {
-        condition: 'Depresión',
-        relationship: 'Madre',
-        type: 'Diagnóstico confirmado',
-        observation: 'Tratamiento previo con buena respuesta',
-      },
-    ],
-    mentalHistory: [
-      {
-        id: 1,
-        condition: 'Ansiedad',
-        origin: 'Diagnóstico médico',
-        diagnosisDate: '2025-03',
-        diagnosedBy: 'Médico general o de familia',
-        observation: 'En seguimiento psicológico desde abril de 2025',
-      },
-    ],
-    physicalHistory: [
-      {
-        id: 1,
-        condition: 'Hipertensión',
-        origin: 'Diagnóstico médico',
-        diagnosisDate: '2019-06',
-        diagnosedBy: 'Médico general o de familia',
-        severe: true,
-        observation: 'Control irregular durante periodos de estrés',
-      },
-    ],
-    lifeEvents: [
-      {
-        category: 'Cambio laboral',
-        startPrecision: 'Mes y año',
-        startDate: '2025-03',
-        endPrecision: 'Mes y año',
-        endDate: '2026-07',
-        description: 'Cambio de jefatura y aumento de carga',
-      },
-    ],
-  },
-  '18.456.321-9': {
-    general: {
-      rut: '18.456.321-9',
-      firstName: 'Camilo',
-      lastName: 'Araya Rivas',
-      birthDate: '1986-11-02',
-      gender: 'Hombre',
-      nationality: 'Chilena',
-      livesWith: 'Solo',
-      relationshipStatus: 'Separado/a',
-      occupations: ['Trabaja por turnos'],
-      occupationDetail: 'Tecnico de mantencion, turnos rotativos nocturnos',
-    },
-    motive: {
-      mainReason: 'Ánimo bajo, irritabilidad y consumo de alcohol después de la separación.',
-      since: 'Desde noviembre de 2025, mas intenso en las ultimas ocho semanas.',
-      expectations: 'Quiero ordenar lo que me está pasando y bajar el consumo de alcohol.',
-      psychiatryFears: 'Me preocupa que me den licencia y eso afecte mi trabajo.',
-      additionalInfo: 'He faltado al trabajo y me he alejado de mi familia.',
-    },
-    satisfaction: { work: 4, family: 3, couple: 2, selfCare: 3 },
-    symptoms: [
-      {
-        name: 'Estado de ánimo',
-        intensity: 8,
-        onset: '2025-11',
-        course: 'Constante',
-        observation: 'Desesperanza y llanto fácil',
-      },
-      {
-        name: 'Conducta e impulsividad',
-        intensity: 7,
-        onset: '2026-05',
-        course: 'Episódico',
-        observation: 'Discuto más cuando he tomado alcohol',
-      },
-      {
-        name: 'Sueño',
-        intensity: 7,
-        onset: '2026-01',
-        course: 'Fluctuante',
-        observation: 'Duerme poco después de turnos nocturnos',
-      },
-    ],
-    medications: [],
-    substances: [
-      {
-        substance: 'Alcohol',
-        status: 'Consumo actual',
-        frequency: '4 a 5 veces por semana',
-        usualAmount: '5 a 6 tragos por ocasión',
-        onset: '2008-01',
-        lastUse: '2026-07-22',
-      },
-      {
-        substance: 'Tabaco',
-        status: 'Consumo actual',
-        frequency: 'Diario',
-        usualAmount: '10 cigarrillos',
-        onset: '2004-01',
-        lastUse: '2026-07-23',
-      },
-    ],
-    familyHistory: [
-      {
-        condition: 'Consumo problemático de sustancias',
-        relationship: 'Padre',
-        type: 'Referido por la familia',
-        observation: '',
-      },
-    ],
-    mentalHistory: [
-      {
-        id: 1,
-        condition: 'Depresión',
-        origin: 'En estudio',
-        diagnosisDate: '',
-        diagnosedBy: '',
-        observation: 'Me cuesta mantener mi rutina y cumplir con el trabajo',
-      },
-    ],
-    physicalHistory: [],
-    lifeEvents: [
-      {
-        category: 'Separación',
-        startPrecision: 'Mes y año',
-        startDate: '2025-11',
-        endPrecision: 'Mes y año',
-        endDate: '2026-02',
-        description: 'Separación de pareja y cambio de domicilio',
-      },
-    ],
-  },
-  '11.222.333-4': {
-    general: {
-      rut: '11.222.333-4',
-      firstName: 'Javiera',
-      lastName: 'Torres Leiva',
-      birthDate: '1998-02-09',
-      gender: 'Mujer',
-      nationality: 'Chilena',
-      livesWith: 'Madre y hermano menor',
-      relationshipStatus: 'Soltero/a',
-      occupations: ['Estudia', 'Trabaja'],
-      occupationDetail: 'Estudiante vespertina y vendedora part-time',
-    },
-    motive: {
-      mainReason: 'Crisis de pánico, evitación de transporte público y miedo a descompensarme.',
-      since: 'Desde enero de 2026 tras un asalto camino al trabajo.',
-      expectations: 'Quiero saber cómo manejar las crisis y poder volver a moverme con más seguridad.',
-      psychiatryFears: 'Tengo dudas por experiencias negativas que escuché sobre medicamentos.',
-      additionalInfo: 'La evitación me está afectando para ir a clases y cumplir turnos.',
-    },
-    satisfaction: { work: 5, family: 6, couple: 5, selfCare: 4 },
-    symptoms: [
-      {
-        name: 'Ansiedad',
-        intensity: 9,
-        onset: '2026-01',
-        course: 'Episódico',
-        observation: 'Crisis con palpitaciones y temor a morir',
-      },
-      {
-        name: 'Cognición',
-        intensity: 6,
-        onset: '2026-02',
-        course: 'Fluctuante',
-        observation: 'Dificultad para concentrarse en clases',
-      },
-    ],
-    medications: [
-      {
-        id: 1,
-        name: 'Propranolol',
-        status: 'Actual',
-        linkedCondition: { source: 'mental', id: 1 },
-        dose: '10 mg',
-        frequency: 'Según necesidad (SOS)',
-        frequencyDetail: '',
-        times: [],
-        period: '',
-        prescribedBy: 'Médico general o de familia',
-        adherence: 'Media',
-      },
-    ],
-    substances: [],
-    familyHistory: [
-      {
-        condition: 'Trastornos de ansiedad',
-        relationship: 'Tía materna',
-        type: 'Diagnóstico confirmado',
-        observation: '',
-      },
-    ],
-    mentalHistory: [
-      {
-        id: 1,
-        condition: 'Ataques de pánico',
-        origin: 'Diagnóstico médico',
-        diagnosisDate: '2026-02',
-        diagnosedBy: 'Médico general o de familia',
-        observation: '',
-      },
-    ],
-    physicalHistory: [],
-    lifeEvents: [
-      {
-        category: 'Evento traumático',
-        startPrecision: 'Fecha exacta',
-        startDate: '2026-01-14',
-        endPrecision: 'Fecha exacta',
-        endDate: '2026-01-14',
-        description: 'Asalto en trayecto al trabajo',
-      },
-    ],
-  },
-  '16.789.012-3': {
-    general: {
-      rut: '16.789.012-3',
-      firstName: 'Ignacio',
-      lastName: 'Bravo Castillo',
-      birthDate: '1974-09-27',
-      gender: 'Hombre',
-      nationality: 'Chilena',
-      livesWith: 'Esposa',
-      relationshipStatus: 'Casado/a',
-      occupations: ['Trabaja'],
-      occupationDetail: 'Contador independiente',
-    },
-    motive: {
-      mainReason: 'Fatiga, ánimo bajo y baja motivación asociada a dolor crónico.',
-      since: 'Desde mediados de 2024, con empeoramiento posterior a una licencia médica.',
-      expectations: 'Quiero saber si mi ánimo bajo tiene tratamiento y cómo manejarlo junto con el dolor.',
-      psychiatryFears: 'Le inquietan efectos secundarios y somnolencia.',
-      additionalInfo: 'El dolor lumbar crónico limita mi actividad física y laboral.',
-    },
-    satisfaction: { work: 4, family: 7, couple: 7, selfCare: 3 },
-    symptoms: [
-      {
-        name: 'Estado de ánimo',
-        intensity: 7,
-        onset: '2024-08',
-        course: 'Constante',
-        observation: 'Anhedonia y baja energía',
-      },
-      {
-        name: 'Energía y activación',
-        intensity: 8,
-        onset: '2024-08',
-        course: 'Constante',
-        observation: 'Cansancio diario',
-      },
-    ],
-    medications: [
-      {
-        id: 1,
-        name: 'Duloxetina',
-        status: 'Actual',
-        linkedCondition: { source: 'physical', id: 1 },
-        dose: '30 mg',
-        frequency: 'Una vez al día',
-        frequencyDetail: '',
-        times: ['21:00'],
-        period: '',
-        prescribedBy: 'Otro especialista',
-        adherence: 'Media',
-      },
-    ],
-    substances: [
-      {
-        substance: 'Alcohol',
-        status: 'Uso ocasional',
-        frequency: '1 vez al mes',
-        usualAmount: '1 a 2 copas',
-        onset: '1994-01',
-        lastUse: '2026-07-04',
-      },
-    ],
-    familyHistory: [
-      {
-        condition: 'Depresión',
-        relationship: 'Hermana',
-        type: 'Diagnóstico confirmado',
-        observation: '',
-      },
-    ],
-    mentalHistory: [],
-    physicalHistory: [
-      {
-        id: 1,
-        condition: 'Dolor crónico o fibromialgia',
-        origin: 'Diagnóstico médico',
-        diagnosisDate: '2023-10',
-        diagnosedBy: 'Otro especialista',
-        severe: true,
-        observation: 'Dolor lumbar con restricciones laborales',
-      },
-    ],
-    lifeEvents: [
-      {
-        category: 'Enfermedad',
-        startPrecision: 'Mes y año',
-        startDate: '2023-10',
-        endPrecision: 'Mes y año',
-        endDate: '2026-07',
-        description: 'Inicio de dolor crónico',
-      },
-    ],
-  },
-  '7.654.321-1': {
-    general: {
-      rut: '7.654.321-1',
-      firstName: 'Elena',
-      lastName: 'Rojas Campos',
-      birthDate: '1958-12-04',
-      gender: 'Mujer',
-      nationality: 'Chilena',
-      livesWith: 'Hija adulta',
-      relationshipStatus: 'Viudo/a',
-      occupations: ['Dueña/o de casa', 'Cuidadora/or'],
-      occupationDetail: 'Cuida a nieto durante la semana',
-    },
-    motive: {
-      mainReason: 'Duelo prolongado, insomnio y preocupación por salud.',
-      since: 'Desde fallecimiento de su esposo en septiembre de 2025.',
-      expectations: 'Recibir apoyo para dormir y manejar el duelo.',
-      psychiatryFears: 'Me da miedo que la evaluación signifique hospitalización.',
-      additionalInfo: 'He dejado de hacer actividades sociales y me siento cansada casi todos los días.',
-    },
-    satisfaction: { work: 5, family: 6, couple: 1, selfCare: 4 },
-    symptoms: [
-      {
-        name: 'Estado de ánimo',
-        intensity: 7,
-        onset: '2025-09',
-        course: 'Fluctuante',
-        observation: 'Tristeza y llanto al recordar a su esposo',
-      },
-      {
-        name: 'Sueño',
-        intensity: 8,
-        onset: '2025-10',
-        course: 'Constante',
-        observation: 'Despertar precoz',
-      },
-    ],
-    medications: [
-      {
-        id: 1,
-        name: 'Levotiroxina',
-        status: 'Actual',
-        linkedCondition: { source: 'physical', id: 1 },
-        dose: '75 mcg',
-        frequency: 'Una vez al día',
-        frequencyDetail: '',
-        times: ['07:30'],
-        period: '',
-        prescribedBy: 'Otro especialista',
-        adherence: 'Alta',
-      },
-    ],
-    substances: [],
-    familyHistory: [],
-    mentalHistory: [
-      {
-        id: 1,
-        condition: 'Insomnio o trastorno del sueño',
-        origin: 'Autopercibido',
-        diagnosisDate: '',
-        diagnosedBy: '',
-        observation: '',
-      },
-    ],
-    physicalHistory: [
-      {
-        id: 1,
-        condition: 'Enfermedad tiroidea',
-        origin: 'Diagnóstico médico',
-        diagnosisDate: '2016-04',
-        diagnosedBy: 'Otro especialista',
-        severe: true,
-        observation: 'Hipotiroidismo en control',
-      },
-    ],
-    lifeEvents: [
-      {
-        category: 'Duelo',
-        startPrecision: 'Fecha exacta',
-        startDate: '2025-09-02',
-        endPrecision: 'Mes y año',
-        endDate: '2026-07',
-        description: 'Fallecimiento de esposo',
-      },
-    ],
-  },
-  '20.111.222-8': {
-    general: {
-      rut: '20.111.222-8',
-      firstName: 'Nicolás',
-      lastName: 'Paredes Núñez',
-      birthDate: '2007-03-12',
-      gender: 'Hombre',
-      nationality: 'Chilena',
-      livesWith: 'Madre, padrastro y hermana',
-      relationshipStatus: 'Soltero/a',
-      occupations: ['Estudia'],
-      occupationDetail: 'Estudiante de cuarto medio',
-    },
-    motive: {
-      mainReason: 'Autolesiones recientes, ansiedad escolar y aislamiento.',
-      since: 'Desde abril de 2026, asociado a conflicto escolar.',
-      expectations: 'Quiero dejar de sentirme tan sobrepasado y tener apoyo sin sentirme juzgado.',
-      psychiatryFears: 'Me preocupa que mi familia lea todo lo que converse.',
-      additionalInfo: 'Me cuesta hablar de esto en mi casa y he faltado a clases.',
-    },
-    satisfaction: { work: 2, family: 4, couple: 5, selfCare: 2 },
-    symptoms: [
-      {
-        name: 'Estado de ánimo',
-        intensity: 8,
-        onset: '2026-04',
-        course: 'Constante',
-        observation: 'Irritabilidad y desesperanza',
-      },
-      {
-        name: 'Conducta e impulsividad',
-        intensity: 9,
-        onset: '2026-06',
-        course: 'Episódico',
-        observation: 'Cortes superficiales en antebrazo',
-      },
-    ],
-    medications: [],
-    substances: [
-      {
-        substance: 'Cannabis',
-        status: 'Uso ocasional',
-        frequency: 'Fines de semana',
-        usualAmount: '1 cigarro compartido',
-        onset: '2025-10',
-        lastUse: '2026-07-19',
-      },
-    ],
-    familyHistory: [
-      {
-        condition: 'Suicidio o intentos suicidas',
-        relationship: 'Primo',
-        type: 'Referido por la familia',
-        observation: '',
-      },
-    ],
-    mentalHistory: [
-      {
-        id: 1,
-        condition: 'Autolesiones',
-        origin: 'En estudio',
-        diagnosisDate: '',
-        diagnosedBy: '',
-        observation: 'No he consultado antes por esto',
-      },
-    ],
-    physicalHistory: [],
-    lifeEvents: [
-      {
-        category: 'Problema familiar',
-        startPrecision: 'Mes y año',
-        startDate: '2026-04',
-        endPrecision: 'Mes y año',
-        endDate: '2026-07',
-        description: 'Conflicto escolar y familiar',
-      },
-    ],
-  },
-  '14.333.222-6': {
-    general: {
-      rut: '14.333.222-6',
-      firstName: 'Teresa',
-      lastName: 'Valdés Aguirre',
-      birthDate: '1969-06-21',
-      gender: 'Mujer',
-      nationality: 'Chilena',
-      livesWith: 'Sola',
-      relationshipStatus: 'Divorciado/a',
-      occupations: ['Trabaja'],
-      occupationDetail: 'Administrativa en consulta dental',
-    },
-    motive: {
-      mainReason: 'Preocupación constante, irritabilidad y temor a perder control.',
-      since: 'Desde 2024, con mayor intensidad por deudas familiares.',
-      expectations: 'Quiero manejar mejor la ansiedad y revisar si mi tratamiento actual me está ayudando.',
-      psychiatryFears: 'Me preocupa subir de peso con medicamentos.',
-      additionalInfo: 'Tuve cáncer de mama y actualmente estoy en remisión.',
-    },
-    satisfaction: { work: 5, family: 4, couple: 2, selfCare: 4 },
-    symptoms: [
-      {
-        name: 'Ansiedad',
-        intensity: 7,
-        onset: '2024-05',
-        course: 'Constante',
-        observation: 'Rumiación y tensión muscular',
-      },
-      {
-        name: 'Sueño',
-        intensity: 6,
-        onset: '2024-06',
-        course: 'Fluctuante',
-        observation: 'Sueño liviano',
-      },
-    ],
-    medications: [
-      {
-        id: 1,
-        name: 'Escitalopram',
-        status: 'Actual',
-        linkedCondition: { source: 'mental', id: 1 },
-        dose: '10 mg',
-        frequency: 'Una vez al día',
-        frequencyDetail: '',
-        times: ['09:00'],
-        period: '',
-        prescribedBy: 'Psiquiatra',
-        adherence: 'Alta',
-      },
-    ],
-    substances: [],
-    familyHistory: [
-      {
-        condition: 'Trastornos de ansiedad',
-        relationship: 'Hija',
-        type: 'Diagnóstico confirmado',
-        observation: '',
-      },
-    ],
-    mentalHistory: [
-      {
-        id: 1,
-        condition: 'Ansiedad',
-        origin: 'Diagnóstico médico',
-        diagnosisDate: '2024-05',
-        diagnosedBy: 'Psiquiatra',
-        observation: 'Control previo con buena respuesta parcial',
-      },
-    ],
-    physicalHistory: [
-      {
-        id: 1,
-        condition: 'Cáncer',
-        origin: 'Diagnóstico médico',
-        diagnosisDate: '2020-01',
-        diagnosedBy: 'Otro especialista',
-        severe: true,
-        observation: 'En remisión, controles anuales',
-      },
-    ],
-    lifeEvents: [
-      {
-        category: 'Problema familiar',
-        startPrecision: 'Año',
-        startDate: '2024',
-        endPrecision: 'Mes y año',
-        endDate: '2026-07',
-        description: 'Deudas de hijo adulto',
-      },
-    ],
-  },
 }
 
 export const DEFAULT_PSYCH_FORM: PsychForm = {
@@ -816,161 +149,175 @@ export const DEFAULT_PSYCH_FORM: PsychForm = {
   },
 }
 
-// Evaluación clínica completada por el psicólogo sobre el paciente.
-export const SEED_PSYCH_FORMS: Record<string, PsychForm> = {
-  '12.345.678-5': {
-    evaluation: {
-      appearance: 'Presentacion personal adecuada al contexto.',
-      behavior: 'Colaboradora, inquietud motora leve.',
-      attitude: 'Cooperadora y dispuesta durante la entrevista.',
-      language: 'Fluido, coherente y de volumen conservado.',
-      mood: 'Ansioso, con afecto congruente.',
-      affect: 'Reactivo, resonancia conservada.',
-      thought: 'Curso conservado, preocupación laboral persistente.',
-      perception: 'Sin alteraciones sensoperceptivas.',
-      orientation: 'Orientada en tiempo, espacio y persona.',
-      attention: 'Atencion y concentración levemente disminuidas.',
-      memory: 'Memoria reciente y remota conservadas.',
-      judgment: 'Conservado.',
-      insight: 'Buena conciencia de su situacion actual.',
-      additionalObservations: 'Sin hallazgos clinicos adicionales relevantes.',
+const medicationFor = (condition: string, source: 'mental' | 'physical', id: number): Medication => ({
+  id,
+  name: source === 'physical' ? 'Tratamiento habitual' : 'Tratamiento indicado',
+  status: 'Actual',
+  linkedCondition: { source, id },
+  dose: '',
+  frequency: 'Una vez al día',
+  frequencyDetail: '',
+  times: [],
+  period: '',
+  prescribedBy: source === 'physical' ? 'Otro especialista' : 'Médico general o de familia',
+  adherence: condition === 'Consumo problemático de alcohol o drogas' ? 'Baja' : 'Media',
+})
+
+function patientFormFromSeed(seedCase: SeedCase): PatientForm {
+  const mentalHistory = seedCase.history.mental.map((condition, index) => ({
+    id: index + 1,
+    condition,
+    origin: (index === 0 ? 'En estudio' : 'Autopercibido') as DiagnosisOrigin,
+    diagnosisDate: '',
+    diagnosedBy: '',
+    observation: '',
+  }))
+  const physicalHistory: PhysicalHistory[] = seedCase.history.physical.map((condition, index) => ({
+    id: index + 1,
+    condition,
+    origin: 'Diagnóstico médico',
+    diagnosisDate: '',
+    diagnosedBy: 'Otro especialista',
+    severe: /cáncer|dolor crónico|diabetes|hipertensión|tiroidea|bajo peso|desnutrición/i.test(
+      condition,
+    ),
+    observation: '',
+  }))
+
+  const medications = [
+    ...mentalHistory.slice(0, 1).map((entry) => medicationFor(entry.condition, 'mental', entry.id)),
+    ...physicalHistory.slice(0, 1).map((entry) => medicationFor(entry.condition, 'physical', entry.id)),
+  ]
+
+  return {
+    general: { ...seedCase.general, rut: seedCase.rut },
+    motive: {
+      mainReason: seedCase.selfReport.mainReason,
+      since: seedCase.selfReport.since,
+      expectations: seedCase.selfReport.expectations,
+      psychiatryFears: seedCase.selfReport.psychiatryFears,
+      additionalInfo: seedCase.selfReport.additionalInfo,
     },
-    hypotheses: [
-      { hypothesis: 'Trastorno de ansiedad generalizada (TAG)', priority: 'Media', comment: '' },
-    ],
-    risks: [{ id: 1, risk: 'Ideas de muerte', presence: 'Antecedente', level: 'Bajo' }],
-    referralReasons: [
-      'Continuidad de esquema farmacológico',
-      'Persistencia de síntomas',
-      'Deterioro funcional',
-    ],
-    report: {
-      request: 'Se solicita evaluación psiquiátrica para revisar continuidad y ajuste farmacológico.',
-      summary: 'Paciente de 35 años, profesora, con ansiedad persistente e insomnio asociado a estrés laboral.',
-      symptoms: 'Ansiedad 8/10, insomnio 8/10 y dificultades cognitivas 6/10.',
-      medications: 'Sertralina 50 mg diaria. Uso previo breve de zopiclona.',
-      previousTreatments: 'Atención psicológica desde 2025 y manejo inicial por medicina general.',
-      background: 'Antecedente familiar de depresión e hipertensión en control irregular.',
+    satisfaction: {
+      work: seedCase.selfReport.satisfaction[0],
+      family: seedCase.selfReport.satisfaction[1],
+      couple: seedCase.selfReport.satisfaction[2],
+      selfCare: seedCase.selfReport.satisfaction[3],
     },
-  },
-  '18.456.321-9': {
-    evaluation: {
-      appearance: 'Aseo conservado, aspecto cansado.',
-      behavior: 'Contacto visual intermitente, enlentecimiento leve.',
-      attitude: 'Colaborador, inicialmente reservado.',
-      language: 'Discurso claro, volumen bajo.',
-      mood: 'Ánimo depresivo con ansiedad asociada.',
-      affect: 'Hipomodulado, congruente.',
-      thought: 'Rumiación por separación y dificultades laborales.',
-      perception: 'Sin elementos psicóticos pesquisados.',
-      orientation: 'Orientado globalmente.',
-      attention: 'Disminuida por preocupación persistente.',
-      memory: 'Conservada.',
-      judgment: 'Parcialmente conservado bajo consumo alcohólico.',
-      insight: 'Reconoce problema de consumo y aislamiento.',
-      additionalObservations: 'Requiere evaluar riesgo y consumo problemático.',
-    },
-    hypotheses: [
-      {
-        hypothesis: 'Trastorno Depresivo único moderado',
-        priority: 'Alta',
-        comment: 'Deterioro funcional y síntomas persistentes.',
-      },
-      {
-        hypothesis: 'Consumo problemático de sustancias',
-        priority: 'Alta',
-        comment: 'Aumento de alcohol como estrategia de afrontamiento.',
-      },
-    ],
-    risks: [
-      { id: 1, risk: 'Ideas de muerte', presence: 'Presente', level: 'Moderado' },
-      { id: 2, risk: 'Consumo de sustancias con riesgo', presence: 'Presente', level: 'Alto' },
-      { id: 3, risk: 'Vulnerabilidad social', presence: 'Presente', level: 'Moderado' },
-    ],
-    referralReasons: [
-      'Inicio de esquema farmacológico',
-      'Evaluación de riesgo',
-      'Dificultades relacionadas con consumo',
-    ],
-    report: {
-      request: 'Se solicita evaluación psiquiátrica prioritaria por síntomas depresivos y consumo de alcohol.',
-      summary: 'Paciente separado, vive solo, trabaja por turnos y presenta deterioro funcional reciente.',
-      symptoms: 'Ánimo bajo 8/10, impulsividad 7/10 e insomnio 7/10.',
-      medications: 'Sin tratamiento farmacológico actual.',
-      previousTreatments: 'Sin tratamientos psiquiátricos previos declarados.',
-      background: 'Antecedente familiar de consumo problemático y red de apoyo disminuida.',
-    },
-  },
-  '16.789.012-3': {
-    evaluation: {
-      appearance: 'Adecuada, postura rígida por dolor.',
-      behavior: 'Colaborador, movimientos lentos.',
-      attitude: 'Cooperador y preocupado por funcionalidad.',
-      language: 'Normal en ritmo y volumen.',
-      mood: 'Bajo, con frustración por dolor persistente.',
-      affect: 'Reactivo, restringido por momentos.',
-      thought: 'Preocupaciones somáticas y laborales predominantes.',
-      perception: 'Sin alteraciones.',
-      orientation: 'Orientado en las tres esferas.',
-      attention: 'Levemente disminuida por dolor.',
-      memory: 'Conservada.',
-      judgment: 'Conservado.',
-      insight: 'Adecuado, vincula dolor y estado anímico.',
-      additionalObservations: 'Conviene coordinación con equipo tratante de dolor.',
-    },
-    hypotheses: [
-      {
-        hypothesis: 'Trastorno Depresivo único moderado',
-        priority: 'Media',
-        comment: 'Asociado a dolor crónico y limitación funcional.',
-      },
-    ],
-    risks: [{ id: 1, risk: 'Abandono del autocuidado', presence: 'Presente', level: 'Bajo' }],
-    referralReasons: ['Evaluación diagnóstica', 'Ajuste o revisión de tratamiento'],
-    report: {
-      request: 'Se solicita evaluación psiquiátrica para diagnóstico diferencial y manejo integrado.',
-      summary: 'Paciente de 51 años con dolor crónico, fatiga y baja motivación.',
-      symptoms: 'Ánimo bajo 7/10 y energía disminuida 8/10.',
-      medications: 'Duloxetina 30 mg indicada por dolor crónico.',
-      previousTreatments: 'Seguimiento por especialista de dolor, sin psicofármacos previos relevantes.',
-      background: 'Dolor crónico discapacitante y antecedente familiar de depresión.',
-    },
-  },
-  '14.333.222-6': {
-    evaluation: {
-      appearance: 'Adecuada, prolija.',
-      behavior: 'Hipervigilante, sin agitación.',
-      attitude: 'Cooperadora, pide información clara.',
-      language: 'Fluido y organizado.',
-      mood: 'Ansioso.',
-      affect: 'Congruente, amplitud conservada.',
-      thought: 'Rumiación económica y familiar.',
-      perception: 'Sin alteraciones.',
-      orientation: 'Orientada globalmente.',
-      attention: 'Sostenida, con distractibilidad leve.',
-      memory: 'Conservada.',
-      judgment: 'Conservado.',
-      insight: 'Adecuado.',
-      additionalObservations: 'Mantiene controles oncológicos preventivos.',
-    },
-    hypotheses: [
-      { hypothesis: 'Trastorno de ansiedad generalizada (TAG)', priority: 'Media', comment: '' },
-    ],
-    risks: [],
-    referralReasons: ['Continuidad de esquema farmacológico', 'Evaluación de respuesta a medicamentos'],
-    report: {
-      request: 'Se solicita continuidad psiquiátrica para ajuste de escitalopram.',
-      summary: 'Paciente de 57 años con ansiedad crónica, vive sola y mantiene actividad laboral.',
-      symptoms: 'Ansiedad 7/10 y alteraciones del sueno 6/10.',
-      medications: 'Escitalopram 10 mg diario con adherencia alta.',
-      previousTreatments: 'Control psiquiatrico previo por ansiedad.',
-      background: 'Cáncer de mama en remision y estrés familiar por deudas.',
-    },
-  },
+    symptoms: seedCase.symptoms.map<Symptom>(([name, intensity, onset, course, observation]) => ({
+      name,
+      intensity,
+      onset,
+      course,
+      observation,
+    })),
+    medications,
+    substances: seedCase.history.substances.map<SubstanceUse>(
+      ([substance, status, frequency, usualAmount]) => ({
+        substance,
+        status,
+        frequency,
+        usualAmount,
+        onset: '',
+        lastUse: seedCase.updatedAt.split('/').reverse().join('-'),
+      }),
+    ),
+    familyHistory: seedCase.history.family.map<FamilyHistory>(([condition, relationship]) => ({
+      condition,
+      relationship,
+      type: 'Referido por la familia',
+      observation: '',
+    })),
+    mentalHistory,
+    physicalHistory,
+    lifeEvents: [],
+  }
 }
 
+const emptyEvaluation = DEFAULT_PSYCH_FORM.evaluation
+
+function buildEvaluation(seedCase: SeedCase): ClinicalEvaluation {
+  return {
+    appearance: seedCase.clinical.presentation,
+    behavior: 'Colabora durante la entrevista, sin alteraciones conductuales mayores.',
+    attitude: 'Actitud cooperadora.',
+    language: 'Lenguaje claro y organizado.',
+    mood: seedCase.clinical.mood,
+    affect: 'Afecto congruente con el contenido relatado.',
+    thought: seedCase.clinical.thought,
+    perception: 'Sin alteraciones sensoperceptivas pesquisadas.',
+    orientation: 'Orientación conservada.',
+    attention: 'Atención suficiente para entrevista clínica.',
+    memory: 'Memoria globalmente conservada.',
+    judgment: 'Juicio conservado salvo áreas descritas en riesgo.',
+    insight: 'Insight parcial a adecuado.',
+    additionalObservations:
+      seedCase.psychFormStatus === 'pending'
+        ? 'Evaluación clínica pendiente de cierre.'
+        : 'Se integra información del autorreporte y entrevista psicológica.',
+  }
+}
+
+function psychFormFromSeed(seedCase: SeedCase): PsychForm {
+  if (seedCase.clinical.hypotheses.length === 0 && seedCase.clinical.risks.length === 0) {
+    return DEFAULT_PSYCH_FORM
+  }
+
+  const patientForm = patientFormFromSeed(seedCase)
+  const hypotheses = seedCase.clinical.hypotheses.map<ClinicalHypothesis>(
+    ([hypothesis, priority, comment]) => ({ hypothesis, priority, comment }),
+  )
+  const risks = seedCase.clinical.risks.map<ClinicalRisk>(([risk, presence, level], index) => ({
+    id: index + 1,
+    risk,
+    presence,
+    level,
+  }))
+  const symptomSummary = patientForm.symptoms
+    .map((symptom) => `${symptom.name} ${symptom.intensity}/10`)
+    .join(', ')
+
+  return {
+    evaluation: seedCase.psychFormStatus === 'pending' ? { ...emptyEvaluation } : buildEvaluation(seedCase),
+    hypotheses,
+    risks,
+    referralReasons: seedCase.clinical.referralReasons,
+    report: {
+      request: seedCase.clinical.referralReasons.length
+        ? `Se solicita evaluación psiquiátrica por ${seedCase.clinical.referralReasons[0].toLowerCase()}.`
+        : '',
+      summary: `${seedCase.name}, ${patientForm.general.occupationDetail.toLowerCase()}, consulta por ${patientForm.motive.mainReason.toLowerCase()}`,
+      symptoms: symptomSummary,
+      medications: patientForm.medications.length
+        ? patientForm.medications.map((medication) => medication.name).join(', ')
+        : 'Sin medicamentos actuales declarados.',
+      previousTreatments: patientForm.mentalHistory.length
+        ? patientForm.mentalHistory.map((entry) => entry.condition).join(', ')
+        : 'Sin antecedentes de salud mental declarados.',
+      background: [
+        patientForm.familyHistory.length ? 'Antecedentes familiares presentes' : '',
+        patientForm.physicalHistory.length ? 'Antecedentes físicos relevantes' : '',
+        patientForm.substances.length ? 'Consumo de sustancias declarado' : '',
+      ]
+        .filter(Boolean)
+        .join('. '),
+    },
+  }
+}
+
+export const SEED_PATIENT_FORMS: Record<string, PatientForm> = Object.fromEntries(
+  db.cases.map((seedCase) => [seedCase.rut, patientFormFromSeed(seedCase)]),
+)
+
+export const SEED_PSYCH_FORMS: Record<string, PsychForm> = Object.fromEntries(
+  db.cases.map((seedCase) => [seedCase.rut, psychFormFromSeed(seedCase)]),
+)
+
 export function getSeedPatientForm(rut: string): PatientForm {
-  const form = SEED_PATIENT_FORMS[rut] ?? DEFAULT_PATIENT_FORM
+  const form = SEED_PATIENT_FORMS[rut] ?? {
+    ...DEFAULT_PATIENT_FORM,
+    general: { ...DEFAULT_PATIENT_FORM.general, rut },
+  }
   return {
     ...form,
     general: { ...form.general, rut },

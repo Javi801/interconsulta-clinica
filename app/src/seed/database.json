@@ -1,0 +1,4497 @@
+{
+  "settings": {
+    "accessCode": "738 512",
+    "editPin": "4827",
+    "importedRut": "15.222.333-4",
+    "demoPsychologistId": "psy-1",
+    "demoCoordinatorId": "coord-1"
+  },
+  "coordinators": [
+    {
+      "id": "coord-1",
+      "name": "María José Herrera"
+    }
+  ],
+  "psychologists": [
+    {
+      "id": "psy-1",
+      "name": "Carla Muñoz"
+    },
+    {
+      "id": "psy-2",
+      "name": "Rodrigo Fuentes"
+    },
+    {
+      "id": "psy-3",
+      "name": "Valentina Rojas"
+    },
+    {
+      "id": "psy-4",
+      "name": "Sebastián Lagos"
+    },
+    {
+      "id": "psy-5",
+      "name": "Antonia Silva"
+    }
+  ],
+  "cases": [
+    {
+      "rut": "12.345.678-5",
+      "name": "Daniela Pérez Soto",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "23/07/2026",
+      "general": {
+        "firstName": "Daniela",
+        "lastName": "Pérez Soto",
+        "birthDate": "1991-05-18",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Pareja e hija",
+        "relationshipStatus": "Conviviente",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Profesora de educación básica"
+      },
+      "selfReport": {
+        "mainReason": "Ansiedad persistente, insomnio y baja concentración en el trabajo.",
+        "since": "Desde marzo de 2025, peor este semestre.",
+        "expectations": "Quiero entender qué me pasa y volver a funcionar mejor.",
+        "psychiatryFears": "Me preocupa depender de medicamentos.",
+        "additionalInfo": "Cambió mi jefatura y mi mamá tuvo depresión.",
+        "satisfaction": [
+          3,
+          7,
+          6,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          8,
+          "2025-03",
+          "Constante",
+          "Preocupación excesiva"
+        ],
+        [
+          "Sueño",
+          8,
+          "2025-04",
+          "Fluctuante",
+          "Despertares nocturnos"
+        ],
+        [
+          "Cognición",
+          4,
+          "2025-08",
+          "Constante",
+          "Olvidos puntuales en semanas de más carga"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Ansiedad"
+        ],
+        "physical": [
+          "Hipertensión"
+        ],
+        "family": [
+          [
+            "Depresión",
+            "Madre"
+          ]
+        ],
+        "substances": [
+          [
+            "Alcohol",
+            "Consumo actual",
+            "2 a 3 veces por semana",
+            "2 copas"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Colaboradora, inquietud motora leve.",
+        "mood": "Ansioso, afecto congruente.",
+        "thought": "Preocupación laboral persistente.",
+        "hypotheses": [
+          [
+            "Trastorno de ansiedad generalizada (TAG)",
+            "Media",
+            ""
+          ]
+        ],
+        "risks": [
+          [
+            "Ideas de muerte",
+            "Antecedente",
+            "Bajo"
+          ]
+        ],
+        "referralReasons": [
+          "Continuidad de esquema farmacológico",
+          "Persistencia de síntomas",
+          "Deterioro funcional"
+        ]
+      }
+    },
+    {
+      "rut": "18.456.321-9",
+      "name": "Camilo Araya Rivas",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "draft",
+      "updatedAt": "23/07/2026",
+      "general": {
+        "firstName": "Camilo",
+        "lastName": "Araya Rivas",
+        "birthDate": "1986-11-02",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Solo",
+        "relationshipStatus": "Separado/a",
+        "occupations": [
+          "Trabaja por turnos"
+        ],
+        "occupationDetail": "Técnico de mantención"
+      },
+      "selfReport": {
+        "mainReason": "Ánimo bajo, irritabilidad y más consumo de alcohol desde mi separación.",
+        "since": "Desde noviembre de 2025.",
+        "expectations": "Quiero ordenar lo que me pasa y bajar el consumo.",
+        "psychiatryFears": "Me preocupa que me den licencia.",
+        "additionalInfo": "He faltado al trabajo y me aislé de mi familia.",
+        "satisfaction": [
+          4,
+          3,
+          2,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Estado de ánimo",
+          8,
+          "2025-11",
+          "Constante",
+          "Desesperanza"
+        ],
+        [
+          "Conducta e impulsividad",
+          7,
+          "2026-05",
+          "Episódico",
+          "Discuto cuando he tomado"
+        ],
+        [
+          "Sueño",
+          7,
+          "2026-01",
+          "Fluctuante",
+          "Duermo poco tras turnos"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Depresión"
+        ],
+        "physical": [],
+        "family": [
+          [
+            "Consumo problemático de sustancias",
+            "Padre"
+          ]
+        ],
+        "substances": [
+          [
+            "Alcohol",
+            "Consumo actual",
+            "4 a 5 veces por semana",
+            "5 a 6 tragos"
+          ],
+          [
+            "Tabaco",
+            "Consumo actual",
+            "Diario",
+            "10 cigarrillos"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Aseo conservado, aspecto cansado.",
+        "mood": "Ánimo depresivo con ansiedad asociada.",
+        "thought": "Rumiación por separación y dificultades laborales.",
+        "hypotheses": [
+          [
+            "Trastorno Depresivo único moderado",
+            "Alta",
+            "Deterioro funcional"
+          ],
+          [
+            "Consumo problemático de sustancias",
+            "Alta",
+            "Alcohol como afrontamiento"
+          ]
+        ],
+        "risks": [
+          [
+            "Ideas de muerte",
+            "Presente",
+            "Moderado"
+          ],
+          [
+            "Consumo de sustancias con riesgo",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Vulnerabilidad social",
+            "Presente",
+            "Moderado"
+          ]
+        ],
+        "referralReasons": [
+          "Inicio de esquema farmacológico",
+          "Evaluación de riesgo",
+          "Dificultades relacionadas con consumo"
+        ]
+      }
+    },
+    {
+      "rut": "21.654.987-0",
+      "name": "Florencia Salinas Vera",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "not-sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "22/07/2026",
+      "general": {
+        "firstName": "Florencia",
+        "lastName": "Salinas Vera",
+        "birthDate": "2001-08-16",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Madre",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Estudia"
+        ],
+        "occupationDetail": "Estudiante universitaria"
+      },
+      "selfReport": {
+        "mainReason": "Me bloqueo antes de pruebas y evito entrar a clases.",
+        "since": "Desde abril de 2026.",
+        "expectations": "Quiero aprender a manejar la ansiedad.",
+        "psychiatryFears": "Me da miedo quedar somnolienta.",
+        "additionalInfo": "Estoy atrasada en varios ramos.",
+        "satisfaction": [
+          4,
+          6,
+          5,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          7,
+          "2026-04",
+          "Episódico",
+          "Antes de evaluaciones"
+        ],
+        [
+          "Cognición",
+          6,
+          "2026-04",
+          "Fluctuante",
+          "Me cuesta estudiar"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [],
+        "family": [
+          [
+            "Trastornos de ansiedad",
+            "Hermana"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Registro creado, formulario aún no enviado.",
+        "mood": "Sin evaluación clínica completa.",
+        "thought": "Pendiente de entrevista.",
+        "hypotheses": [],
+        "risks": [],
+        "referralReasons": []
+      }
+    },
+    {
+      "rut": "9.876.543-2",
+      "name": "Martín González Mena",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "draft",
+      "psychFormStatus": "pending",
+      "updatedAt": "21/07/2026",
+      "general": {
+        "firstName": "Martín",
+        "lastName": "González Mena",
+        "birthDate": "1995-02-21",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Amigo",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Repartidor independiente"
+      },
+      "selfReport": {
+        "mainReason": "Me cuesta dormir y me enojo fácil.",
+        "since": "Hace unos tres meses.",
+        "expectations": "Quiero descansar mejor.",
+        "psychiatryFears": "No quiero tomar algo que me impida trabajar.",
+        "additionalInfo": "Mis horarios cambian mucho.",
+        "satisfaction": [
+          5,
+          5,
+          5,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Sueño",
+          7,
+          "2026-04",
+          "Fluctuante",
+          "Horarios desordenados"
+        ],
+        [
+          "Conducta e impulsividad",
+          5,
+          "2026-05",
+          "Episódico",
+          "Irritabilidad"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [],
+        "family": [],
+        "substances": [
+          [
+            "Cannabis",
+            "Uso ocasional",
+            "Fines de semana",
+            "1 cigarro compartido"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Formulario en borrador, sin evaluación clínica completa.",
+        "mood": "Pendiente.",
+        "thought": "Pendiente.",
+        "hypotheses": [],
+        "risks": [],
+        "referralReasons": []
+      }
+    },
+    {
+      "rut": "13.245.876-6",
+      "name": "Paula Medina Carrasco",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "21/07/2026",
+      "general": {
+        "firstName": "Paula",
+        "lastName": "Medina Carrasco",
+        "birthDate": "1979-04-09",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Hijos",
+        "relationshipStatus": "Separado/a",
+        "occupations": [
+          "Trabaja",
+          "Cuidadora/or"
+        ],
+        "occupationDetail": "Administrativa y cuidadora principal"
+      },
+      "selfReport": {
+        "mainReason": "Estoy agotada, lloro con facilidad y siento que no alcanzo con todo.",
+        "since": "Desde que mi papá enfermó en 2025.",
+        "expectations": "Quiero recuperar energía y paciencia.",
+        "psychiatryFears": "Me preocupa no poder cuidar a mis hijos si me siento sedada.",
+        "additionalInfo": "Estoy a cargo de muchas cosas familiares.",
+        "satisfaction": [
+          4,
+          4,
+          3,
+          2
+        ]
+      },
+      "symptoms": [
+        [
+          "Estado de ánimo",
+          7,
+          "2025-09",
+          "Constante",
+          "Llanto frecuente"
+        ],
+        [
+          "Energía y activación",
+          8,
+          "2025-10",
+          "Constante",
+          "Cansancio"
+        ],
+        [
+          "Sueño",
+          6,
+          "2025-10",
+          "Fluctuante",
+          "Despertar temprano"
+        ],
+        [
+          "Alimentación",
+          3,
+          "2026-01",
+          "Fluctuante",
+          "Come a deshoras por sobrecarga"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Depresión",
+          "Intento de suicidio previo"
+        ],
+        "physical": [
+          "Migraña",
+          "Dolor crónico o fibromialgia"
+        ],
+        "family": [
+          [
+            "Depresión",
+            "Padre"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Apariencia cansada, colaboradora.",
+        "mood": "Ánimo bajo, afecto congruente.",
+        "thought": "Sobrecarga sostenida, culpa por autocuidado, antecedente remoto de intento autolítico e ideas de escape sin plan actual.",
+        "hypotheses": [
+          [
+            "Trastorno Depresivo único moderado",
+            "Alta",
+            "Sobrecarga de cuidados con deterioro funcional"
+          ]
+        ],
+        "risks": [
+          [
+            "Abandono del autocuidado",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Ideas de muerte",
+            "Presente",
+            "Moderado"
+          ],
+          [
+            "Vulnerabilidad social",
+            "Presente",
+            "Moderado"
+          ],
+          [
+            "Intentos suicidas previos",
+            "Antecedente",
+            "Moderado"
+          ]
+        ],
+        "referralReasons": [
+          "Inicio de esquema farmacológico",
+          "Evaluación de riesgo",
+          "Deterioro funcional"
+        ]
+      }
+    },
+    {
+      "rut": "27.111.222-3",
+      "name": "Felipe Donoso Arancibia",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "21/07/2026",
+      "general": {
+        "firstName": "Felipe",
+        "lastName": "Donoso Arancibia",
+        "birthDate": "1970-02-10",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Solo",
+        "relationshipStatus": "Divorciado/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Operador de maquinaria"
+      },
+      "selfReport": {
+        "mainReason": "No duermo casi nada, estoy tomando mucho y he pensado seriamente en no seguir.",
+        "since": "Desde que perdí contacto con mis hijos, peor este mes.",
+        "expectations": "Quiero que alguien me ayude antes de hacer una tontera.",
+        "psychiatryFears": "Me preocupa que me internen, pero sé que no estoy bien.",
+        "additionalInfo": "Tengo una cuerda guardada en la bodega y he tomado para darme valor.",
+        "satisfaction": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "symptoms": [
+        [
+          "Sueño",
+          1,
+          "2026-06",
+          "Constante",
+          "Duerme una a dos horas"
+        ],
+        [
+          "Estado de ánimo",
+          10,
+          "2026-05",
+          "Constante",
+          "Desesperanza intensa"
+        ],
+        [
+          "Conducta e impulsividad",
+          9,
+          "2026-07",
+          "Episódico",
+          "Preparativos y consumo"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Intento de suicidio previo",
+          "Depresión"
+        ],
+        "physical": [
+          "Hipertensión"
+        ],
+        "family": [
+          [
+            "Suicidio o intentos suicidas",
+            "Padre"
+          ]
+        ],
+        "substances": [
+          [
+            "Alcohol",
+            "Consumo actual",
+            "Diario",
+            "8 a 10 tragos"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Aspecto descuidado, olor etílico leve, acepta retirar medios con apoyo familiar.",
+        "mood": "Depresivo severo, ansiedad alta.",
+        "thought": "Ideación suicida activa, plan estructurado, acceso a medio y baja red de apoyo.",
+        "hypotheses": [
+          [
+            "Trastorno Depresivo único grave",
+            "Alta",
+            "Ideación suicida activa con plan"
+          ],
+          [
+            "Consumo problemático de sustancias",
+            "Alta",
+            "Alcohol diario usado para desinhibición"
+          ]
+        ],
+        "risks": [
+          [
+            "Ideación suicida",
+            "Presente",
+            "Inminente"
+          ],
+          [
+            "Plan suicida",
+            "Presente",
+            "Inminente"
+          ],
+          [
+            "Acceso a medios potencialmente letales",
+            "Presente",
+            "Inminente"
+          ],
+          [
+            "Intentos suicidas previos",
+            "Antecedente",
+            "Alto"
+          ],
+          [
+            "Consumo de sustancias con riesgo",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Síntomas psicóticos con riesgo",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Vulnerabilidad social",
+            "Presente",
+            "Alto"
+          ]
+        ],
+        "referralReasons": [
+          "Evaluación de riesgo",
+          "Agravamiento de síntomas",
+          "Dificultades relacionadas con consumo",
+          "Sospecha de psicosis"
+        ]
+      }
+    },
+    {
+      "rut": "17.901.234-2",
+      "name": "Héctor Riquelme Soto",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "draft",
+      "updatedAt": "20/07/2026",
+      "general": {
+        "firstName": "Héctor",
+        "lastName": "Riquelme Soto",
+        "birthDate": "1979-12-30",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Esposa e hijo",
+        "relationshipStatus": "Casado/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Conductor de aplicación"
+      },
+      "selfReport": {
+        "mainReason": "Siento tensión constante y miedo a que me pase algo manejando.",
+        "since": "Desde un choque menor en febrero.",
+        "expectations": "Quiero volver a manejar tranquilo.",
+        "psychiatryFears": "No quiero perder mi fuente de ingreso.",
+        "additionalInfo": "Evito autopistas.",
+        "satisfaction": [
+          4,
+          7,
+          6,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          8,
+          "2026-02",
+          "Episódico",
+          "Al manejar o anticipar autopistas"
+        ],
+        [
+          "Sueño",
+          4,
+          "2026-02",
+          "Fluctuante",
+          "Pesadillas ocasionales, no todas las noches"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Estrés postraumático"
+        ],
+        "physical": [],
+        "family": [],
+        "substances": [
+          [
+            "Alcohol",
+            "Uso ocasional",
+            "1 vez al mes",
+            "1 cerveza"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Tenso, atento a estímulos externos.",
+        "mood": "Ansioso.",
+        "thought": "Temor anticipatorio asociado a conducción.",
+        "hypotheses": [
+          [
+            "Trastorno de estrés postraumático (TEPT)",
+            "Media",
+            "Síntomas posteriores a choque"
+          ]
+        ],
+        "risks": [],
+        "referralReasons": [
+          "Evaluación diagnóstica",
+          "Persistencia de síntomas"
+        ]
+      }
+    },
+    {
+      "rut": "26.481.903-7",
+      "name": "Renata Aguilera Soto",
+      "assignedPsychologistId": "psy-5",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "20/07/2026",
+      "general": {
+        "firstName": "Renata",
+        "lastName": "Aguilera Soto",
+        "birthDate": "2008-05-26",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Madre y abuela",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Estudia"
+        ],
+        "occupationDetail": "Estudiante de tercero medio"
+      },
+      "selfReport": {
+        "mainReason": "He pensado que mi familia estaría mejor sin mí y me asusta no poder parar esos pensamientos.",
+        "since": "Desde junio, más fuerte esta semana.",
+        "expectations": "Quiero estar segura y que alguien me ayude a decirlo en mi casa.",
+        "psychiatryFears": "Me da miedo que todos se enojen conmigo.",
+        "additionalInfo": "Guardé pastillas, pero se lo conté a una amiga.",
+        "satisfaction": [
+          1,
+          3,
+          4,
+          1
+        ]
+      },
+      "symptoms": [
+        [
+          "Estado de ánimo",
+          9,
+          "2026-06",
+          "Constante",
+          "Desesperanza"
+        ],
+        [
+          "Ansiedad",
+          9,
+          "2026-06",
+          "Constante",
+          "Crisis nocturnas intensas"
+        ],
+        [
+          "Conducta e impulsividad",
+          9,
+          "2026-07",
+          "Episódico",
+          "Impulso de tomar pastillas"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Intento de suicidio previo",
+          "Depresión"
+        ],
+        "physical": [],
+        "family": [
+          [
+            "Suicidio o intentos suicidas",
+            "Tío materno"
+          ]
+        ],
+        "substances": [
+          [
+            "Benzodiacepinas sin indicación o fuera de la dosis indicada",
+            "Consumo anterior",
+            "Episodios aislados",
+            "Pastillas disponibles en casa"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Adolescente angustiada, llanto frecuente, acepta medidas de seguridad.",
+        "mood": "Depresivo severo, ansiedad alta.",
+        "thought": "Ideación suicida activa con acopio de fármacos, vulnerabilidad familiar y ambivalencia con búsqueda de ayuda.",
+        "hypotheses": [
+          [
+            "Trastorno Depresivo único grave",
+            "Alta",
+            "Ideación suicida activa"
+          ],
+          [
+            "Trastorno Adaptativo mixto",
+            "Media",
+            "Conflicto familiar reciente"
+          ]
+        ],
+        "risks": [
+          [
+            "Ideación suicida",
+            "Presente",
+            "Inminente"
+          ],
+          [
+            "Plan suicida",
+            "Presente",
+            "Inminente"
+          ],
+          [
+            "Acceso a medios potencialmente letales",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Intentos suicidas previos",
+            "Antecedente",
+            "Alto"
+          ],
+          [
+            "Vulnerabilidad social",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Consumo de sustancias con riesgo",
+            "Antecedente",
+            "Moderado"
+          ]
+        ],
+        "referralReasons": [
+          "Evaluación de riesgo",
+          "Agravamiento de síntomas",
+          "Inicio de esquema farmacológico"
+        ]
+      }
+    },
+    {
+      "rut": "19.334.221-7",
+      "name": "Isidora Fuentes Lara",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "20/07/2026",
+      "general": {
+        "firstName": "Isidora",
+        "lastName": "Fuentes Lara",
+        "birthDate": "2004-01-11",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Padres",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Estudia"
+        ],
+        "occupationDetail": "Estudiante técnica"
+      },
+      "selfReport": {
+        "mainReason": "Como muy poco cuando estoy nerviosa y luego me siento culpable.",
+        "since": "Desde fines de 2025.",
+        "expectations": "Quiero hablarlo sin sentir vergüenza.",
+        "psychiatryFears": "Me preocupa que me obliguen a comer.",
+        "additionalInfo": "Mi familia nota que bajo de peso.",
+        "satisfaction": [
+          5,
+          5,
+          5,
+          2
+        ]
+      },
+      "symptoms": [
+        [
+          "Alimentación",
+          9,
+          "2025-12",
+          "Constante",
+          "Restricción marcada"
+        ],
+        [
+          "Ansiedad",
+          5,
+          "2025-12",
+          "Fluctuante",
+          "Más intensa alrededor de comidas"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Trastorno alimentario",
+          "Intento de suicidio previo"
+        ],
+        "physical": [
+          "Bajo peso clínicamente relevante"
+        ],
+        "family": [
+          [
+            "Trastornos alimentarios",
+            "Prima"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Reservada, preocupada por imagen corporal, relata baja ingesta sostenida.",
+        "mood": "Ansioso con afecto restringido.",
+        "thought": "Ideas rígidas sobre peso y alimentación, baja percepción de gravedad médica y antecedente autolítico remoto.",
+        "hypotheses": [
+          [
+            "Trastorno alimentario",
+            "Alta",
+            "Restricción, culpa y pérdida ponderal referida"
+          ],
+          [
+            "Trastorno Depresivo único moderado",
+            "Media",
+            "Ánimo bajo secundario a restricción y culpa alimentaria"
+          ]
+        ],
+        "risks": [
+          [
+            "Abandono del autocuidado",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Vulnerabilidad social",
+            "Presente",
+            "Moderado"
+          ],
+          [
+            "Intentos suicidas previos",
+            "Antecedente",
+            "Moderado"
+          ]
+        ],
+        "referralReasons": [
+          "Evaluación de riesgo",
+          "Evaluación diagnóstica",
+          "Agravamiento de síntomas"
+        ]
+      }
+    },
+    {
+      "rut": "10.445.778-3",
+      "name": "Marcela López Díaz",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "17/07/2026",
+      "general": {
+        "firstName": "Marcela",
+        "lastName": "López Díaz",
+        "birthDate": "1971-07-05",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Sola",
+        "relationshipStatus": "Divorciado/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Jefa de local"
+      },
+      "selfReport": {
+        "mainReason": "Paso preocupada, reviso todo muchas veces y me cuesta relajarme.",
+        "since": "Desde hace años, peor este último mes.",
+        "expectations": "Quiero bajar la preocupación y dormir mejor.",
+        "psychiatryFears": "Me preocupa subir de peso.",
+        "additionalInfo": "Tengo hipertensión controlada.",
+        "satisfaction": [
+          5,
+          5,
+          3,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          7,
+          "2024-01",
+          "Constante",
+          "Rumiación"
+        ],
+        [
+          "Sueño",
+          4,
+          "2026-06",
+          "Fluctuante",
+          "Sueño liviano algunos días"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Ansiedad"
+        ],
+        "physical": [
+          "Hipertensión"
+        ],
+        "family": [
+          [
+            "Trastornos de ansiedad",
+            "Hija"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Ordenada, hipervigilante.",
+        "mood": "Ansioso.",
+        "thought": "Rumiación económica y familiar.",
+        "hypotheses": [
+          [
+            "Trastorno de ansiedad generalizada (TAG)",
+            "Media",
+            "Curso crónico"
+          ]
+        ],
+        "risks": [],
+        "referralReasons": [
+          "Continuidad de esquema farmacológico",
+          "Evaluación de respuesta a medicamentos"
+        ]
+      }
+    },
+    {
+      "rut": "24.018.776-5",
+      "name": "Valentina Pavez Rojas",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "17/07/2026",
+      "general": {
+        "firstName": "Valentina",
+        "lastName": "Pavez Rojas",
+        "birthDate": "2007-11-03",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Padre y madrastra",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Estudia"
+        ],
+        "occupationDetail": "Estudiante de cuarto medio"
+      },
+      "selfReport": {
+        "mainReason": "Casi no duermo y me vienen pensamientos de cortarme cuando discuto en casa.",
+        "since": "Desde mayo.",
+        "expectations": "Quiero aprender a parar esos impulsos y dormir algo.",
+        "psychiatryFears": "Me da miedo que mi familia se enoje si sabe todo.",
+        "additionalInfo": "Antes me corté más profundo y nadie se enteró.",
+        "satisfaction": [
+          2,
+          2,
+          4,
+          1
+        ]
+      },
+      "symptoms": [
+        [
+          "Sueño",
+          2,
+          "2026-05",
+          "Constante",
+          "Duerme dos a tres horas"
+        ],
+        [
+          "Estado de ánimo",
+          9,
+          "2026-05",
+          "Constante",
+          "Desesperanza"
+        ],
+        [
+          "Conducta e impulsividad",
+          9,
+          "2026-06",
+          "Episódico",
+          "Impulsos de cortarse"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Intento de suicidio previo",
+          "Autolesiones",
+          "Depresión"
+        ],
+        "physical": [],
+        "family": [
+          [
+            "Depresión",
+            "Madre"
+          ]
+        ],
+        "substances": [
+          [
+            "Cannabis",
+            "Uso ocasional",
+            "Fines de semana",
+            "1 cigarro compartido"
+          ],
+          [
+            "Benzodiacepinas sin indicación o fuera de la dosis indicada",
+            "Consumo anterior",
+            "2 episodios durante crisis",
+            "Pastillas de familiar"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Adolescente angustiada, colaboradora, relata autolesiones ocultas.",
+        "mood": "Disfórico, ansioso.",
+        "thought": "Ideación autolesiva recurrente, ideas de muerte sin plan suicida actual, uso previo de benzodiacepinas disponibles en casa y red familiar frágil.",
+        "hypotheses": [
+          [
+            "Trastorno Depresivo único grave",
+            "Alta",
+            "Autolesiones e insomnio severo"
+          ]
+        ],
+        "risks": [
+          [
+            "Autolesiones",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Ideas de muerte",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Intentos suicidas previos",
+            "Antecedente",
+            "Alto"
+          ],
+          [
+            "Vulnerabilidad social",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Acceso a medios potencialmente letales",
+            "Presente",
+            "Moderado"
+          ],
+          [
+            "Consumo de sustancias con riesgo",
+            "Antecedente",
+            "Moderado"
+          ]
+        ],
+        "referralReasons": [
+          "Evaluación de riesgo",
+          "Agravamiento de síntomas",
+          "Inicio de esquema farmacológico",
+          "Dificultades relacionadas con consumo"
+        ]
+      }
+    },
+    {
+      "rut": "22.118.450-4",
+      "name": "Tomás Herrera Vidal",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "16/07/2026",
+      "general": {
+        "firstName": "Tomás",
+        "lastName": "Herrera Vidal",
+        "birthDate": "2006-06-19",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Madre y padrastro",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Estudia"
+        ],
+        "occupationDetail": "Estudiante de cuarto medio"
+      },
+      "selfReport": {
+        "mainReason": "Me corto cuando me siento sobrepasado y después me arrepiento.",
+        "since": "Desde mayo de 2026.",
+        "expectations": "Quiero poder parar antes de hacerme daño.",
+        "psychiatryFears": "Me da miedo que llamen a todos mis familiares.",
+        "additionalInfo": "No quiero dejar el colegio.",
+        "satisfaction": [
+          2,
+          4,
+          5,
+          2
+        ]
+      },
+      "symptoms": [
+        [
+          "Conducta e impulsividad",
+          9,
+          "2026-05",
+          "Episódico",
+          "Cortes superficiales"
+        ],
+        [
+          "Estado de ánimo",
+          8,
+          "2026-04",
+          "Constante",
+          "Desesperanza"
+        ],
+        [
+          "Ansiedad",
+          7,
+          "2026-04",
+          "Fluctuante",
+          "Crisis en casa"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Autolesiones"
+        ],
+        "physical": [],
+        "family": [
+          [
+            "Suicidio o intentos suicidas",
+            "Primo"
+          ]
+        ],
+        "substances": [
+          [
+            "Cannabis",
+            "Uso ocasional",
+            "Fines de semana",
+            "1 cigarro compartido"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Colaborador, emocionalmente lábil.",
+        "mood": "Disfórico, ansioso.",
+        "thought": "Ideación autolesiva sin plan suicida estructurado.",
+        "hypotheses": [
+          [
+            "Trastorno Depresivo único moderado",
+            "Alta",
+            "Autolesiones recientes"
+          ]
+        ],
+        "risks": [
+          [
+            "Autolesiones",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Ideas de muerte",
+            "Presente",
+            "Moderado"
+          ]
+        ],
+        "referralReasons": [
+          "Evaluación de riesgo",
+          "Agravamiento de síntomas"
+        ]
+      }
+    },
+    {
+      "rut": "8.765.432-4",
+      "name": "Patricia Núñez Araya",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "15/07/2026",
+      "general": {
+        "firstName": "Patricia",
+        "lastName": "Núñez Araya",
+        "birthDate": "1962-10-01",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Esposo",
+        "relationshipStatus": "Casado/a",
+        "occupations": [
+          "Dueña/o de casa"
+        ],
+        "occupationDetail": "Labores de hogar"
+      },
+      "selfReport": {
+        "mainReason": "Me cuesta salir de la casa y siento palpitaciones.",
+        "since": "Desde abril de 2026.",
+        "expectations": "Quiero poder ir sola a controles médicos.",
+        "psychiatryFears": "Me asusta sentirme confundida con remedios.",
+        "additionalInfo": "Tengo diabetes e hipertensión.",
+        "satisfaction": [
+          5,
+          7,
+          7,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          8,
+          "2026-04",
+          "Episódico",
+          "Al salir sola"
+        ],
+        [
+          "Energía y activación",
+          3,
+          "2026-04",
+          "Fluctuante",
+          "Cansancio por evitar salidas"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Ataques de pánico",
+          "Depresión"
+        ],
+        "physical": [
+          "Diabetes",
+          "Hipertensión"
+        ],
+        "family": [],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Preocupada, buena disposición, evita controles médicos si debe salir sola.",
+        "mood": "Ansioso.",
+        "thought": "Temor anticipatorio intenso a salir sola, pérdida de autonomía y ánimo bajo asociado a evitación.",
+        "hypotheses": [
+          [
+            "Trastorno de pánico con agorafobia",
+            "Alta",
+            "Evitación progresiva con impacto en controles médicos"
+          ],
+          [
+            "Trastorno Depresivo único leve",
+            "Media",
+            "Ánimo bajo asociado a agorafobia y pérdida de autonomía"
+          ]
+        ],
+        "risks": [
+          [
+            "Abandono del autocuidado",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Vulnerabilidad social",
+            "Presente",
+            "Moderado"
+          ]
+        ],
+        "referralReasons": [
+          "Evaluación de riesgo",
+          "Evaluación diagnóstica",
+          "Persistencia de síntomas"
+        ]
+      }
+    },
+    {
+      "rut": "15.678.901-9",
+      "name": "Benjamín Castro Meza",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "draft",
+      "psychFormStatus": "pending",
+      "updatedAt": "14/07/2026",
+      "general": {
+        "firstName": "Benjamín",
+        "lastName": "Castro Meza",
+        "birthDate": "1999-09-18",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Pareja",
+        "relationshipStatus": "Conviviente",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Bodega logística"
+      },
+      "selfReport": {
+        "mainReason": "Me cuesta levantarme y he llegado tarde varias veces.",
+        "since": "Desde junio.",
+        "expectations": "Quiero recuperar rutina.",
+        "psychiatryFears": "No sé si esto es para psiquiatra.",
+        "additionalInfo": "Trabajo de madrugada algunos días.",
+        "satisfaction": [
+          4,
+          6,
+          6,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Energía y activación",
+          6,
+          "2026-06",
+          "Constante",
+          "Poca energía"
+        ],
+        [
+          "Sueño",
+          7,
+          "2026-06",
+          "Fluctuante",
+          "Cambio de horarios"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [],
+        "family": [],
+        "substances": [
+          [
+            "Alcohol",
+            "Uso ocasional",
+            "2 veces al mes",
+            "2 latas"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Formulario en borrador.",
+        "mood": "Pendiente de evaluación.",
+        "thought": "Pendiente.",
+        "hypotheses": [],
+        "risks": [],
+        "referralReasons": []
+      }
+    },
+    {
+      "rut": "23.456.789-0",
+      "name": "Catalina Rojas Millán",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "not-sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "13/07/2026",
+      "general": {
+        "firstName": "Catalina",
+        "lastName": "Rojas Millán",
+        "birthDate": "1997-03-27",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Pareja",
+        "relationshipStatus": "Conviviente",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Ejecutiva de atención"
+      },
+      "selfReport": {
+        "mainReason": "Me siento saturada y lloro después del trabajo.",
+        "since": "Hace un mes.",
+        "expectations": "Quiero saber por dónde empezar.",
+        "psychiatryFears": "Me da nervio contar cosas personales.",
+        "additionalInfo": "Aún no termino el formulario.",
+        "satisfaction": [
+          3,
+          6,
+          6,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Estado de ánimo",
+          6,
+          "2026-06",
+          "Fluctuante",
+          "Llanto al llegar a casa"
+        ],
+        [
+          "Ansiedad",
+          6,
+          "2026-06",
+          "Constante",
+          "Tensión"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [],
+        "family": [
+          [
+            "Depresión",
+            "Madre"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Pendiente de formulario.",
+        "mood": "Sin evaluación.",
+        "thought": "Sin evaluación.",
+        "hypotheses": [],
+        "risks": [],
+        "referralReasons": []
+      }
+    },
+    {
+      "rut": "16.234.987-1",
+      "name": "Álvaro Reyes Pizarro",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "draft",
+      "updatedAt": "10/07/2026",
+      "general": {
+        "firstName": "Álvaro",
+        "lastName": "Reyes Pizarro",
+        "birthDate": "1990-12-12",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Solo",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Analista TI remoto"
+      },
+      "selfReport": {
+        "mainReason": "Trabajo hasta tarde, duermo mal y casi no veo gente.",
+        "since": "Desde 2025.",
+        "expectations": "Quiero ordenar sueño y vida social.",
+        "psychiatryFears": "Me preocupa perder concentración.",
+        "additionalInfo": "Trabajo remoto desde mi departamento.",
+        "satisfaction": [
+          6,
+          3,
+          4,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Sueño",
+          8,
+          "2025-08",
+          "Constante",
+          "Me acuesto muy tarde"
+        ],
+        [
+          "Ansiedad",
+          4,
+          "2025-08",
+          "Fluctuante",
+          "Tensión al cerrar proyectos"
+        ],
+        [
+          "Energía y activación",
+          4,
+          "2025-09",
+          "Constante",
+          "Cansancio manejable"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Insomnio o trastorno del sueño"
+        ],
+        "physical": [],
+        "family": [],
+        "substances": [
+          [
+            "Cafeína",
+            "Consumo actual",
+            "Diario",
+            "4 cafés"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Cansado, colaborador.",
+        "mood": "Ansioso leve.",
+        "thought": "Preocupación por rendimiento.",
+        "hypotheses": [
+          [
+            "Insomnio o trastorno del sueño",
+            "Media",
+            "Asociado a hábitos y aislamiento"
+          ]
+        ],
+        "risks": [
+          [
+            "Vulnerabilidad social",
+            "Presente",
+            "Bajo"
+          ]
+        ],
+        "referralReasons": [
+          "Alteraciones graves del sueño",
+          "Persistencia de síntomas"
+        ]
+      }
+    },
+    {
+      "rut": "19.702.314-8",
+      "name": "Rodrigo Cifuentes Leal",
+      "assignedPsychologistId": "psy-1",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "10/07/2026",
+      "general": {
+        "firstName": "Rodrigo",
+        "lastName": "Cifuentes Leal",
+        "birthDate": "1968-08-21",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Hermano",
+        "relationshipStatus": "Separado/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Comerciante ambulante"
+      },
+      "selfReport": {
+        "mainReason": "Duermo muy poco, escucho cosas cuando estoy solo y he pensado que sería mejor desaparecer.",
+        "since": "Desde abril, más fuerte cuando consumo.",
+        "expectations": "Quiero dejar de sentirme perseguido y dormir.",
+        "psychiatryFears": "Me preocupa que no me crean.",
+        "additionalInfo": "A veces consumo pasta base cuando estoy solo.",
+        "satisfaction": [
+          2,
+          2,
+          1,
+          2
+        ]
+      },
+      "symptoms": [
+        [
+          "Sueño",
+          2,
+          "2026-04",
+          "Constante",
+          "Duerme muy poco"
+        ],
+        [
+          "Ansiedad",
+          9,
+          "2026-04",
+          "Constante",
+          "Persecución"
+        ],
+        [
+          "Cognición",
+          8,
+          "2026-04",
+          "Fluctuante",
+          "Ideas desordenadas"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Depresión"
+        ],
+        "physical": [
+          "Diabetes"
+        ],
+        "family": [
+          [
+            "Esquizofrenia u otros trastornos psicóticos",
+            "Tío"
+          ]
+        ],
+        "substances": [
+          [
+            "Pasta base",
+            "Consumo actual",
+            "2 a 3 veces por semana",
+            "Variable"
+          ],
+          [
+            "Alcohol",
+            "Consumo actual",
+            "4 veces por semana",
+            "4 tragos"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Hipervigilante, suspicaz, con relato de voces al estar solo.",
+        "mood": "Ansioso depresivo.",
+        "thought": "Ideas persecutorias, fenómenos auditivos referidos e ideas de muerte sin plan estructurado actual.",
+        "hypotheses": [
+          [
+            "Trastorno psicótico breve",
+            "Alta",
+            "Síntomas psicóticos recientes"
+          ],
+          [
+            "Consumo problemático de sustancias",
+            "Alta",
+            "Pasta base y alcohol"
+          ],
+          [
+            "Trastorno Depresivo único moderado",
+            "Media",
+            "Ideas de muerte e insomnio"
+          ]
+        ],
+        "risks": [
+          [
+            "Síntomas psicóticos con riesgo",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Consumo de sustancias con riesgo",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Ideas de muerte",
+            "Presente",
+            "Moderado"
+          ],
+          [
+            "Vulnerabilidad social",
+            "Presente",
+            "Alto"
+          ]
+        ],
+        "referralReasons": [
+          "Sospecha de psicosis",
+          "Dificultades relacionadas con consumo",
+          "Evaluación de riesgo"
+        ]
+      }
+    },
+    {
+      "rut": "11.222.333-4",
+      "name": "Javiera Torres Leiva",
+      "assignedPsychologistId": "psy-2",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "22/07/2026",
+      "general": {
+        "firstName": "Javiera",
+        "lastName": "Torres Leiva",
+        "birthDate": "1998-02-09",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Madre y hermano menor",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Estudia",
+          "Trabaja"
+        ],
+        "occupationDetail": "Estudiante vespertina y vendedora part-time"
+      },
+      "selfReport": {
+        "mainReason": "Crisis de pánico y miedo a usar transporte público.",
+        "since": "Desde enero de 2026 tras un asalto.",
+        "expectations": "Quiero volver a moverme con seguridad.",
+        "psychiatryFears": "Me dan dudas los medicamentos.",
+        "additionalInfo": "La evitación afecta clases y trabajo.",
+        "satisfaction": [
+          5,
+          6,
+          5,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          9,
+          "2026-01",
+          "Episódico",
+          "Crisis con palpitaciones"
+        ],
+        [
+          "Cognición",
+          4,
+          "2026-02",
+          "Fluctuante",
+          "Se distrae en clases tras crisis"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Ataques de pánico"
+        ],
+        "physical": [],
+        "family": [
+          [
+            "Trastornos de ansiedad",
+            "Tía materna"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Ansiosa, cooperadora.",
+        "mood": "Ansioso.",
+        "thought": "Temor anticipatorio y evitación.",
+        "hypotheses": [
+          [
+            "Trastorno de pánico con agorafobia",
+            "Alta",
+            "Evitación marcada"
+          ]
+        ],
+        "risks": [],
+        "referralReasons": [
+          "Evaluación diagnóstica",
+          "Persistencia de síntomas"
+        ]
+      }
+    },
+    {
+      "rut": "24.772.110-6",
+      "name": "Esteban Arriagada Molina",
+      "assignedPsychologistId": "psy-2",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "21/07/2026",
+      "general": {
+        "firstName": "Esteban",
+        "lastName": "Arriagada Molina",
+        "birthDate": "1999-11-17",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Padre",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Reponedor nocturno"
+      },
+      "selfReport": {
+        "mainReason": "Siento que mis compañeros hablan de mí y a veces escucho mi nombre cuando estoy solo.",
+        "since": "Hace cerca de un mes.",
+        "expectations": "Quiero dormir y dejar de sentirme perseguido.",
+        "psychiatryFears": "Me preocupa que me traten como loco.",
+        "additionalInfo": "He faltado al trabajo porque me da miedo salir.",
+        "satisfaction": [
+          2,
+          4,
+          5,
+          2
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          9,
+          "2026-06",
+          "Constante",
+          "Sensación de persecución"
+        ],
+        [
+          "Sueño",
+          9,
+          "2026-06",
+          "Constante",
+          "Insomnio casi total"
+        ],
+        [
+          "Cognición",
+          6,
+          "2026-06",
+          "Fluctuante",
+          "Le cuesta ordenar ideas"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [],
+        "family": [
+          [
+            "Esquizofrenia u otros trastornos psicóticos",
+            "Primo"
+          ]
+        ],
+        "substances": [
+          [
+            "Cannabis",
+            "Consumo actual",
+            "3 veces por semana",
+            "1 a 2 cigarros"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Hipervigilante, suspicaz, contacto visual intermitente.",
+        "mood": "Ansioso intenso.",
+        "thought": "Ideas persecutorias, posible fenómeno auditivo, aislamiento y ánimo depresivo secundario al deterioro reciente.",
+        "hypotheses": [
+          [
+            "Trastorno psicótico breve",
+            "Alta",
+            "Inicio reciente de síntomas psicóticos"
+          ],
+          [
+            "Consumo problemático de sustancias",
+            "Media",
+            "Cannabis frecuente"
+          ],
+          [
+            "Trastorno Depresivo único moderado",
+            "Media",
+            "Aislamiento, insomnio y deterioro funcional asociados"
+          ]
+        ],
+        "risks": [
+          [
+            "Síntomas psicóticos con riesgo",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Abandono del autocuidado",
+            "Presente",
+            "Moderado"
+          ],
+          [
+            "Consumo de sustancias con riesgo",
+            "Presente",
+            "Moderado"
+          ],
+          [
+            "Vulnerabilidad social",
+            "Presente",
+            "Moderado"
+          ]
+        ],
+        "referralReasons": [
+          "Sospecha de psicosis",
+          "Evaluación de riesgo",
+          "Evaluación diagnóstica"
+        ]
+      }
+    },
+    {
+      "rut": "16.789.012-3",
+      "name": "Ignacio Bravo Castillo",
+      "assignedPsychologistId": "psy-2",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "20/07/2026",
+      "general": {
+        "firstName": "Ignacio",
+        "lastName": "Bravo Castillo",
+        "birthDate": "1974-09-27",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Esposa",
+        "relationshipStatus": "Casado/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Contador independiente"
+      },
+      "selfReport": {
+        "mainReason": "Fatiga, ánimo bajo y dolor crónico.",
+        "since": "Desde mediados de 2024.",
+        "expectations": "Quiero manejar ánimo y dolor.",
+        "psychiatryFears": "Me inquieta la somnolencia.",
+        "additionalInfo": "El dolor limita mi trabajo.",
+        "satisfaction": [
+          4,
+          7,
+          7,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Estado de ánimo",
+          7,
+          "2024-08",
+          "Constante",
+          "Anhedonia"
+        ],
+        [
+          "Energía y activación",
+          5,
+          "2024-08",
+          "Constante",
+          "Fatiga por dolor, variable por día"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [
+          "Dolor crónico o fibromialgia"
+        ],
+        "family": [
+          [
+            "Depresión",
+            "Hermana"
+          ]
+        ],
+        "substances": [
+          [
+            "Alcohol",
+            "Uso ocasional",
+            "1 vez al mes",
+            "1 a 2 copas"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Postura rígida por dolor.",
+        "mood": "Bajo.",
+        "thought": "Preocupaciones somáticas y laborales.",
+        "hypotheses": [
+          [
+            "Trastorno Depresivo único moderado",
+            "Media",
+            "Dolor crónico asociado"
+          ]
+        ],
+        "risks": [
+          [
+            "Abandono del autocuidado",
+            "Presente",
+            "Bajo"
+          ]
+        ],
+        "referralReasons": [
+          "Evaluación diagnóstica",
+          "Ajuste o revisión de tratamiento"
+        ]
+      }
+    },
+    {
+      "rut": "24.101.332-5",
+      "name": "Rocío Vargas Peña",
+      "assignedPsychologistId": "psy-2",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "draft",
+      "updatedAt": "20/07/2026",
+      "general": {
+        "firstName": "Rocío",
+        "lastName": "Vargas Peña",
+        "birthDate": "1989-05-03",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Pareja",
+        "relationshipStatus": "Conviviente",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "TENS en turno rotativo"
+      },
+      "selfReport": {
+        "mainReason": "Me siento irritable y agotada después de los turnos.",
+        "since": "Desde marzo.",
+        "expectations": "Quiero dormir mejor y no explotar en casa.",
+        "psychiatryFears": "Me preocupa sentirme lenta en el trabajo.",
+        "additionalInfo": "Los cambios de turno me desordenan.",
+        "satisfaction": [
+          4,
+          6,
+          5,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Sueño",
+          9,
+          "2026-03",
+          "Fluctuante",
+          "Turnos nocturnos desordenan sueño"
+        ],
+        [
+          "Conducta e impulsividad",
+          6,
+          "2026-04",
+          "Episódico",
+          "Irritabilidad"
+        ],
+        [
+          "Energía y activación",
+          4,
+          "2026-03",
+          "Constante",
+          "Cansancio posterior a turnos"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [],
+        "family": [
+          [
+            "Trastornos de ansiedad",
+            "Madre"
+          ]
+        ],
+        "substances": [
+          [
+            "Tabaco",
+            "Consumo actual",
+            "Diario",
+            "5 cigarrillos"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Cansada, colaboradora.",
+        "mood": "Irritable ansiosa.",
+        "thought": "Preocupación por rendimiento en turnos.",
+        "hypotheses": [
+          [
+            "Trastorno Adaptativo mixto",
+            "Media",
+            "Relacionado a turnos"
+          ]
+        ],
+        "risks": [],
+        "referralReasons": [
+          "Alteraciones graves del sueño",
+          "Persistencia de síntomas"
+        ]
+      }
+    },
+    {
+      "rut": "12.908.776-1",
+      "name": "Luis Sepúlveda Mora",
+      "assignedPsychologistId": "psy-2",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "17/07/2026",
+      "general": {
+        "firstName": "Luis",
+        "lastName": "Sepúlveda Mora",
+        "birthDate": "1966-02-14",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Esposa",
+        "relationshipStatus": "Casado/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Maestro de construcción independiente"
+      },
+      "selfReport": {
+        "mainReason": "Desde que me lesioné tengo dolor y ando sin ánimo.",
+        "since": "Desde fines de 2025.",
+        "expectations": "Quiero volver a trabajar sin sentirme inútil.",
+        "psychiatryFears": "No quiero tomar remedios fuertes.",
+        "additionalInfo": "Estoy con menos ingresos.",
+        "satisfaction": [
+          3,
+          7,
+          7,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Estado de ánimo",
+          7,
+          "2025-12",
+          "Constante",
+          "Frustración"
+        ],
+        [
+          "Energía y activación",
+          5,
+          "2026-01",
+          "Constante",
+          "Baja energía por dolor"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [
+          "Dolor crónico o fibromialgia"
+        ],
+        "family": [],
+        "substances": [
+          [
+            "Alcohol",
+            "Uso ocasional",
+            "Fines de semana",
+            "2 cervezas"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Dolor visible al moverse.",
+        "mood": "Bajo, reactivo.",
+        "thought": "Preocupación económica y funcional.",
+        "hypotheses": [
+          [
+            "Trastorno Adaptativo con síntomas depresivos",
+            "Media",
+            "Lesión e impacto laboral"
+          ]
+        ],
+        "risks": [
+          [
+            "Abandono del autocuidado",
+            "Presente",
+            "Bajo"
+          ]
+        ],
+        "referralReasons": [
+          "Evaluación diagnóstica",
+          "Ajuste o revisión de tratamiento"
+        ]
+      }
+    },
+    {
+      "rut": "25.667.890-2",
+      "name": "Amanda Bravo Cortés",
+      "assignedPsychologistId": "psy-2",
+      "patientFormStatus": "draft",
+      "psychFormStatus": "pending",
+      "updatedAt": "16/07/2026",
+      "general": {
+        "firstName": "Amanda",
+        "lastName": "Bravo Cortés",
+        "birthDate": "2002-07-22",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Compañera de departamento",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Estudia",
+          "Trabaja"
+        ],
+        "occupationDetail": "Garzona part-time"
+      },
+      "selfReport": {
+        "mainReason": "Me da ansiedad hablar con clientes.",
+        "since": "Hace unas semanas.",
+        "expectations": "Quiero terminar de llenar esto y pedir ayuda.",
+        "psychiatryFears": "Me da vergüenza hablar.",
+        "additionalInfo": "Aún no termino el formulario.",
+        "satisfaction": [
+          5,
+          5,
+          4,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          6,
+          "2026-06",
+          "Episódico",
+          "Al atender público"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [],
+        "family": [],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Formulario en borrador.",
+        "mood": "Pendiente.",
+        "thought": "Pendiente.",
+        "hypotheses": [],
+        "risks": [],
+        "referralReasons": []
+      }
+    },
+    {
+      "rut": "13.909.445-8",
+      "name": "Claudio Farías Oliva",
+      "assignedPsychologistId": "psy-2",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "15/07/2026",
+      "general": {
+        "firstName": "Claudio",
+        "lastName": "Farías Oliva",
+        "birthDate": "1984-01-28",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Madre",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Guardia de seguridad"
+      },
+      "selfReport": {
+        "mainReason": "Estoy alerta todo el tiempo y me cuesta confiar.",
+        "since": "Desde un asalto en el trabajo.",
+        "expectations": "Quiero dejar de sentir que algo va a pasar.",
+        "psychiatryFears": "No quiero que esto figure en mi trabajo.",
+        "additionalInfo": "Evito turnos de noche.",
+        "satisfaction": [
+          4,
+          5,
+          4,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          8,
+          "2026-02",
+          "Constante",
+          "Hipervigilancia"
+        ],
+        [
+          "Sueño",
+          8,
+          "2026-02",
+          "Fluctuante",
+          "Pesadillas frecuentes"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Estrés postraumático"
+        ],
+        "physical": [],
+        "family": [],
+        "substances": [
+          [
+            "Alcohol",
+            "Uso ocasional",
+            "1 vez por semana",
+            "2 tragos"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Hipervigilante.",
+        "mood": "Ansioso.",
+        "thought": "Amenaza persistente tras asalto.",
+        "hypotheses": [
+          [
+            "Trastorno de estrés postraumático (TEPT)",
+            "Alta",
+            "Síntomas traumáticos"
+          ]
+        ],
+        "risks": [
+          [
+            "Impulsividad de alto riesgo",
+            "Antecedente",
+            "Moderado"
+          ]
+        ],
+        "referralReasons": [
+          "Evaluación diagnóstica",
+          "Persistencia de síntomas"
+        ]
+      }
+    },
+    {
+      "rut": "17.555.210-0",
+      "name": "Fernanda Muñoz Sáez",
+      "assignedPsychologistId": "psy-2",
+      "patientFormStatus": "not-sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "13/07/2026",
+      "general": {
+        "firstName": "Fernanda",
+        "lastName": "Muñoz Sáez",
+        "birthDate": "1993-06-07",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Hijo",
+        "relationshipStatus": "Separado/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Cajera de supermercado"
+      },
+      "selfReport": {
+        "mainReason": "Tengo crisis de llanto, pero no he terminado el formulario.",
+        "since": "Desde junio.",
+        "expectations": "Quiero pedir hora.",
+        "psychiatryFears": "Me cuesta contar cosas.",
+        "additionalInfo": "Cuido sola a mi hijo.",
+        "satisfaction": [
+          4,
+          5,
+          2,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Estado de ánimo",
+          7,
+          "2026-06",
+          "Fluctuante",
+          "Llanto"
+        ],
+        [
+          "Ansiedad",
+          6,
+          "2026-06",
+          "Fluctuante",
+          "Tensión"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [],
+        "family": [
+          [
+            "Depresión",
+            "Abuela"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Pendiente de formulario.",
+        "mood": "Sin evaluación.",
+        "thought": "Sin evaluación.",
+        "hypotheses": [],
+        "risks": [],
+        "referralReasons": []
+      }
+    },
+    {
+      "rut": "20.330.441-6",
+      "name": "Matías Vera Godoy",
+      "assignedPsychologistId": "psy-2",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "draft",
+      "updatedAt": "09/07/2026",
+      "general": {
+        "firstName": "Matías",
+        "lastName": "Vera Godoy",
+        "birthDate": "1996-03-03",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Padres",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Soporte técnico"
+      },
+      "selfReport": {
+        "mainReason": "Me desconcentro, postergo todo y después me angustio.",
+        "since": "Desde hace años.",
+        "expectations": "Quiero saber si hay algo que explique esto.",
+        "psychiatryFears": "Me preocupa que piensen que exagero.",
+        "additionalInfo": "En el trabajo ya me llamaron la atención.",
+        "satisfaction": [
+          4,
+          6,
+          5,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Cognición",
+          9,
+          "2024-01",
+          "Constante",
+          "Procrastinación y olvidos de larga data"
+        ],
+        [
+          "Ansiedad",
+          4,
+          "2025-11",
+          "Fluctuante",
+          "Angustia secundaria a atrasos"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "TDAH"
+        ],
+        "physical": [],
+        "family": [
+          [
+            "TDAH",
+            "Hermano"
+          ]
+        ],
+        "substances": [
+          [
+            "Cannabis",
+            "Uso ocasional",
+            "1 vez al mes",
+            "Baja cantidad"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Discurso detallado, inquietud leve.",
+        "mood": "Ansioso leve.",
+        "thought": "Preocupación por desempeño.",
+        "hypotheses": [
+          [
+            "TDAH",
+            "Media",
+            "Síntomas de larga data"
+          ]
+        ],
+        "risks": [],
+        "referralReasons": [
+          "Evaluación diagnóstica",
+          "Deterioro funcional"
+        ]
+      }
+    },
+    {
+      "rut": "6.543.210-8",
+      "name": "Olga Pizarro León",
+      "assignedPsychologistId": "psy-3",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "23/07/2026",
+      "general": {
+        "firstName": "Olga",
+        "lastName": "Pizarro León",
+        "birthDate": "1954-11-12",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Hija",
+        "relationshipStatus": "Viudo/a",
+        "occupations": [
+          "Dueña/o de casa"
+        ],
+        "occupationDetail": "Jubilada"
+      },
+      "selfReport": {
+        "mainReason": "Me siento sola y duermo mal desde que enviudé.",
+        "since": "Desde 2025.",
+        "expectations": "Quiero volver a salir y dormir.",
+        "psychiatryFears": "Me asusta tomar muchos remedios.",
+        "additionalInfo": "Tengo controles por tiroides.",
+        "satisfaction": [
+          5,
+          6,
+          1,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Estado de ánimo",
+          7,
+          "2025-08",
+          "Fluctuante",
+          "Tristeza"
+        ],
+        [
+          "Sueño",
+          9,
+          "2025-09",
+          "Constante",
+          "Despertar precoz casi diario"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Insomnio o trastorno del sueño"
+        ],
+        "physical": [
+          "Enfermedad tiroidea"
+        ],
+        "family": [],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Adecuada, triste al hablar de duelo.",
+        "mood": "Ánimo bajo reactivo.",
+        "thought": "Duelo y soledad predominantes.",
+        "hypotheses": [
+          [
+            "Trastorno Adaptativo con síntomas depresivos",
+            "Media",
+            "Duelo reciente"
+          ]
+        ],
+        "risks": [
+          [
+            "Vulnerabilidad social",
+            "Presente",
+            "Bajo"
+          ]
+        ],
+        "referralReasons": [
+          "Alteraciones graves del sueño",
+          "Persistencia de síntomas"
+        ]
+      }
+    },
+    {
+      "rut": "18.642.097-8",
+      "name": "Bárbara Henríquez Vera",
+      "assignedPsychologistId": "psy-3",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "22/07/2026",
+      "general": {
+        "firstName": "Bárbara",
+        "lastName": "Henríquez Vera",
+        "birthDate": "1996-02-02",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Pareja",
+        "relationshipStatus": "Conviviente",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Emprendedora online"
+      },
+      "selfReport": {
+        "mainReason": "Hay semanas en que casi no duermo, compro cosas para el negocio y después me hundo.",
+        "since": "Desde el año pasado, por rachas.",
+        "expectations": "Quiero entender esos cambios antes de endeudarme más.",
+        "psychiatryFears": "Me asusta que me apaguen la energía.",
+        "additionalInfo": "Mi pareja dice que hablo muy rápido en esos periodos.",
+        "satisfaction": [
+          4,
+          5,
+          5,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Energía y activación",
+          10,
+          "2025-08",
+          "Episódico",
+          "Aumento de energía por varios días"
+        ],
+        [
+          "Sueño",
+          9,
+          "2025-08",
+          "Episódico",
+          "Duerme 2 a 3 horas durante rachas"
+        ],
+        [
+          "Conducta e impulsividad",
+          8,
+          "2025-08",
+          "Episódico",
+          "Compras impulsivas"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Trastorno bipolar"
+        ],
+        "physical": [],
+        "family": [
+          [
+            "Trastorno bipolar",
+            "Madre"
+          ]
+        ],
+        "substances": [
+          [
+            "Alcohol",
+            "Uso ocasional",
+            "Fines de semana",
+            "2 tragos"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Activación psicomotora leve, discurso acelerado por momentos.",
+        "mood": "Eutímico con relato de hipomanía reciente.",
+        "thought": "Episodios de aumento de energía, disminución de sueño e impulsividad económica.",
+        "hypotheses": [
+          [
+            "Trastorno Bipolar Tipo II",
+            "Alta",
+            "Historia episódica compatible con hipomanía"
+          ],
+          [
+            "Trastorno de ansiedad generalizada (TAG)",
+            "Baja",
+            "Preocupación secundaria"
+          ]
+        ],
+        "risks": [
+          [
+            "Impulsividad de alto riesgo",
+            "Presente",
+            "Alto"
+          ]
+        ],
+        "referralReasons": [
+          "Sospecha de bipolaridad",
+          "Evaluación de riesgo",
+          "Ajuste o revisión de tratamiento"
+        ]
+      }
+    },
+    {
+      "rut": "19.880.120-5",
+      "name": "Diego Navarrete Ruiz",
+      "assignedPsychologistId": "psy-3",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "22/07/2026",
+      "general": {
+        "firstName": "Diego",
+        "lastName": "Navarrete Ruiz",
+        "birthDate": "2000-04-19",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Amigos",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Barista"
+      },
+      "selfReport": {
+        "mainReason": "Tengo periodos en que duermo poco y gasto más de la cuenta.",
+        "since": "Me pasa por rachas desde 2024.",
+        "expectations": "Quiero entender esos cambios.",
+        "psychiatryFears": "Me preocupa que me etiqueten.",
+        "additionalInfo": "Mi familia dice que cambio mucho.",
+        "satisfaction": [
+          5,
+          4,
+          5,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Energía y activación",
+          9,
+          "2024-01",
+          "Episódico",
+          "Mucha energía por días"
+        ],
+        [
+          "Sueño",
+          8,
+          "2024-01",
+          "Episódico",
+          "Duermo 3 horas"
+        ],
+        [
+          "Conducta e impulsividad",
+          7,
+          "2024-01",
+          "Episódico",
+          "Gastos impulsivos"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Trastorno bipolar"
+        ],
+        "physical": [],
+        "family": [
+          [
+            "Trastorno bipolar",
+            "Tío"
+          ]
+        ],
+        "substances": [
+          [
+            "Alcohol",
+            "Uso ocasional",
+            "Fines de semana",
+            "3 tragos"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Activación leve durante entrevista.",
+        "mood": "Elevado por momentos.",
+        "thought": "Relata episodios compatibles con hipomanía.",
+        "hypotheses": [
+          [
+            "Trastorno Bipolar Tipo II",
+            "Alta",
+            "Episodios de activación"
+          ]
+        ],
+        "risks": [
+          [
+            "Impulsividad de alto riesgo",
+            "Presente",
+            "Moderado"
+          ]
+        ],
+        "referralReasons": [
+          "Sospecha de bipolaridad",
+          "Evaluación diagnóstica"
+        ]
+      }
+    },
+    {
+      "rut": "14.090.765-2",
+      "name": "Karen Soto Álvarez",
+      "assignedPsychologistId": "psy-3",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "draft",
+      "updatedAt": "21/07/2026",
+      "general": {
+        "firstName": "Karen",
+        "lastName": "Soto Álvarez",
+        "birthDate": "1987-09-09",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Pareja",
+        "relationshipStatus": "Conviviente",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Educadora de párvulos"
+      },
+      "selfReport": {
+        "mainReason": "Siento culpa y miedo de no ser buena mamá.",
+        "since": "Desde el parto hace cuatro meses.",
+        "expectations": "Quiero estar más tranquila con mi guagua.",
+        "psychiatryFears": "Me da miedo que me separen de mi hijo.",
+        "additionalInfo": "Estoy con lactancia mixta.",
+        "satisfaction": [
+          4,
+          6,
+          6,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          8,
+          "2026-03",
+          "Constante",
+          "Miedo persistente por el bebé"
+        ],
+        [
+          "Estado de ánimo",
+          5,
+          "2026-03",
+          "Fluctuante",
+          "Culpa fluctuante"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Ansiedad"
+        ],
+        "physical": [],
+        "family": [
+          [
+            "Depresión",
+            "Madre"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Preocupada, llanto contenido.",
+        "mood": "Ansioso con ánimo bajo.",
+        "thought": "Culpa materna intensa.",
+        "hypotheses": [
+          [
+            "Trastorno Adaptativo mixto puerperal",
+            "Alta",
+            "Postparto reciente"
+          ]
+        ],
+        "risks": [
+          [
+            "Abandono del autocuidado",
+            "Presente",
+            "Bajo"
+          ]
+        ],
+        "referralReasons": [
+          "Evaluación diagnóstica",
+          "Inicio de esquema farmacológico"
+        ]
+      }
+    },
+    {
+      "rut": "18.001.443-7",
+      "name": "Ricardo Campos Yáñez",
+      "assignedPsychologistId": "psy-3",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "17/07/2026",
+      "general": {
+        "firstName": "Ricardo",
+        "lastName": "Campos Yáñez",
+        "birthDate": "1977-05-25",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Pareja",
+        "relationshipStatus": "Conviviente",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Vendedor comisionista"
+      },
+      "selfReport": {
+        "mainReason": "Estoy tomando más para dormir y no pensar.",
+        "since": "Desde que bajaron mis ventas.",
+        "expectations": "Quiero parar antes de perder mi pega.",
+        "psychiatryFears": "Me preocupa que me reten.",
+        "additionalInfo": "Mi pareja está preocupada.",
+        "satisfaction": [
+          3,
+          5,
+          4,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Estado de ánimo",
+          8,
+          "2026-02",
+          "Constante",
+          "Desánimo sostenido"
+        ],
+        [
+          "Sueño",
+          5,
+          "2026-02",
+          "Fluctuante",
+          "Usa alcohol para dormir algunos días"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Depresión"
+        ],
+        "physical": [],
+        "family": [
+          [
+            "Consumo problemático de sustancias",
+            "Padre"
+          ]
+        ],
+        "substances": [
+          [
+            "Alcohol",
+            "Consumo actual",
+            "Diario",
+            "4 tragos"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Aspecto cansado.",
+        "mood": "Depresivo ansioso.",
+        "thought": "Preocupación laboral y consumo.",
+        "hypotheses": [
+          [
+            "Consumo problemático de sustancias",
+            "Alta",
+            "Alcohol diario"
+          ],
+          [
+            "Trastorno Depresivo único moderado",
+            "Media",
+            "Ánimo bajo"
+          ]
+        ],
+        "risks": [
+          [
+            "Consumo de sustancias con riesgo",
+            "Presente",
+            "Alto"
+          ]
+        ],
+        "referralReasons": [
+          "Dificultades relacionadas con consumo",
+          "Evaluación de riesgo"
+        ]
+      }
+    },
+    {
+      "rut": "21.765.432-5",
+      "name": "Valeria Castillo Moya",
+      "assignedPsychologistId": "psy-3",
+      "patientFormStatus": "draft",
+      "psychFormStatus": "pending",
+      "updatedAt": "16/07/2026",
+      "general": {
+        "firstName": "Valeria",
+        "lastName": "Castillo Moya",
+        "birthDate": "1994-12-02",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Hermana",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Diseñadora freelance"
+      },
+      "selfReport": {
+        "mainReason": "Me cuesta salir y responder mensajes.",
+        "since": "Desde mayo.",
+        "expectations": "Quiero retomar rutina.",
+        "psychiatryFears": "No sé si necesito medicamentos.",
+        "additionalInfo": "Aún no completo todo.",
+        "satisfaction": [
+          4,
+          4,
+          5,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Estado de ánimo",
+          6,
+          "2026-05",
+          "Constante",
+          "Aislamiento"
+        ],
+        [
+          "Energía y activación",
+          6,
+          "2026-05",
+          "Constante",
+          "Baja energía"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [],
+        "family": [
+          [
+            "Depresión",
+            "Padre"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Formulario en borrador.",
+        "mood": "Pendiente.",
+        "thought": "Pendiente.",
+        "hypotheses": [],
+        "risks": [],
+        "referralReasons": []
+      }
+    },
+    {
+      "rut": "7.654.321-1",
+      "name": "Elena Rojas Campos",
+      "assignedPsychologistId": "psy-3",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "draft",
+      "updatedAt": "15/07/2026",
+      "general": {
+        "firstName": "Elena",
+        "lastName": "Rojas Campos",
+        "birthDate": "1958-12-04",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Hija adulta",
+        "relationshipStatus": "Viudo/a",
+        "occupations": [
+          "Dueña/o de casa",
+          "Cuidadora/or"
+        ],
+        "occupationDetail": "Cuida a nieto durante la semana"
+      },
+      "selfReport": {
+        "mainReason": "Duelo prolongado, insomnio y preocupación por salud.",
+        "since": "Desde septiembre de 2025.",
+        "expectations": "Quiero dormir y volver a salir.",
+        "psychiatryFears": "Me da miedo hospitalizarme.",
+        "additionalInfo": "Me siento cansada casi todos los días.",
+        "satisfaction": [
+          5,
+          6,
+          1,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Estado de ánimo",
+          7,
+          "2025-09",
+          "Fluctuante",
+          "Tristeza"
+        ],
+        [
+          "Sueño",
+          8,
+          "2025-10",
+          "Constante",
+          "Despertar precoz"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Insomnio o trastorno del sueño"
+        ],
+        "physical": [
+          "Enfermedad tiroidea"
+        ],
+        "family": [],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Triste al hablar de duelo.",
+        "mood": "Ánimo bajo reactivo.",
+        "thought": "Duelo y soledad.",
+        "hypotheses": [
+          [
+            "Trastorno Adaptativo con síntomas depresivos",
+            "Media",
+            "Duelo"
+          ]
+        ],
+        "risks": [
+          [
+            "Vulnerabilidad social",
+            "Presente",
+            "Bajo"
+          ]
+        ],
+        "referralReasons": [
+          "Alteraciones graves del sueño"
+        ]
+      }
+    },
+    {
+      "rut": "20.111.222-8",
+      "name": "Nicolás Paredes Núñez",
+      "assignedPsychologistId": "psy-3",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "12/07/2026",
+      "general": {
+        "firstName": "Nicolás",
+        "lastName": "Paredes Núñez",
+        "birthDate": "2007-03-12",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Madre, padrastro y hermana",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Estudia"
+        ],
+        "occupationDetail": "Estudiante de cuarto medio"
+      },
+      "selfReport": {
+        "mainReason": "Autolesiones recientes, ansiedad escolar y aislamiento.",
+        "since": "Desde abril de 2026.",
+        "expectations": "Quiero apoyo sin sentirme juzgado.",
+        "psychiatryFears": "Me preocupa que mi familia lea todo.",
+        "additionalInfo": "He faltado a clases.",
+        "satisfaction": [
+          2,
+          4,
+          5,
+          2
+        ]
+      },
+      "symptoms": [
+        [
+          "Estado de ánimo",
+          8,
+          "2026-04",
+          "Constante",
+          "Desesperanza"
+        ],
+        [
+          "Conducta e impulsividad",
+          9,
+          "2026-06",
+          "Episódico",
+          "Cortes superficiales recientes"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Autolesiones"
+        ],
+        "physical": [],
+        "family": [
+          [
+            "Suicidio o intentos suicidas",
+            "Primo"
+          ]
+        ],
+        "substances": [
+          [
+            "Cannabis",
+            "Uso ocasional",
+            "Fines de semana",
+            "1 cigarro compartido"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Lábil, reservado.",
+        "mood": "Disfórico.",
+        "thought": "Autolesiones sin plan estructurado.",
+        "hypotheses": [
+          [
+            "Trastorno Depresivo único moderado",
+            "Alta",
+            "Autolesiones"
+          ]
+        ],
+        "risks": [
+          [
+            "Autolesiones",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Ideas de muerte",
+            "Presente",
+            "Moderado"
+          ]
+        ],
+        "referralReasons": [
+          "Evaluación de riesgo",
+          "Agravamiento de síntomas"
+        ]
+      }
+    },
+    {
+      "rut": "15.222.333-4",
+      "name": "Sofía Tapia González",
+      "assignedPsychologistId": "psy-3",
+      "patientFormStatus": "not-sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "09/07/2026",
+      "general": {
+        "firstName": "Sofía",
+        "lastName": "Tapia González",
+        "birthDate": "1992-08-31",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Pareja",
+        "relationshipStatus": "Conviviente",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Recepcionista"
+      },
+      "selfReport": {
+        "mainReason": "No he terminado el formulario, pero quiero consultar por ansiedad.",
+        "since": "Hace dos meses.",
+        "expectations": "Quiero pedir ayuda.",
+        "psychiatryFears": "Me pone nerviosa empezar.",
+        "additionalInfo": "",
+        "satisfaction": [
+          5,
+          6,
+          6,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          6,
+          "2026-05",
+          "Fluctuante",
+          "Tensión"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [],
+        "family": [],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Pendiente de formulario.",
+        "mood": "Sin evaluación.",
+        "thought": "Sin evaluación.",
+        "hypotheses": [],
+        "risks": [],
+        "referralReasons": []
+      }
+    },
+    {
+      "rut": "14.333.222-6",
+      "name": "Teresa Valdés Aguirre",
+      "assignedPsychologistId": "psy-4",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "23/07/2026",
+      "general": {
+        "firstName": "Teresa",
+        "lastName": "Valdés Aguirre",
+        "birthDate": "1969-06-21",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Sola",
+        "relationshipStatus": "Divorciado/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Administrativa en consulta dental"
+      },
+      "selfReport": {
+        "mainReason": "Preocupación constante, irritabilidad y temor a perder control.",
+        "since": "Desde 2024.",
+        "expectations": "Quiero manejar mejor la ansiedad.",
+        "psychiatryFears": "Me preocupa subir de peso.",
+        "additionalInfo": "Tuve cáncer de mama y estoy en remisión.",
+        "satisfaction": [
+          5,
+          4,
+          2,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          7,
+          "2024-05",
+          "Constante",
+          "Rumiación"
+        ],
+        [
+          "Sueño",
+          4,
+          "2024-06",
+          "Fluctuante",
+          "Sueño liviano intermitente"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Ansiedad"
+        ],
+        "physical": [
+          "Cáncer"
+        ],
+        "family": [
+          [
+            "Trastornos de ansiedad",
+            "Hija"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Adecuada, prolija.",
+        "mood": "Ansioso.",
+        "thought": "Rumiación económica y familiar.",
+        "hypotheses": [
+          [
+            "Trastorno de ansiedad generalizada (TAG)",
+            "Media",
+            ""
+          ]
+        ],
+        "risks": [],
+        "referralReasons": [
+          "Continuidad de esquema farmacológico",
+          "Evaluación de respuesta a medicamentos"
+        ]
+      }
+    },
+    {
+      "rut": "11.480.765-2",
+      "name": "Mauricio Tapia Contreras",
+      "assignedPsychologistId": "psy-4",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "22/07/2026",
+      "general": {
+        "firstName": "Mauricio",
+        "lastName": "Tapia Contreras",
+        "birthDate": "1973-03-08",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Hermano",
+        "relationshipStatus": "Divorciado/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Técnico eléctrico independiente"
+      },
+      "selfReport": {
+        "mainReason": "Estoy tomando todos los días y ya no puedo parar cuando empiezo.",
+        "since": "Desde que me separé, peor este año.",
+        "expectations": "Quiero cortar el consumo y no perder más trabajos.",
+        "psychiatryFears": "Me da vergüenza que me reten por tomar.",
+        "additionalInfo": "He manejado después de beber y eso me preocupa.",
+        "satisfaction": [
+          2,
+          3,
+          1,
+          2
+        ]
+      },
+      "symptoms": [
+        [
+          "Estado de ánimo",
+          7,
+          "2025-11",
+          "Constante",
+          "Culpa y desánimo"
+        ],
+        [
+          "Conducta e impulsividad",
+          9,
+          "2026-04",
+          "Episódico",
+          "Manejo bajo consumo"
+        ],
+        [
+          "Sueño",
+          5,
+          "2026-01",
+          "Fluctuante",
+          "Sueño cortado"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Consumo problemático de alcohol o drogas",
+          "Depresión"
+        ],
+        "physical": [
+          "Hipertensión"
+        ],
+        "family": [
+          [
+            "Consumo problemático de sustancias",
+            "Padre"
+          ]
+        ],
+        "substances": [
+          [
+            "Alcohol",
+            "Consumo actual",
+            "Diario",
+            "6 a 8 tragos"
+          ],
+          [
+            "Cocaína",
+            "Uso ocasional",
+            "2 veces al mes",
+            "1 a 2 líneas"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Aspecto cansado, minimiza inicialmente el consumo y luego reconoce pérdida de control.",
+        "mood": "Ánimo bajo, ansiedad moderada.",
+        "thought": "Consumo diario, aislamiento progresivo, conductas de riesgo bajo alcohol y ánimo depresivo.",
+        "hypotheses": [
+          [
+            "Consumo problemático de sustancias",
+            "Alta",
+            "Alcohol diario con conductas de riesgo"
+          ],
+          [
+            "Trastorno Depresivo único moderado",
+            "Media",
+            "Síntomas anímicos asociados"
+          ]
+        ],
+        "risks": [
+          [
+            "Consumo de sustancias con riesgo",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Impulsividad de alto riesgo",
+            "Presente",
+            "Alto"
+          ],
+          [
+            "Riesgo de violencia hacia otras personas",
+            "Antecedente",
+            "Moderado"
+          ],
+          [
+            "Vulnerabilidad social",
+            "Presente",
+            "Moderado"
+          ]
+        ],
+        "referralReasons": [
+          "Dificultades relacionadas con consumo",
+          "Evaluación de riesgo",
+          "Inicio de esquema farmacológico"
+        ]
+      }
+    },
+    {
+      "rut": "13.222.456-9",
+      "name": "Gabriel Mella Ortiz",
+      "assignedPsychologistId": "psy-4",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "draft",
+      "updatedAt": "22/07/2026",
+      "general": {
+        "firstName": "Gabriel",
+        "lastName": "Mella Ortiz",
+        "birthDate": "1981-10-20",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Esposa e hija",
+        "relationshipStatus": "Casado/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Supervisor de planta"
+      },
+      "selfReport": {
+        "mainReason": "Siento que puedo explotar en cualquier momento.",
+        "since": "Desde que asumí nuevo cargo.",
+        "expectations": "Quiero controlar la irritabilidad.",
+        "psychiatryFears": "Me preocupa perder autoridad.",
+        "additionalInfo": "Duermo poco.",
+        "satisfaction": [
+          4,
+          6,
+          6,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Conducta e impulsividad",
+          8,
+          "2026-01",
+          "Episódico",
+          "Gritos en discusiones"
+        ],
+        [
+          "Sueño",
+          5,
+          "2026-01",
+          "Constante",
+          "Poco descanso por sobrecarga"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [
+          "Hipertensión"
+        ],
+        "family": [],
+        "substances": [
+          [
+            "Alcohol",
+            "Uso ocasional",
+            "Fines de semana",
+            "3 cervezas"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Tenso, autocrítico.",
+        "mood": "Irritable.",
+        "thought": "Preocupación por control.",
+        "hypotheses": [
+          [
+            "Trastorno Adaptativo mixto",
+            "Media",
+            "Estrés laboral"
+          ]
+        ],
+        "risks": [
+          [
+            "Riesgo de violencia hacia otras personas",
+            "Antecedente",
+            "Moderado"
+          ]
+        ],
+        "referralReasons": [
+          "Evaluación de riesgo",
+          "Persistencia de síntomas"
+        ]
+      }
+    },
+    {
+      "rut": "22.909.876-3",
+      "name": "Emilia Gálvez Ríos",
+      "assignedPsychologistId": "psy-4",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "20/07/2026",
+      "general": {
+        "firstName": "Emilia",
+        "lastName": "Gálvez Ríos",
+        "birthDate": "2003-11-08",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Padres",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Estudia"
+        ],
+        "occupationDetail": "Estudiante universitaria"
+      },
+      "selfReport": {
+        "mainReason": "No puedo dejar de revisar si cerré puertas o apagué cosas.",
+        "since": "Desde 2025.",
+        "expectations": "Quiero que esto tome menos tiempo.",
+        "psychiatryFears": "Me da miedo que no me crean.",
+        "additionalInfo": "Llego tarde por revisar.",
+        "satisfaction": [
+          4,
+          6,
+          5,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          8,
+          "2025-07",
+          "Constante",
+          "Ansiedad por chequeos"
+        ],
+        [
+          "Conducta e impulsividad",
+          5,
+          "2025-07",
+          "Constante",
+          "Rituales de chequeo"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Trastorno obsesivo compulsivo (TOC)"
+        ],
+        "physical": [],
+        "family": [
+          [
+            "Trastornos de ansiedad",
+            "Padre"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Ansiosa, detallista.",
+        "mood": "Ansioso.",
+        "thought": "Ideas obsesivas de daño accidental.",
+        "hypotheses": [
+          [
+            "Trastorno Obsesivo Compulsivo",
+            "Alta",
+            "Rituales de chequeo"
+          ]
+        ],
+        "risks": [],
+        "referralReasons": [
+          "Evaluación diagnóstica",
+          "Deterioro funcional"
+        ]
+      }
+    },
+    {
+      "rut": "9.111.777-6",
+      "name": "Marta Aravena Ponce",
+      "assignedPsychologistId": "psy-4",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "17/07/2026",
+      "general": {
+        "firstName": "Marta",
+        "lastName": "Aravena Ponce",
+        "birthDate": "1959-01-06",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Hermana",
+        "relationshipStatus": "Viudo/a",
+        "occupations": [
+          "Cuidadora/or"
+        ],
+        "occupationDetail": "Cuida a hermana con discapacidad"
+      },
+      "selfReport": {
+        "mainReason": "Estoy cansada de cuidar y me siento culpable por decirlo.",
+        "since": "Desde hace más de un año.",
+        "expectations": "Quiero sentir alivio sin abandonar a mi hermana.",
+        "psychiatryFears": "Me da miedo que me reten.",
+        "additionalInfo": "Casi no tengo tiempo para mí.",
+        "satisfaction": [
+          4,
+          5,
+          1,
+          2
+        ]
+      },
+      "symptoms": [
+        [
+          "Estado de ánimo",
+          7,
+          "2025-01",
+          "Constante",
+          "Culpa"
+        ],
+        [
+          "Energía y activación",
+          4,
+          "2025-01",
+          "Constante",
+          "Agotamiento por cuidado"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Depresión"
+        ],
+        "physical": [
+          "Dolor crónico o fibromialgia"
+        ],
+        "family": [
+          [
+            "Depresión",
+            "Hermana"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Cansada, llanto fácil.",
+        "mood": "Bajo.",
+        "thought": "Culpa por límites de cuidado.",
+        "hypotheses": [
+          [
+            "Trastorno Depresivo recurrente moderado",
+            "Media",
+            "Sobrecarga crónica"
+          ]
+        ],
+        "risks": [
+          [
+            "Abandono del autocuidado",
+            "Presente",
+            "Moderado"
+          ]
+        ],
+        "referralReasons": [
+          "Inicio de esquema farmacológico",
+          "Deterioro funcional"
+        ]
+      }
+    },
+    {
+      "rut": "18.777.111-4",
+      "name": "Felipe Quezada Marín",
+      "assignedPsychologistId": "psy-4",
+      "patientFormStatus": "draft",
+      "psychFormStatus": "pending",
+      "updatedAt": "15/07/2026",
+      "general": {
+        "firstName": "Felipe",
+        "lastName": "Quezada Marín",
+        "birthDate": "1991-02-17",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Pareja",
+        "relationshipStatus": "Conviviente",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Profesor de media"
+      },
+      "selfReport": {
+        "mainReason": "Estoy agotado por el trabajo.",
+        "since": "Este semestre.",
+        "expectations": "Quiero terminar el formulario después.",
+        "psychiatryFears": "No sé si corresponde.",
+        "additionalInfo": "Tengo muchas horas extra.",
+        "satisfaction": [
+          4,
+          6,
+          6,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Energía y activación",
+          6,
+          "2026-03",
+          "Constante",
+          "Agotamiento"
+        ],
+        [
+          "Ansiedad",
+          5,
+          "2026-03",
+          "Fluctuante",
+          "Antes de clases"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [],
+        "family": [],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Formulario en borrador.",
+        "mood": "Pendiente.",
+        "thought": "Pendiente.",
+        "hypotheses": [],
+        "risks": [],
+        "referralReasons": []
+      }
+    },
+    {
+      "rut": "10.222.998-7",
+      "name": "Andrea Leiva Sanhueza",
+      "assignedPsychologistId": "psy-4",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "11/07/2026",
+      "general": {
+        "firstName": "Andrea",
+        "lastName": "Leiva Sanhueza",
+        "birthDate": "1988-06-29",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Hija",
+        "relationshipStatus": "Separado/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Peluquera independiente"
+      },
+      "selfReport": {
+        "mainReason": "Tengo ataques de angustia cuando pienso en deudas.",
+        "since": "Desde enero.",
+        "expectations": "Quiero calmarme para ordenar mis pagos.",
+        "psychiatryFears": "Me preocupa no poder trabajar.",
+        "additionalInfo": "Mis ingresos son variables.",
+        "satisfaction": [
+          3,
+          5,
+          2,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          8,
+          "2026-01",
+          "Episódico",
+          "Por deudas"
+        ],
+        [
+          "Sueño",
+          4,
+          "2026-01",
+          "Fluctuante",
+          "Despertares por preocupación"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Ansiedad"
+        ],
+        "physical": [],
+        "family": [],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Angustiada, cooperadora.",
+        "mood": "Ansioso.",
+        "thought": "Rumiación económica.",
+        "hypotheses": [
+          [
+            "Trastorno de ansiedad generalizada (TAG)",
+            "Media",
+            "Estrés financiero"
+          ]
+        ],
+        "risks": [],
+        "referralReasons": [
+          "Persistencia de síntomas"
+        ]
+      }
+    },
+    {
+      "rut": "17.333.444-0",
+      "name": "Jorge Salas Núñez",
+      "assignedPsychologistId": "psy-4",
+      "patientFormStatus": "not-sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "09/07/2026",
+      "general": {
+        "firstName": "Jorge",
+        "lastName": "Salas Núñez",
+        "birthDate": "1983-04-04",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Solo",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Operario"
+      },
+      "selfReport": {
+        "mainReason": "No he completado el formulario.",
+        "since": "No sé.",
+        "expectations": "Quiero retomarlo.",
+        "psychiatryFears": "Me cuesta escribir.",
+        "additionalInfo": "",
+        "satisfaction": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "symptoms": [],
+      "history": {
+        "mental": [],
+        "physical": [],
+        "family": [],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Pendiente.",
+        "mood": "Sin evaluación.",
+        "thought": "Sin evaluación.",
+        "hypotheses": [],
+        "risks": [],
+        "referralReasons": []
+      }
+    },
+    {
+      "rut": "12.111.654-8",
+      "name": "Lorena Paredes Ulloa",
+      "assignedPsychologistId": "psy-5",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "22/07/2026",
+      "general": {
+        "firstName": "Lorena",
+        "lastName": "Paredes Ulloa",
+        "birthDate": "1975-08-13",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Esposo e hijo",
+        "relationshipStatus": "Casado/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Contadora"
+      },
+      "selfReport": {
+        "mainReason": "Estoy con mucho miedo a enfermarme de nuevo.",
+        "since": "Desde mi último control.",
+        "expectations": "Quiero dejar de pensar todo el día en eso.",
+        "psychiatryFears": "Me preocupa mezclar remedios.",
+        "additionalInfo": "Tuve cáncer y estoy en controles.",
+        "satisfaction": [
+          5,
+          7,
+          7,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          8,
+          "2026-03",
+          "Constante",
+          "Miedo a recaída"
+        ],
+        [
+          "Sueño",
+          5,
+          "2026-03",
+          "Fluctuante",
+          "Despertares por miedo a recaída"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Ansiedad"
+        ],
+        "physical": [
+          "Cáncer"
+        ],
+        "family": [],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Preocupada, organizada.",
+        "mood": "Ansioso.",
+        "thought": "Preocupación por salud.",
+        "hypotheses": [
+          [
+            "Trastorno Adaptativo con síntomas ansiosos",
+            "Media",
+            "Control oncológico"
+          ]
+        ],
+        "risks": [],
+        "referralReasons": [
+          "Evaluación diagnóstica",
+          "Persistencia de síntomas"
+        ]
+      }
+    },
+    {
+      "rut": "24.444.101-2",
+      "name": "Sebastián Rivas Muñoz",
+      "assignedPsychologistId": "psy-5",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "draft",
+      "updatedAt": "18/07/2026",
+      "general": {
+        "firstName": "Sebastián",
+        "lastName": "Rivas Muñoz",
+        "birthDate": "2005-12-01",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Padres",
+        "relationshipStatus": "Soltero/a",
+        "occupations": [
+          "Estudia"
+        ],
+        "occupationDetail": "Preuniversitario"
+      },
+      "selfReport": {
+        "mainReason": "Siento presión por la prueba y no logro estudiar.",
+        "since": "Desde marzo.",
+        "expectations": "Quiero concentrarme y dormir.",
+        "psychiatryFears": "No quiero depender de pastillas.",
+        "additionalInfo": "Me comparo con mis compañeros.",
+        "satisfaction": [
+          3,
+          6,
+          5,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          7,
+          "2026-03",
+          "Constante",
+          "Por estudio"
+        ],
+        [
+          "Cognición",
+          8,
+          "2026-03",
+          "Fluctuante",
+          "Bloqueos al estudiar"
+        ],
+        [
+          "Sueño",
+          5,
+          "2026-04",
+          "Fluctuante",
+          "Dificultad para dormir antes de pruebas"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [],
+        "family": [
+          [
+            "Trastornos de ansiedad",
+            "Madre"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Ansioso, colaborador.",
+        "mood": "Ansioso.",
+        "thought": "Autoexigencia académica.",
+        "hypotheses": [
+          [
+            "Trastorno Adaptativo con síntomas ansiosos",
+            "Media",
+            "Estrés académico"
+          ]
+        ],
+        "risks": [],
+        "referralReasons": [
+          "Persistencia de síntomas"
+        ]
+      }
+    },
+    {
+      "rut": "8.222.111-5",
+      "name": "Carmen Morales Díaz",
+      "assignedPsychologistId": "psy-5",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "15/07/2026",
+      "general": {
+        "firstName": "Carmen",
+        "lastName": "Morales Díaz",
+        "birthDate": "1951-03-18",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Hijo adulto",
+        "relationshipStatus": "Viudo/a",
+        "occupations": [
+          "Dueña/o de casa"
+        ],
+        "occupationDetail": "Jubilada"
+      },
+      "selfReport": {
+        "mainReason": "Estoy olvidadiza y eso me asusta.",
+        "since": "Desde hace varios meses.",
+        "expectations": "Quiero saber si es estrés o algo más.",
+        "psychiatryFears": "Me da miedo que me digan que tengo demencia.",
+        "additionalInfo": "Duermo mal.",
+        "satisfaction": [
+          5,
+          6,
+          1,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Cognición",
+          7,
+          "2025-12",
+          "Fluctuante",
+          "Olvidos que le preocupan"
+        ],
+        [
+          "Sueño",
+          8,
+          "2025-12",
+          "Constante",
+          "Despertar nocturno frecuente"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [
+          "Diabetes"
+        ],
+        "family": [
+          [
+            "Enfermedades neurocognitivas",
+            "Madre"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Ansiosa por olvidos.",
+        "mood": "Ansioso.",
+        "thought": "Preocupación por deterioro cognitivo.",
+        "hypotheses": [
+          [
+            "Trastorno de ansiedad generalizada (TAG)",
+            "Media",
+            "Descartar componente neurocognitivo"
+          ]
+        ],
+        "risks": [
+          [
+            "Abandono del autocuidado",
+            "Antecedente",
+            "Bajo"
+          ]
+        ],
+        "referralReasons": [
+          "Evaluación diagnóstica",
+          "Diagnóstico diferencial"
+        ]
+      }
+    },
+    {
+      "rut": "19.555.663-1",
+      "name": "Joaquín Acuña Flores",
+      "assignedPsychologistId": "psy-5",
+      "patientFormStatus": "not-sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "12/07/2026",
+      "general": {
+        "firstName": "Joaquín",
+        "lastName": "Acuña Flores",
+        "birthDate": "1998-10-09",
+        "gender": "Hombre",
+        "nationality": "Chilena",
+        "livesWith": "Pareja",
+        "relationshipStatus": "Conviviente",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Cocinero"
+      },
+      "selfReport": {
+        "mainReason": "Empecé el formulario por estrés, pero no lo terminé.",
+        "since": "Hace poco.",
+        "expectations": "Quiero retomar cuando tenga tiempo.",
+        "psychiatryFears": "No sé qué escribir.",
+        "additionalInfo": "Trabajo muchas horas.",
+        "satisfaction": [
+          4,
+          6,
+          6,
+          4
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          5,
+          "2026-06",
+          "Fluctuante",
+          "Antes de turnos"
+        ]
+      ],
+      "history": {
+        "mental": [],
+        "physical": [],
+        "family": [],
+        "substances": [
+          [
+            "Alcohol",
+            "Uso ocasional",
+            "Fines de semana",
+            "2 cervezas"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Pendiente de formulario.",
+        "mood": "Sin evaluación.",
+        "thought": "Sin evaluación.",
+        "hypotheses": [],
+        "risks": [],
+        "referralReasons": []
+      }
+    },
+    {
+      "rut": "15.909.808-6",
+      "name": "María Paz Benítez Silva",
+      "assignedPsychologistId": "psy-5",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "sent",
+      "updatedAt": "10/07/2026",
+      "general": {
+        "firstName": "María Paz",
+        "lastName": "Benítez Silva",
+        "birthDate": "1985-05-15",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Hija",
+        "relationshipStatus": "Separado/a",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Abogada"
+      },
+      "selfReport": {
+        "mainReason": "No logro desconectarme del trabajo y me vienen crisis de angustia.",
+        "since": "Desde una audiencia difícil.",
+        "expectations": "Quiero volver a dormir y rendir sin crisis.",
+        "psychiatryFears": "Me preocupa perder claridad mental.",
+        "additionalInfo": "Tengo mucha carga laboral.",
+        "satisfaction": [
+          3,
+          5,
+          2,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          9,
+          "2026-02",
+          "Episódico",
+          "Crisis intensas"
+        ],
+        [
+          "Sueño",
+          8,
+          "2026-02",
+          "Constante",
+          "Insomnio"
+        ],
+        [
+          "Cognición",
+          5,
+          "2026-03",
+          "Fluctuante",
+          "Se bloquea en lectura de expedientes"
+        ],
+        [
+          "Alimentación",
+          4,
+          "2026-03",
+          "Fluctuante",
+          "Baja de apetito en semanas de crisis"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Ataques de pánico"
+        ],
+        "physical": [],
+        "family": [
+          [
+            "Depresión",
+            "Madre"
+          ]
+        ],
+        "substances": []
+      },
+      "clinical": {
+        "presentation": "Muy ansiosa, discurso organizado.",
+        "mood": "Ansioso alto.",
+        "thought": "Rumiación laboral.",
+        "hypotheses": [
+          [
+            "Trastorno de pánico",
+            "Alta",
+            "Crisis recurrentes"
+          ],
+          [
+            "Trastorno Adaptativo mixto",
+            "Media",
+            "Estrés laboral"
+          ]
+        ],
+        "risks": [
+          [
+            "Ideas de muerte",
+            "Antecedente",
+            "Bajo"
+          ]
+        ],
+        "referralReasons": [
+          "Inicio de esquema farmacológico",
+          "Persistencia de síntomas",
+          "Deterioro funcional"
+        ]
+      }
+    },
+    {
+      "rut": "23.010.884-9",
+      "name": "Natalia Espinoza Riquelme",
+      "assignedPsychologistId": "psy-2",
+      "patientFormStatus": "sent",
+      "psychFormStatus": "pending",
+      "updatedAt": "08/07/2026",
+      "general": {
+        "firstName": "Natalia",
+        "lastName": "Espinoza Riquelme",
+        "birthDate": "1990-09-24",
+        "gender": "Mujer",
+        "nationality": "Chilena",
+        "livesWith": "Pareja e hijo",
+        "relationshipStatus": "Conviviente",
+        "occupations": [
+          "Trabaja"
+        ],
+        "occupationDetail": "Ejecutiva bancaria"
+      },
+      "selfReport": {
+        "mainReason": "Me cuesta respirar cuando hay mucha presión en la oficina.",
+        "since": "Desde mayo.",
+        "expectations": "Quiero aprender a calmar las crisis antes de que escalen.",
+        "psychiatryFears": "Me preocupa que me indiquen algo que me dé sueño.",
+        "additionalInfo": "Estoy evitando reuniones con clientes.",
+        "satisfaction": [
+          4,
+          6,
+          6,
+          3
+        ]
+      },
+      "symptoms": [
+        [
+          "Ansiedad",
+          8,
+          "2026-05",
+          "Episódico",
+          "Sensación de falta de aire"
+        ],
+        [
+          "Cognición",
+          4,
+          "2026-05",
+          "Fluctuante",
+          "Bloqueo puntual en reuniones"
+        ],
+        [
+          "Sueño",
+          4,
+          "2026-05",
+          "Fluctuante",
+          "Despertar anticipatorio ocasional"
+        ]
+      ],
+      "history": {
+        "mental": [
+          "Ataques de pánico"
+        ],
+        "physical": [],
+        "family": [
+          [
+            "Trastornos de ansiedad",
+            "Madre"
+          ]
+        ],
+        "substances": [
+          [
+            "Alcohol",
+            "Uso ocasional",
+            "2 veces al mes",
+            "1 copa"
+          ]
+        ]
+      },
+      "clinical": {
+        "presentation": "Ansiosa, buena capacidad de relato.",
+        "mood": "Ansioso.",
+        "thought": "Temor anticipatorio a reuniones laborales.",
+        "hypotheses": [
+          [
+            "Trastorno de pánico",
+            "Media",
+            "Crisis situacionales en contexto laboral"
+          ]
+        ],
+        "risks": [],
+        "referralReasons": [
+          "Evaluación diagnóstica",
+          "Persistencia de síntomas"
+        ]
+      }
+    }
+  ]
+}
