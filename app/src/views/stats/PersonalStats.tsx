@@ -51,6 +51,7 @@ function PersonalStats({ stats, populationStats }: PersonalStatsProps) {
     <>
       <div className="notice">{personal.notice}</div>
       <div className="grid">
+        {/* Prioridad inmediata: a quién mirar y qué es urgente. */}
         <Card span={8}>
           <SectionHead title={personalCharts.triage.title} subtitle={personalCharts.triage.subtitle} />
           <ScatterChart
@@ -65,15 +66,12 @@ function PersonalStats({ stats, populationStats }: PersonalStatsProps) {
           />
         </Card>
         <Card span={4}>
-          <SectionHead title={personalCharts.profile.title} subtitle={personalCharts.profile.subtitle} />
-          <RadarChart
-            axes={symptomRadarAxes(stats.symptomProfile)}
-            series={symptomRadarSeries(stats.symptomProfile, populationStats.symptomProfile)}
-            max={INTENSITY_MAX}
-            emptyLabel={empty}
-          />
+          <SectionHead title={personal.alerts.title} subtitle={personal.alerts.subtitle} />
+          <div className="summary-box">{alerts.length > 0 ? alerts.join('\n') : personal.alerts.none}</div>
         </Card>
-        <Card span={6}>
+
+        {/* Riesgo y derivación sugerida. */}
+        <Card span={4}>
           <SectionHead title={personalCharts.density.title} subtitle={personalCharts.density.subtitle} />
           <Heatmap
             rowLabels={densityRowLabels}
@@ -82,11 +80,7 @@ function PersonalStats({ stats, populationStats }: PersonalStatsProps) {
             emptyLabel={empty}
           />
         </Card>
-        <Card span={6}>
-          <SectionHead title={personal.referral.title} subtitle={personal.referral.subtitle} />
-          <Donut segments={referralSegments(stats)} emptyLabel={empty} />
-        </Card>
-        <Card span={6}>
+        <Card span={4}>
           <SectionHead
             title={personalBreakdown.riskTypes.title}
             subtitle={personalBreakdown.riskTypes.subtitle}
@@ -97,6 +91,48 @@ function PersonalStats({ stats, populationStats }: PersonalStatsProps) {
             <p className="subtitle">{empty}</p>
           )}
         </Card>
+        <Card span={4}>
+          <SectionHead title={personal.referral.title} subtitle={personal.referral.subtitle} />
+          <Donut segments={referralSegments(stats)} emptyLabel={empty} />
+        </Card>
+
+        {/* Perfil clínico: síntomas, diagnóstico y funcionamiento. */}
+        <Card span={4}>
+          <SectionHead title={personalCharts.profile.title} subtitle={personalCharts.profile.subtitle} />
+          <RadarChart
+            axes={symptomRadarAxes(stats.symptomProfile)}
+            series={symptomRadarSeries(stats.symptomProfile, populationStats.symptomProfile)}
+            max={INTENSITY_MAX}
+            emptyLabel={empty}
+          />
+        </Card>
+        <Card span={4}>
+          <SectionHead
+            title={personalBreakdown.hypotheses.title}
+            subtitle={personalBreakdown.hypotheses.subtitle}
+          />
+          {stats.hypothesisFamilies.length > 0 ? (
+            <MiniBars
+              items={hypothesisFamilyBars(stats.hypothesisFamilies)}
+              max={topCount(stats.hypothesisFamilies)}
+            />
+          ) : (
+            <p className="subtitle">{empty}</p>
+          )}
+        </Card>
+        <Card span={4}>
+          <SectionHead
+            title={personalBreakdown.satisfaction.title}
+            subtitle={personalBreakdown.satisfaction.subtitle}
+          />
+          {stats.satisfaction.count > 0 ? (
+            <MiniBars items={satisfactionBars(stats.satisfaction)} max={SATISFACTION_MAX} />
+          ) : (
+            <p className="subtitle">{empty}</p>
+          )}
+        </Card>
+
+        {/* Motivos y carga operativa. */}
         <Card span={6}>
           <SectionHead
             title={personalBreakdown.referralReasons.title}
@@ -113,37 +149,8 @@ function PersonalStats({ stats, populationStats }: PersonalStatsProps) {
           )}
         </Card>
         <Card span={6}>
-          <SectionHead
-            title={personalBreakdown.hypotheses.title}
-            subtitle={personalBreakdown.hypotheses.subtitle}
-          />
-          {stats.hypothesisFamilies.length > 0 ? (
-            <MiniBars
-              items={hypothesisFamilyBars(stats.hypothesisFamilies)}
-              max={topCount(stats.hypothesisFamilies)}
-            />
-          ) : (
-            <p className="subtitle">{empty}</p>
-          )}
-        </Card>
-        <Card span={6}>
-          <SectionHead
-            title={personalBreakdown.satisfaction.title}
-            subtitle={personalBreakdown.satisfaction.subtitle}
-          />
-          {stats.satisfaction.count > 0 ? (
-            <MiniBars items={satisfactionBars(stats.satisfaction)} max={SATISFACTION_MAX} />
-          ) : (
-            <p className="subtitle">{empty}</p>
-          )}
-        </Card>
-        <Card span={6}>
           <SectionHead title={personal.load.title} subtitle={personal.load.subtitle} />
           <MiniBars items={personalLoadBars(stats)} max={stats.totalCases} />
-        </Card>
-        <Card span={6}>
-          <SectionHead title={personal.alerts.title} subtitle={personal.alerts.subtitle} />
-          <div className="summary-box">{alerts.length > 0 ? alerts.join('\n') : personal.alerts.none}</div>
         </Card>
       </div>
     </>
