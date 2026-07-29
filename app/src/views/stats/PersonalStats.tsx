@@ -58,6 +58,7 @@ function PersonalStats({ stats, populationStats }: PersonalStatsProps) {
             xMax={SCORE_MAX}
             yLabels={triageYLabels}
             xLabel={personalCharts.triage.scoreAxis}
+            yLabel={personalCharts.triage.riskAxis}
             threshold={DERIVE_THRESHOLD}
             legend={triageLegend}
             emptyLabel={empty}

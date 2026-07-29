@@ -16,6 +16,8 @@ interface ScatterChartProps {
   /** Row labels, bottom to top; length sets the number of categorical rows. */
   yLabels: string[]
   xLabel: string
+  /** Optional rotated title for the categorical y-axis. */
+  yLabel?: string
   /** Optional dashed vertical reference line (e.g. a threshold). */
   threshold?: number
   legend: { label: string; tone: ScatterTone }[]
@@ -34,11 +36,11 @@ const TONE_COLOR: Record<ScatterTone, string> = {
 // units and stays constant; only the number of plotted points varies with the data.
 const WIDTH = 720
 const HEIGHT = 300
-const MARGIN = { top: 16, right: 20, bottom: 42, left: 104 }
+const MARGIN = { top: 16, right: 20, bottom: 42, left: 120 }
 const PLOT_W = WIDTH - MARGIN.left - MARGIN.right
 const PLOT_H = HEIGHT - MARGIN.top - MARGIN.bottom
 
-function ScatterChart({ points, xMax, yLabels, xLabel, threshold, legend, emptyLabel }: ScatterChartProps) {
+function ScatterChart({ points, xMax, yLabels, xLabel, yLabel, threshold, legend, emptyLabel }: ScatterChartProps) {
   if (points.length === 0) {
     return <p className="subtitle">{emptyLabel}</p>
   }
@@ -81,6 +83,17 @@ function ScatterChart({ points, xMax, yLabels, xLabel, threshold, legend, emptyL
         <text className="scatter-axis-label" x={MARGIN.left + PLOT_W / 2} y={HEIGHT - 6} textAnchor="middle">
           {xLabel}
         </text>
+        {yLabel && (
+          <text
+            className="scatter-axis-label"
+            x={16}
+            y={MARGIN.top + PLOT_H / 2}
+            transform={`rotate(-90 16 ${MARGIN.top + PLOT_H / 2})`}
+            textAnchor="middle"
+          >
+            {yLabel}
+          </text>
+        )}
         {threshold !== undefined && (
           <line
             className="scatter-threshold"

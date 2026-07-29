@@ -552,6 +552,7 @@ export const TEXT = {
         title: 'Mapa de triage',
         subtitle: 'Cada punto es un caso: puntaje × riesgo, tamaño según nº de síntomas.',
         scoreAxis: 'Puntaje SAD PERSONS',
+        riskAxis: 'Riesgo clínico (máx.)',
         noRisk: 'Sin riesgo',
       },
       profile: {
