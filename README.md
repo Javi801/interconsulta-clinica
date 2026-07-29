@@ -29,6 +29,11 @@ Plataforma que apoya el proceso de derivación de pacientes desde atención psic
 
 - **Frontend**: React, primero versión web y luego versión móvil.
 
+## Documentación
+
+- [Documentación funcional](DOCUMENTACION.md): explicación de alto nivel de las
+  funcionalidades, incluida la sugerencia de derivación con la escala SAD PERSONS.
+
 ## Cómo ver el programa en tu navegador
 
 Esta guía está pensada para personas sin conocimientos de programación. Solo hay que hacerlo una vez; después, ver el programa toma menos de un minuto.
