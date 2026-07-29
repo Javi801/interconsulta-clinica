@@ -5,7 +5,7 @@ Plataforma que apoya el proceso de derivación de pacientes desde atención psic
 ## ¿Qué hace?
 
 1. El paciente completa una única vez un formulario de antecedentes y síntomas.
-2. El psicólogo revisa la información junto al paciente y puede editarla mediante un PIN.
+2. El psicólogo revisa la información junto al paciente, que puede editarla ingresando con su código de acceso.
 3. El psicólogo completa su propia evaluación clínica.
 4. El sistema calcula un puntaje y sugiere si corresponde o no una derivación psiquiátrica.
 5. El psicólogo valida o rechaza la sugerencia.
@@ -14,9 +14,9 @@ Plataforma que apoya el proceso de derivación de pacientes desde atención psic
 
 ## Roles
 
-- **Paciente**: completa y envía su formulario; solo puede editarlo con un PIN entregado por un psicólogo.
-- **Psicólogo**: accede a todos los pacientes, completa la evaluación clínica, genera resultados y edita el documento para el psiquiatra.
-- **Administrador**: gestiona usuarios, preguntas, opciones, reglas de puntaje y umbrales.
+- **Paciente**: completa y envía su formulario; accede con un código entregado por su psicólogo y su RUT para completarlo o editarlo.
+- **Psicólogo**: ve solo los pacientes que tiene asignados, completa la evaluación clínica, genera los resultados y edita el documento para el psiquiatra.
+- **Coordinador**: supervisa a todos los pacientes en modo solo lectura y reasigna pacientes entre psicólogos.
 - **Psiquiatra**: no tiene acceso a la plataforma; recibe el documento por vías externas.
 
 ## Etapas del proyecto (MVP)
